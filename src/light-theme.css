@@ -12,9 +12,13 @@ body {
 
 nav {
     background-color: var(--transparent);
-    color: white;
+    color: var(--white);
 }
 
 nav .additional-options img {
     filter: invert(100%) sepia(2%) saturate(355%) hue-rotate(51deg) brightness(114%) contrast(90%);
+}
+
+section#current-forecast {
+    color: var(--white);
 }
