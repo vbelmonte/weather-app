@@ -153,8 +153,20 @@ h5.bold {
 	line-height: 1.5rem;
 }
 
+h5.small {
+	font-family: 'Barlow Regular';
+	font-size: 0.75rem;
+	line-height: 1rem;
+}
+
 p {
 	font-family: 'Barlow Regular';
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+p.bold {
+	font-family: 'Barlow Bold';
 	font-size: 1rem;
 	line-height: 1.5rem;
 }
@@ -207,4 +219,31 @@ nav .additional-options {
 
 #current-forecast img#current-weather {
 	height: 9rem;
+}
+
+
+
+/** MORE CURRENT FORECAST DETAILS STYLES **/
+
+#more-current-forecast-details {
+	margin: 0rem 1rem;
+}
+
+#more-current-forecast-details-container {
+	display: flex;
+	gap: 2rem;
+	justify-content: space-evenly;
+	padding: 1.5rem;
+	border-radius: 1.75rem;
+}
+
+#more-current-forecast-details img {
+	height: 2rem;
+}
+
+#more-current-forecast-details .module {
+	display: flex;
+    flex-direction: column;
+	gap: 0.5rem;
+	text-align: center;
 }
