@@ -1,5 +1,6 @@
 import createCurrentForecast from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
+import createAdditionalForecast from './additional-forecast-layout';
 
 function createNavigationMenu() {
   const nav = document.createElement('nav');
@@ -49,8 +50,10 @@ export default function createPage() {
   const navigationMenu = createNavigationMenu();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
+  const additionalForecastDetails = createAdditionalForecast();
 
   body.appendChild(navigationMenu);
   body.appendChild(currentForecast);
   body.appendChild(moreCurrentForecastDetails);
+  body.appendChild(additionalForecastDetails);
 }
