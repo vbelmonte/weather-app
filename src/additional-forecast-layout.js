@@ -49,8 +49,100 @@ function createHourlyForecast() {
   return hourlyForecast;
 }
 
-function create3DayForecast() {
+function createDailyForecastBar() {
+  const forecastBar = document.createElement('div');
+  forecastBar.classList.add('daily-bar');
 
+  const dayDiv = document.createElement('div');
+  const day = document.createElement('h4');
+  day.classList.add('day');
+  day.classList.add('secondary');
+  day.textContent = 'Wed';
+  dayDiv.appendChild(day);
+  forecastBar.appendChild(dayDiv);
+
+  const detailsDiv = document.createElement('div');
+  detailsDiv.classList.add('details');
+
+  const forecastDiv = document.createElement('div');
+  forecastDiv.classList.add('forecast');
+
+  const weatherIconDiv = document.createElement('div');
+  const iconImg = document.createElement('img');
+  iconImg.classList.add('icon');
+  iconImg.classList.add('tertiary');
+  iconImg.src = '../src/assets/images/forecast-details/sun-outline-svgrepo-com.svg';
+  weatherIconDiv.appendChild(iconImg);
+  forecastDiv.appendChild(weatherIconDiv);
+
+  const descriptionDiv = document.createElement('div');
+  const description = document.createElement('p');
+  description.classList.add('description');
+  description.textContent = 'Sunny and clear';
+  descriptionDiv.appendChild(description);
+  forecastDiv.appendChild(descriptionDiv);
+
+  detailsDiv.appendChild(forecastDiv);
+
+  const temperaturesDiv = document.createElement('div');
+  temperaturesDiv.classList.add('temperatures');
+  const highP = document.createElement('p');
+  highP.classList.add('high');
+  highP.textContent = '80°';
+  const lowP = document.createElement('p');
+  lowP.classList.add('low');
+  lowP.textContent = '62°';
+  temperaturesDiv.appendChild(highP);
+  temperaturesDiv.appendChild(lowP);
+  detailsDiv.appendChild(temperaturesDiv);
+
+  const corDiv = document.createElement('div');
+  corDiv.classList.add('chance-of-rain');
+  const corIconDiv = document.createElement('div');
+  const corIconImg = document.createElement('img');
+  corIconImg.classList.add('icon');
+  corIconImg.classList.add('tertiary');
+  corIconImg.src = '../src/assets/images/forecast-details/droplet-svgrepo-com.svg';
+  corIconDiv.appendChild(corIconImg);
+  corDiv.appendChild(corIconDiv);
+  const percentageDiv = document.createElement('div');
+  const percentage = document.createElement('p');
+  percentage.classList.add('percentage');
+  percentage.textContent = '0%';
+  percentageDiv.appendChild(percentage);
+  corDiv.appendChild(percentageDiv);
+  detailsDiv.appendChild(corDiv);
+
+  forecastBar.appendChild(detailsDiv);
+
+  return forecastBar;
+}
+
+function create3DayForecast() {
+  const threeDayForecast = document.createElement('div');
+  threeDayForecast.classList.add('3-day-forecast');
+
+  const threeDayForecastTitleDiv = document.createElement('div');
+  const threeDayForecastTitle = document.createElement('h3');
+  threeDayForecastTitle.classList.add('bold');
+  threeDayForecastTitle.textContent = '3-Day Forecast';
+  threeDayForecastTitleDiv.appendChild(threeDayForecastTitle);
+  threeDayForecast.appendChild(threeDayForecastTitleDiv);
+
+  const threeDayForecastList = document.createElement('div');
+  threeDayForecastList.classList.add('3-day-forecast-list');
+
+  const dayOne = createDailyForecastBar();
+  const dayTwo = createDailyForecastBar();
+  const dayThree = createDailyForecastBar();
+
+  threeDayForecastList.appendChild(dayOne);
+  threeDayForecastList.appendChild(dayTwo);
+  threeDayForecastList.appendChild(dayThree);
+
+  threeDayForecast.appendChild(threeDayForecastList);
+
+  return threeDayForecast;
 }
 
 export default function createAdditionalForecast() {
@@ -59,6 +151,9 @@ export default function createAdditionalForecast() {
 
   const hourlyForecast = createHourlyForecast();
   section.appendChild(hourlyForecast);
+
+  const threeDayForecast = create3DayForecast();
+  section.appendChild(threeDayForecast);
 
   return section;
 }

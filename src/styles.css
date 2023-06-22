@@ -255,8 +255,12 @@ nav .additional-options {
 #additional-forecast {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 3rem;
 	padding: 3rem 1rem;
+}
+
+#additional-forecast h3 {
+	font-size: 1.5rem;
 }
 
 /** HOURLY FORECAST STYLES **/
@@ -264,10 +268,6 @@ nav .additional-options {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-}
-
-.hourly-forecast h3 {
-	font-size: 1.5rem;
 }
 
 /** HOURLY FORECAST CARD STYLES **/
@@ -314,4 +314,44 @@ nav .additional-options {
 .hourly-forecast-carousel .container {
 	display: flex;
 	gap: 0.5rem;
+}
+
+/** 3-DAY FORECAST CARD STYLES **/
+.daily-bar {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	
+	padding: 1rem 0rem;
+}
+
+.daily-bar .details {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	gap: 1rem; /** MOBILE **/
+}
+
+.daily-bar .forecast,
+.daily-bar .temperatures,
+.daily-bar .chance-of-rain {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.daily-bar .forecast {
+	flex: 1;
+}
+
+.daily-bar .forecast .icon {
+	height: 1.5rem;
+}
+
+.daily-bar .chance-of-rain .icon {
+	height: 1rem;
+}
+
+.daily-bar h4 {
+	font-size: 1rem;
 }
