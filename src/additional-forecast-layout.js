@@ -89,6 +89,7 @@ function createDailyForecastBar() {
   temperaturesDiv.classList.add('temperatures');
   const highP = document.createElement('p');
   highP.classList.add('high');
+  highP.classList.add('bold');
   highP.textContent = '80°';
   const lowP = document.createElement('p');
   lowP.classList.add('low');
