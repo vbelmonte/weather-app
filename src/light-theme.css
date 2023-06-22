@@ -78,8 +78,4 @@ section#current-forecast {
     background-color: var(--card);
 }
 
-.hourly-card img {
-    filter: var(--power-tertiary);
-}
-
 /** 3-DAY FORECAST CARD STYLES **/

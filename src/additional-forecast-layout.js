@@ -7,6 +7,7 @@ function createHourlyCard() {
   time.textContent = '2pm';
 
   const forecastIcon = document.createElement('img');
+  forecastIcon.classList.add('tertiary');
   forecastIcon.src = '../src/assets/images/forecast-details/weather-partly-cloudy-day-svgrepo-com.svg';
 
   const hourlyTemp = document.createElement('p');
