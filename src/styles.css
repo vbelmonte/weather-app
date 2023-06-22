@@ -201,7 +201,8 @@ nav .additional-options {
     flex-direction: column;
     align-items: center;
     gap: 5rem;
-	margin: 3rem 1rem;
+	padding: 3rem 1rem;
+	padding-bottom: 10rem;
 }
 
 #current-forecast .forecast-details {
@@ -227,12 +228,16 @@ nav .additional-options {
 
 #more-current-forecast-details {
 	margin: 0rem 1rem;
+	/** MOBILE BELOW **/
+	position: absolute;
+    top: 43rem;
+    width: calc(100% - 2rem);
 }
 
 #more-current-forecast-details-container {
 	display: flex;
 	gap: 2rem;
-	justify-content: space-evenly;
+	justify-content: center;
 	padding: 1.5rem;
 	border-radius: 1.75rem;
 }
@@ -257,6 +262,7 @@ nav .additional-options {
 	flex-direction: column;
 	gap: 3rem;
 	padding: 3rem 1rem;
+	padding-top: 8rem;
 }
 
 #additional-forecast h3 {
