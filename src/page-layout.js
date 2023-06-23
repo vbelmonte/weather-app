@@ -4,14 +4,15 @@ import createAdditionalForecast from './additional-forecast-layout';
 
 function createNavigationMenu() {
   const nav = document.createElement('nav');
+  nav.classList.add('main-nav');
   const searchImg = document.createElement('img');
   searchImg.src = '../src/assets/images/layout/magnifying-glass-solid.svg';
 
   const logoDiv = document.createElement('div');
   const logoImg = document.createElement('img');
+  logoImg.classList.add('logo');
   logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
   logoDiv.appendChild(logoImg);
-  logoDiv.classList.add('logo');
 
   const searchDiv = document.createElement('div');
   const searchContainerDiv = document.createElement('div');
@@ -28,6 +29,7 @@ function createNavigationMenu() {
 
   const hamburgerMenuLink = document.createElement('a');
   const hamburgerMenuImg = document.createElement('img');
+  hamburgerMenuImg.classList.add('menu');
   hamburgerMenuImg.src = '../src/assets/images/layout/hamburger-menu-svgrepo-com.svg';
   hamburgerMenuLink.appendChild(hamburgerMenuImg);
 
@@ -45,14 +47,70 @@ function createNavigationMenu() {
   return nav;
 }
 
+function createSideNavigation() {
+  const sideNavContainer = document.createElement('nav');
+  sideNavContainer.classList.add('side-nav-container');
+  sideNavContainer.classList.add('hidden');
+
+  const sideNav = document.createElement('div');
+  sideNav.classList.add('side-nav');
+
+  const logoDiv = document.createElement('div');
+  const logo = document.createElement('img');
+  logo.classList.add('logo');
+  logo.src = '../src/assets/images/layout/weather-app-logo.svg';
+  logoDiv.appendChild(logo);
+  sideNav.appendChild(logoDiv);
+
+  const navItems = document.createElement('div');
+  const topList = document.createElement('ul');
+
+  const darkMode = document.createElement('li');
+  darkMode.textContent = 'Dark Mode';
+  topList.appendChild(darkMode);
+
+  const setToCelsius = document.createElement('li');
+  setToCelsius.textContent = 'Set to Celsius';
+  topList.appendChild(setToCelsius);
+  navItems.appendChild(topList);
+
+  const divider = document.createElement('hr');
+  navItems.appendChild(divider);
+
+  const bottomList = document.createElement('ul');
+
+  const about = document.createElement('li');
+  about.textContent = 'About';
+  bottomList.appendChild(about);
+  navItems.appendChild(bottomList);
+
+  sideNav.appendChild(navItems);
+  sideNavContainer.appendChild(sideNav);
+
+  const exitDiv = document.createElement('div');
+  exitDiv.classList.add('exit');
+
+  const exitBtn = document.createElement('button');
+  const exitImg = document.createElement('img');
+  exitImg.src = '../src/assets/images/layout/exit.svg';
+  exitBtn.appendChild(exitImg);
+  exitDiv.appendChild(exitBtn);
+
+  sideNavContainer.appendChild(exitDiv);
+
+  return sideNavContainer;
+}
+
 export default function createPage() {
   const body = document.getElementsByTagName('body')[0];
   const navigationMenu = createNavigationMenu();
+  const sideNavigation = createSideNavigation();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
   const additionalForecastDetails = createAdditionalForecast();
 
   body.appendChild(navigationMenu);
+  body.appendChild(sideNavigation);
   body.appendChild(currentForecast);
   body.appendChild(moreCurrentForecastDetails);
   body.appendChild(additionalForecastDetails);

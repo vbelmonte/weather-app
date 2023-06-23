@@ -1,7 +1,9 @@
 :root {
     --black: #323232;
+    --black-filter: invert(17%) sepia(0%) saturate(0%) hue-rotate(16deg) brightness(93%) contrast(89%);;
     --black-transparent: rgb(0, 0, 0, 0.25);
     --white: #F2F2F2;
+    --white-filter: invert(99%) sepia(2%) saturate(143%) hue-rotate(198deg) brightness(116%) contrast(90%);
     --day: linear-gradient(135deg, #ABD2EE, #D1C196);
     --power-primary: linear-gradient(135deg, #FFF3B5, #B5DBFF);
     --power-secondary: #888888;
@@ -10,6 +12,7 @@
     --transparent-filter: invert(23%) sepia(70%) saturate(299%) hue-rotate(166deg) brightness(86%) contrast(90%) opacity(50%);
     --additional-forecast: rgb(242, 242, 242, 0.7);
     --card: #FAFAFA;
+    --navigation: #E7E7E7;
 }
 
 body {
@@ -41,10 +44,26 @@ nav {
     color: var(--white);
 }
 
-nav .additional-options img {
-    filter: invert(100%) sepia(2%) saturate(355%) hue-rotate(51deg) brightness(114%) contrast(90%);
+nav.main-nav img {
+    filter: var(--white-filter);
 }
 
+nav.side-nav-container {
+    color: var(--black);
+}
+
+nav .side-nav {
+    background-color: var(--navigation);
+}
+
+nav.side-nav-container .logo,
+nav.side-nav-container .divider {
+    filter: var(--black-filter);
+}
+
+nav.side-nav-container .exit img {
+	filter: var(--white-filter);
+}
 
 
 /** CURRENT FORECAST STYLES **/
