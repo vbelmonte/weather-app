@@ -373,6 +373,9 @@ nav.side-nav-container hr {
 			max-width: 25rem;
 			margin-left: auto;
 			margin-right: auto;
+
+			justify-content: space-evenly;
+			padding: 1.5rem 3rem;
 		}
 	}
 
