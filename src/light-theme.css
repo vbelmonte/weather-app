@@ -1,0 +1,100 @@
+:root {
+    --black: #323232;
+    --black-filter: invert(17%) sepia(0%) saturate(0%) hue-rotate(16deg) brightness(93%) contrast(89%);;
+    --black-transparent: rgb(0, 0, 0, 0.25);
+    --white: #F2F2F2;
+    --white-filter: invert(99%) sepia(2%) saturate(143%) hue-rotate(198deg) brightness(116%) contrast(90%);
+    --day: linear-gradient(135deg, #ABD2EE, #D1C196);
+    --power-primary: linear-gradient(135deg, #FFF3B5, #B5DBFF);
+    --power-secondary: #888888;
+    --power-tertiary: invert(71%) sepia(26%) saturate(620%) hue-rotate(170deg) brightness(99%) contrast(76%);
+    --transparent: rgb(46, 68, 87, 0.5);
+    --transparent-filter: invert(23%) sepia(70%) saturate(299%) hue-rotate(166deg) brightness(86%) contrast(90%) opacity(50%);
+    --additional-forecast: rgb(242, 242, 242, 0.7);
+    --card: #FAFAFA;
+    --navigation: #E7E7E7;
+}
+
+body {
+    background: var(--day);
+    color: var(--black);
+}
+
+
+
+/** TEXT STYLES **/
+
+.secondary {
+    color: var(--power-secondary);
+}
+
+
+
+/** SVG STYLES **/
+.tertiary {
+    filter: var(--power-tertiary);
+}
+
+
+
+/** NAVIGATION STYLES **/
+
+nav {
+    background-color: var(--transparent);
+    color: var(--white);
+}
+
+nav.main-nav img {
+    filter: var(--white-filter);
+}
+
+nav.side-nav-container {
+    color: var(--black);
+}
+
+nav .side-nav {
+    background-color: var(--navigation);
+}
+
+nav.side-nav-container .logo,
+nav.side-nav-container .divider {
+    filter: var(--black-filter);
+}
+
+nav.side-nav-container .exit img {
+	filter: var(--white-filter);
+}
+
+
+/** CURRENT FORECAST STYLES **/
+
+section#current-forecast {
+    color: var(--white);
+}
+
+
+/** MORE CURRENT FORECAST DETAILS STYLES **/
+
+#more-current-forecast-details-container {
+    background: var(--power-primary);
+
+    /* MOBILE STYLE */
+    box-shadow: 0rem 0.125rem 0.25rem var(--black-transparent);
+}
+
+#more-current-forecast-details-container img {
+    filter: var(--transparent-filter);
+}
+
+
+/** ADDITIONAL FORECAST DETAILS STYLES **/
+#additional-forecast {
+    background-color: var(--additional-forecast);
+}
+
+/** HOURLY CARD STYLES **/
+.hourly-card {
+    background-color: var(--card);
+}
+
+/** 3-DAY FORECAST CARD STYLES **/
