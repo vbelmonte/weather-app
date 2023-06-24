@@ -301,6 +301,14 @@ nav.side-nav-container hr {
 	padding: 1.5rem;
 	border-radius: 1.75rem;
 }
+	/** TABLET BELOW **/
+	@media only screen and (min-width: 426px) {
+		#more-current-forecast-details-container {
+			max-width: 25rem;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
 
 #more-current-forecast-details img {
 	height: 2rem;
