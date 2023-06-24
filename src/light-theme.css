@@ -69,6 +69,7 @@ nav.side-nav-container .exit img {
 /** CURRENT FORECAST STYLES **/
 
 section#current-forecast {
+    background-color: lightskyblue;
     color: var(--white);
 }
 

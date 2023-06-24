@@ -103,6 +103,11 @@ function createSideNavigation() {
 
 export default function createPage() {
   const body = document.getElementsByTagName('body')[0];
+  const mainContainer = document.createElement('main');
+  mainContainer.classList.add('main-container');
+  const gridContainer = document.createElement('div');
+  gridContainer.classList.add('grid-container');
+
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
   const currentForecast = createCurrentForecast();
@@ -111,7 +116,10 @@ export default function createPage() {
 
   body.appendChild(navigationMenu);
   body.appendChild(sideNavigation);
-  body.appendChild(currentForecast);
-  body.appendChild(moreCurrentForecastDetails);
-  body.appendChild(additionalForecastDetails);
+  gridContainer.appendChild(currentForecast);
+  gridContainer.appendChild(moreCurrentForecastDetails);
+  gridContainer.appendChild(additionalForecastDetails);
+  mainContainer.appendChild(gridContainer);
+
+  body.appendChild(mainContainer);
 }
