@@ -49,6 +49,13 @@ nav.main-nav img {
     filter: var(--white-filter);
 }
 
+nav.main-nav .desktop-search input {
+    background: url('../src/assets/images/layout/magnifying-glass-solid-day.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+    background-color: var(--white);
+    color: var(--black);
+    border-color: var(--power-secondary);
+}
+
 nav.side-nav-container {
     color: var(--black);
 }

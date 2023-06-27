@@ -181,6 +181,10 @@ p.bold {
 	display: none;
 }
 
+input {
+	font-family: 'Barlow Regular';
+}
+
 
 
 /** NAVIGATION STYLES **/
@@ -207,6 +211,15 @@ nav.main-nav .logo, nav.side-nav .logo {
 nav .additional-options {
 	display: flex;
 	gap: 1rem;
+}
+
+nav.main-nav .desktop-search input {
+	padding: 0.75rem 1rem;
+	padding-left: 2.75rem;
+
+	border: solid 1px;
+	border-radius: 2rem;
+	width: 15rem;
 }
 
 nav.side-nav-container {

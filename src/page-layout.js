@@ -2,6 +2,26 @@ import createCurrentForecast from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
 import createAdditionalForecast from './additional-forecast-layout';
 
+function createCityInputForm() {
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('desktop-search');
+  const form = document.createElement('form');
+
+  const label = document.createElement('label');
+  label.for = 'city';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.id = 'city';
+  input.placeholder = 'Enter your city (eg. Los Angeles)';
+  label.appendChild(input);
+
+  form.appendChild(label);
+  inputContainer.appendChild(form);
+
+  return inputContainer;
+}
+
 function createNavigationMenu() {
   const nav = document.createElement('nav');
   nav.classList.add('main-nav');
@@ -13,6 +33,8 @@ function createNavigationMenu() {
   logoImg.classList.add('logo');
   logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
   logoDiv.appendChild(logoImg);
+
+  const desktopSearchCityForm = createCityInputForm();
 
   const searchDiv = document.createElement('div');
   const searchContainerDiv = document.createElement('div');
@@ -42,6 +64,7 @@ function createNavigationMenu() {
   additionalOptionsDiv.classList.add('additional-options');
 
   nav.appendChild(logoDiv);
+  nav.appendChild(desktopSearchCityForm);
   nav.appendChild(additionalOptionsDiv);
 
   return nav;
