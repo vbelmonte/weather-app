@@ -8,6 +8,7 @@
     --power-primary: linear-gradient(135deg, #FFF3B5, #B5DBFF);
     --power-secondary: #888888;
     --power-tertiary: invert(71%) sepia(26%) saturate(620%) hue-rotate(170deg) brightness(99%) contrast(76%);
+    --power-quaternary: #7FA9D6;
     --transparent: rgb(46, 68, 87, 0.5);
     --transparent-filter: invert(23%) sepia(70%) saturate(299%) hue-rotate(166deg) brightness(86%) contrast(90%) opacity(50%);
     --additional-forecast: rgb(242, 242, 242, 0.7);
@@ -72,6 +73,26 @@ nav.side-nav-container .divider {
 nav.side-nav-container .exit img {
 	filter: var(--white-filter);
 }
+
+
+/** SLIDER SWITCH STYLES **/
+.slider {
+    background-color: var(--transparent);
+    border: solid 1px var(--white);
+}
+
+.slider:before {
+    background-color: var(--white);
+}
+
+input:checked + .slider {
+	background: var(--power-quaternary);
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--power-quaternary);
+}
+
 
 
 /** CURRENT FORECAST STYLES **/

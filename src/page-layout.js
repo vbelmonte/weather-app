@@ -22,6 +22,24 @@ function createCityInputForm() {
   return inputContainer;
 }
 
+function createToggleSwitch(toggleName) {
+  const label = document.createElement('label');
+  label.classList.add('switch');
+  label.for = toggleName;
+
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = toggleName;
+
+  const span = document.createElement('span');
+  span.classList.add('slider', 'round');
+
+  label.appendChild(input);
+  label.appendChild(span);
+
+  return label;
+}
+
 function createNavigationMenu() {
   const nav = document.createElement('nav');
   nav.classList.add('main-nav');
@@ -58,9 +76,37 @@ function createNavigationMenu() {
   const searchLink = document.createElement('a');
   searchLink.appendChild(searchImg);
 
+  const darkLightModeSwitchDiv = document.createElement('div');
+  darkLightModeSwitchDiv.classList.add('toggle-div');
+
+  const darkLightModeSwitchP = document.createElement('p');
+  darkLightModeSwitchP.classList.add('dark-light-switch', 'small');
+  darkLightModeSwitchP.textContent = 'Enable Dark Mode';
+
+  const darkLightModeSwitch = createToggleSwitch();
+  darkLightModeSwitch.id = 'dark-light-switch';
+
+  darkLightModeSwitchDiv.appendChild(darkLightModeSwitchP);
+  darkLightModeSwitchDiv.appendChild(darkLightModeSwitch);
+
+  const farenheitCelsiusSwitchDiv = document.createElement('div');
+  farenheitCelsiusSwitchDiv.classList.add('toggle-div');
+
+  const farenheitCelsiusSwitchP = document.createElement('p');
+  farenheitCelsiusSwitchP.classList.add('farenheit-celsius-switch', 'small');
+  farenheitCelsiusSwitchP.textContent = 'Enable Celsius';
+
+  const farenheitCelsiusSwitch = createToggleSwitch();
+  farenheitCelsiusSwitch.id = 'farenheit-celsius-switch';
+
+  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitchP);
+  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
+
   const additionalOptionsDiv = document.createElement('div');
   additionalOptionsDiv.appendChild(searchLink);
   additionalOptionsDiv.appendChild(hamburgerMenuLink);
+  additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
+  additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
   additionalOptionsDiv.classList.add('additional-options');
 
   nav.appendChild(logoDiv);
