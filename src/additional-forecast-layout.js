@@ -3,7 +3,6 @@ function createHourlyCard() {
   cardDiv.classList.add('hourly-card');
 
   const time = document.createElement('h4');
-  time.classList.add('secondary');
   time.textContent = '2pm';
 
   const forecastIcon = document.createElement('img');
@@ -57,7 +56,6 @@ function createDailyForecastBar() {
   const dayDiv = document.createElement('div');
   const day = document.createElement('h4');
   day.classList.add('day');
-  day.classList.add('secondary');
   day.textContent = 'Wed';
   dayDiv.appendChild(day);
   forecastBar.appendChild(dayDiv);
@@ -103,7 +101,7 @@ function createDailyForecastBar() {
   const corIconDiv = document.createElement('div');
   const corIconImg = document.createElement('img');
   corIconImg.classList.add('icon');
-  corIconImg.classList.add('tertiary');
+  corIconImg.classList.add('white-filter');
   corIconImg.src = '../src/assets/images/forecast-details/droplet-svgrepo-com.svg';
   corIconDiv.appendChild(corIconImg);
   corDiv.appendChild(corIconDiv);
@@ -122,7 +120,7 @@ function createDailyForecastBar() {
 
 function create3DayForecast() {
   const threeDayForecast = document.createElement('div');
-  threeDayForecast.classList.add('3-day-forecast');
+  threeDayForecast.classList.add('three-day-forecast');
 
   const threeDayForecastTitleDiv = document.createElement('div');
   const threeDayForecastTitle = document.createElement('h3');
@@ -132,7 +130,7 @@ function create3DayForecast() {
   threeDayForecast.appendChild(threeDayForecastTitleDiv);
 
   const threeDayForecastList = document.createElement('div');
-  threeDayForecastList.classList.add('3-day-forecast-list');
+  threeDayForecastList.classList.add('three-day-forecast-list');
 
   const dayOne = createDailyForecastBar();
   const dayTwo = createDailyForecastBar();
