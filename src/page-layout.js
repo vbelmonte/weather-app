@@ -8,12 +8,32 @@ function createCityInputForm() {
   const form = document.createElement('form');
 
   const label = document.createElement('label');
-  label.for = 'city';
+  label.for = 'city-desktop';
 
   const input = document.createElement('input');
   input.type = 'text';
-  input.id = 'city';
-  input.placeholder = 'Enter your city (eg. Los Angeles)';
+  input.id = 'city-desktop';
+  input.placeholder = 'Search city';
+  label.appendChild(input);
+
+  form.appendChild(label);
+  inputContainer.appendChild(form);
+
+  return inputContainer;
+}
+
+function createCityInputFormMobile() {
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('mobile-search');
+  const form = document.createElement('form');
+
+  const label = document.createElement('label');
+  label.for = 'city-mobile';
+
+  const input = document.createElement('input');
+  input.id = 'city-mobile';
+  input.type = 'text';
+  input.placeholder = 'Search city';
   label.appendChild(input);
 
   form.appendChild(label);
@@ -170,6 +190,52 @@ function createSideNavigation() {
   return sideNavContainer;
 }
 
+function createQueryResultBar(searchResult) {
+  const locationIcon = document.createElement('div');
+  const icon = document.createElement('img');
+  icon.src = '../src/assets/images/layout/location-marker.svg';
+  locationIcon.appendChild(icon);
+
+  const textResult = document.createElement('div');
+  textResult.textContent = searchResult;
+
+  const result = document.createElement('div');
+  result.classList.add('search-result');
+
+  result.appendChild(locationIcon);
+  result.appendChild(textResult);
+
+  return result;
+}
+
+function createMobileSearchModal() {
+  const modal = document.createElement('div');
+  modal.classList.add('mobile-search-modal', 'hidden');
+
+  const cityInputForm = createCityInputFormMobile();
+
+  const cancelButton = document.createElement('button');
+  cancelButton.classList.add('button', 'primary');
+  cancelButton.textContent = 'Cancel';
+
+  const searchContainer = document.createElement('div');
+  searchContainer.classList.add('search-bar');
+  searchContainer.appendChild(cityInputForm);
+  searchContainer.appendChild(cancelButton);
+  modal.appendChild(searchContainer);
+
+  const resultsContainer = document.createElement('div');
+  resultsContainer.classList.add('results-container');
+
+  const testResult = createQueryResultBar('Los Angeles, CA');
+
+  resultsContainer.appendChild(testResult);
+
+  modal.appendChild(resultsContainer);
+
+  return modal;
+}
+
 export default function createPage() {
   const body = document.getElementsByTagName('body')[0];
   const mainContainer = document.createElement('main');
@@ -179,12 +245,14 @@ export default function createPage() {
 
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
+  const searchMobile = createMobileSearchModal();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
   const additionalForecastDetails = createAdditionalForecast();
 
   body.appendChild(navigationMenu);
   body.appendChild(sideNavigation);
+  body.appendChild(searchMobile);
   gridContainer.appendChild(currentForecast);
   gridContainer.appendChild(moreCurrentForecastDetails);
   gridContainer.appendChild(additionalForecastDetails);
