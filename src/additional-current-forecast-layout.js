@@ -21,8 +21,7 @@ function createChanceOfRain() {
 
   const corTitleDiv = document.createElement('div');
   const corTitle = document.createElement('h5');
-  corTitle.classList.add('small');
-  corTitle.classList.add('secondary');
+  corTitle.classList.add('bold', 'secondary', 'small');
   corTitle.textContent = 'Rain';
   corTitleDiv.appendChild(corTitle);
   containerDiv.appendChild(corTitleDiv);
@@ -55,8 +54,7 @@ function createHumidity() {
 
   const humidityTitleDiv = document.createElement('div');
   const humidityTitle = document.createElement('h5');
-  humidityTitle.classList.add('small');
-  humidityTitle.classList.add('secondary');
+  humidityTitle.classList.add('bold', 'secondary', 'small');
   humidityTitle.textContent = 'Humidity';
   humidityTitleDiv.appendChild(humidityTitle);
   containerDiv.appendChild(humidityTitleDiv);
@@ -89,8 +87,7 @@ function createWind() {
 
   const windTitleDiv = document.createElement('div');
   const windTitle = document.createElement('h5');
-  windTitle.classList.add('small');
-  windTitle.classList.add('secondary');
+  windTitle.classList.add('bold', 'secondary', 'small');
   windTitle.textContent = 'Wind';
   windTitleDiv.appendChild(windTitle);
   containerDiv.appendChild(windTitleDiv);
@@ -123,8 +120,7 @@ function createUV() {
 
   const uvTitleDiv = document.createElement('div');
   const uvTitle = document.createElement('h5');
-  uvTitle.classList.add('small');
-  uvTitle.classList.add('secondary');
+  uvTitle.classList.add('bold', 'secondary', 'small');
   uvTitle.textContent = 'UV Index';
   uvTitleDiv.appendChild(uvTitle);
   containerDiv.appendChild(uvTitleDiv);

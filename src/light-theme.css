@@ -4,35 +4,40 @@
     --black-transparent: rgb(0, 0, 0, 0.25);
     --white: #F2F2F2;
     --white-filter: invert(99%) sepia(2%) saturate(143%) hue-rotate(198deg) brightness(116%) contrast(90%);
-    --day: linear-gradient(135deg, #ABD2EE, #D1C196);
-    --power-primary: linear-gradient(135deg, #FFF3B5, #B5DBFF);
-    --power-secondary: #888888;
-    --power-tertiary: invert(71%) sepia(26%) saturate(620%) hue-rotate(170deg) brightness(99%) contrast(76%);
+    --day: linear-gradient(135deg, #0087E7, #C29900);
+    --power-primary: #00131A;
+    --power-secondary: #64D1F3;
+    --power-tertiary: invert(100%) sepia(36%) saturate(4010%) hue-rotate(176deg) brightness(103%) contrast(101%);
+    --power-quaternary: #7FA9D6;
     --transparent: rgb(46, 68, 87, 0.5);
     --transparent-filter: invert(23%) sepia(70%) saturate(299%) hue-rotate(166deg) brightness(86%) contrast(90%) opacity(50%);
-    --additional-forecast: rgb(242, 242, 242, 0.7);
-    --card: #FAFAFA;
-    --navigation: #E7E7E7;
+    --additional-forecast: rgba(242, 242, 242, 0.2);
+    --card: rgb(250, 250, 250, 0.1);
+    --navigation: rgb(242, 242, 242, 0.2);
+    --dropshadow: 0rem 0.5rem 1rem rgb(0, 0, 0, 0.1);  
 }
 
 body {
     background: var(--day);
-    color: var(--black);
 }
 
 
 
-/** TEXT STYLES **/
+/** COLOR CLASS STYLES **/
 
 .secondary {
     color: var(--power-secondary);
 }
 
-
-
-/** SVG STYLES **/
 .tertiary {
     filter: var(--power-tertiary);
+}
+
+
+
+/** OTHER GENERAL STYLES **/
+button {
+    background-color: var(--power-primary);
 }
 
 
@@ -40,7 +45,7 @@ body {
 /** NAVIGATION STYLES **/
 
 nav {
-    background-color: var(--transparent);
+    background-color: var(--navigation);
     color: var(--white);
 }
 
@@ -66,11 +71,48 @@ nav.side-nav-container .exit img {
 }
 
 
+/** SLIDER SWITCH STYLES **/
+.slider {
+    background-color: var(--transparent);
+    border: solid 1px var(--white);
+}
+
+.slider:before {
+    background-color: var(--white);
+}
+
+input:checked + .slider {
+	background: var(--power-quaternary);
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--power-quaternary);
+}
+
+
+
+/** MOBILE SEARCH MODAL STYLES **/
+.mobile-search-modal {
+	background-color: var(--white);
+    color: var(--black);
+}
+
+
+
 /** CURRENT FORECAST STYLES **/
 
 section#current-forecast {
+    background-color: lightskyblue;
     color: var(--white);
+    box-shadow: var(--dropshadow);
 }
+
+    /* DESKTOP STYLE */
+    @media only screen and (min-width: 1024px) {
+        #current-forecast {
+            box-shadow: var(--dropshadow);
+        }
+    }
 
 
 /** MORE CURRENT FORECAST DETAILS STYLES **/
@@ -82,15 +124,25 @@ section#current-forecast {
     box-shadow: 0rem 0.125rem 0.25rem var(--black-transparent);
 }
 
-#more-current-forecast-details-container img {
-    filter: var(--transparent-filter);
-}
+    /* DESKTOP STYLE */
+    @media only screen and (min-width: 1024px) {
+        #more-current-forecast-details-container {
+            box-shadow: var(--dropshadow);
+        }
+    }
 
 
 /** ADDITIONAL FORECAST DETAILS STYLES **/
 #additional-forecast {
     background-color: var(--additional-forecast);
 }
+
+    /* DESKTOP STYLE */
+    @media only screen and (min-width: 1024px) {
+        #additional-forecast {
+            box-shadow: var(--dropshadow);
+        }
+    }
 
 /** HOURLY CARD STYLES **/
 .hourly-card {

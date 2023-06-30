@@ -17,12 +17,16 @@ export default function createCurrentForecast() {
   currentWeatherImg.src = '../src/assets/images/forecast-current/partly-cloudy.svg';
   currentWeatherDiv.appendChild(currentWeatherImg);
 
+  const bottomDiv = document.createElement('div');
+  bottomDiv.classList.add('bottom');
+
   const currentTempDiv = document.createElement('div');
   const currentTemp = document.createElement('h1');
   currentTemp.classList.add('bold');
   currentTemp.id = 'current-temp';
   currentTemp.textContent = '74°F';
   currentTempDiv.appendChild(currentTemp);
+  bottomDiv.appendChild(currentTempDiv);
 
   const forecastDescriptionDiv = document.createElement('div');
   const forecastDescription = document.createElement('h4');
@@ -30,6 +34,7 @@ export default function createCurrentForecast() {
   forecastDescription.id = 'forecast-description';
   forecastDescription.textContent = 'Partly cloudy';
   forecastDescriptionDiv.appendChild(forecastDescription);
+  bottomDiv.appendChild(forecastDescriptionDiv);
 
   const highLowDiv = document.createElement('div');
   highLowDiv.classList.add('high-low');
@@ -56,11 +61,13 @@ export default function createCurrentForecast() {
 
   highLowDiv.appendChild(highDiv);
   highLowDiv.appendChild(lowDiv);
+  bottomDiv.appendChild(highLowDiv);
 
   currentDetailsDiv.appendChild(currentWeatherDiv);
-  currentDetailsDiv.appendChild(currentTempDiv);
+  currentDetailsDiv.appendChild(bottomDiv);
+  /*currentDetailsDiv.appendChild(currentTempDiv);
   currentDetailsDiv.appendChild(forecastDescriptionDiv);
-  currentDetailsDiv.appendChild(highLowDiv);
+  currentDetailsDiv.appendChild(highLowDiv);*/
 
   section.appendChild(currentCityDiv);
   section.appendChild(currentDetailsDiv);

@@ -2,6 +2,64 @@ import createCurrentForecast from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
 import createAdditionalForecast from './additional-forecast-layout';
 
+function createCityInputForm() {
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('desktop-search');
+  const form = document.createElement('form');
+
+  const label = document.createElement('label');
+  label.for = 'city-desktop';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.id = 'city-desktop';
+  input.placeholder = 'Search city';
+  label.appendChild(input);
+
+  form.appendChild(label);
+  inputContainer.appendChild(form);
+
+  return inputContainer;
+}
+
+function createCityInputFormMobile() {
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('mobile-search');
+  const form = document.createElement('form');
+
+  const label = document.createElement('label');
+  label.for = 'city-mobile';
+
+  const input = document.createElement('input');
+  input.id = 'city-mobile';
+  input.type = 'text';
+  input.placeholder = 'Search city';
+  label.appendChild(input);
+
+  form.appendChild(label);
+  inputContainer.appendChild(form);
+
+  return inputContainer;
+}
+
+function createToggleSwitch(toggleName) {
+  const label = document.createElement('label');
+  label.classList.add('switch');
+  label.for = toggleName;
+
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = toggleName;
+
+  const span = document.createElement('span');
+  span.classList.add('slider', 'round');
+
+  label.appendChild(input);
+  label.appendChild(span);
+
+  return label;
+}
+
 function createNavigationMenu() {
   const nav = document.createElement('nav');
   nav.classList.add('main-nav');
@@ -13,6 +71,8 @@ function createNavigationMenu() {
   logoImg.classList.add('logo');
   logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
   logoDiv.appendChild(logoImg);
+
+  const desktopSearchCityForm = createCityInputForm();
 
   const searchDiv = document.createElement('div');
   const searchContainerDiv = document.createElement('div');
@@ -36,12 +96,41 @@ function createNavigationMenu() {
   const searchLink = document.createElement('a');
   searchLink.appendChild(searchImg);
 
+  const darkLightModeSwitchDiv = document.createElement('div');
+  darkLightModeSwitchDiv.classList.add('toggle-div');
+
+  const darkLightModeSwitchP = document.createElement('p');
+  darkLightModeSwitchP.classList.add('dark-light-switch', 'small');
+  darkLightModeSwitchP.textContent = 'Enable Dark Mode';
+
+  const darkLightModeSwitch = createToggleSwitch();
+  darkLightModeSwitch.id = 'dark-light-switch';
+
+  darkLightModeSwitchDiv.appendChild(darkLightModeSwitchP);
+  darkLightModeSwitchDiv.appendChild(darkLightModeSwitch);
+
+  const farenheitCelsiusSwitchDiv = document.createElement('div');
+  farenheitCelsiusSwitchDiv.classList.add('toggle-div');
+
+  const farenheitCelsiusSwitchP = document.createElement('p');
+  farenheitCelsiusSwitchP.classList.add('farenheit-celsius-switch', 'small');
+  farenheitCelsiusSwitchP.textContent = 'Enable Celsius';
+
+  const farenheitCelsiusSwitch = createToggleSwitch();
+  farenheitCelsiusSwitch.id = 'farenheit-celsius-switch';
+
+  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitchP);
+  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
+
   const additionalOptionsDiv = document.createElement('div');
   additionalOptionsDiv.appendChild(searchLink);
   additionalOptionsDiv.appendChild(hamburgerMenuLink);
+  additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
+  additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
   additionalOptionsDiv.classList.add('additional-options');
 
   nav.appendChild(logoDiv);
+  nav.appendChild(desktopSearchCityForm);
   nav.appendChild(additionalOptionsDiv);
 
   return nav;
@@ -101,17 +190,73 @@ function createSideNavigation() {
   return sideNavContainer;
 }
 
+function createQueryResultBar(searchResult) {
+  const locationIcon = document.createElement('div');
+  const icon = document.createElement('img');
+  icon.src = '../src/assets/images/layout/location-marker.svg';
+  locationIcon.appendChild(icon);
+
+  const textResult = document.createElement('div');
+  textResult.textContent = searchResult;
+
+  const result = document.createElement('div');
+  result.classList.add('search-result');
+
+  result.appendChild(locationIcon);
+  result.appendChild(textResult);
+
+  return result;
+}
+
+function createMobileSearchModal() {
+  const modal = document.createElement('div');
+  modal.classList.add('mobile-search-modal', 'hidden');
+
+  const cityInputForm = createCityInputFormMobile();
+
+  const cancelButton = document.createElement('button');
+  cancelButton.classList.add('button', 'primary');
+  cancelButton.textContent = 'Cancel';
+
+  const searchContainer = document.createElement('div');
+  searchContainer.classList.add('search-bar');
+  searchContainer.appendChild(cityInputForm);
+  searchContainer.appendChild(cancelButton);
+  modal.appendChild(searchContainer);
+
+  const resultsContainer = document.createElement('div');
+  resultsContainer.classList.add('results-container');
+
+  const testResult = createQueryResultBar('Los Angeles, CA');
+
+  resultsContainer.appendChild(testResult);
+
+  modal.appendChild(resultsContainer);
+
+  return modal;
+}
+
 export default function createPage() {
   const body = document.getElementsByTagName('body')[0];
+  const mainContainer = document.createElement('main');
+  mainContainer.classList.add('main-container');
+  const gridContainer = document.createElement('div');
+  gridContainer.classList.add('grid-container');
+
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
+  const searchMobile = createMobileSearchModal();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
   const additionalForecastDetails = createAdditionalForecast();
 
   body.appendChild(navigationMenu);
   body.appendChild(sideNavigation);
-  body.appendChild(currentForecast);
-  body.appendChild(moreCurrentForecastDetails);
-  body.appendChild(additionalForecastDetails);
+  body.appendChild(searchMobile);
+  gridContainer.appendChild(currentForecast);
+  gridContainer.appendChild(moreCurrentForecastDetails);
+  gridContainer.appendChild(additionalForecastDetails);
+  mainContainer.appendChild(gridContainer);
+
+  body.appendChild(mainContainer);
 }
