@@ -1,6 +1,7 @@
 import createCurrentForecast from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
 import createAdditionalForecast from './additional-forecast-layout';
+import checkQuery from './fetch-cities';
 
 function createCityInputForm() {
   const inputContainer = document.createElement('div');
@@ -18,6 +19,11 @@ function createCityInputForm() {
 
   form.appendChild(label);
   inputContainer.appendChild(form);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    checkQuery(input.value);
+  });
 
   return inputContainer;
 }
@@ -38,6 +44,11 @@ function createCityInputFormMobile() {
 
   form.appendChild(label);
   inputContainer.appendChild(form);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    checkQuery(input.value);
+  });
 
   return inputContainer;
 }

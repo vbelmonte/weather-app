@@ -1,5 +1,5 @@
-function splitQuery(query) {
-  const newQuery = query.split(',');
+function joinQuery(query) {
+  const newQuery = query.split(', ').join();
   return newQuery;
 }
 
@@ -13,11 +13,10 @@ async function checkByPostalCode(query) {
 
     const result = await response.json();
     return result;
-
   } catch (error) {
     // return error
     console.log(error);
-    return error;0
+    return error;
   }
 }
 
@@ -31,7 +30,6 @@ async function checkByCity(query) {
 
     const result = await response.json();
     return result;
-
   } catch (error) {
     // return error
     console.log(error);
@@ -39,14 +37,20 @@ async function checkByCity(query) {
   }
 }
 
-function checkQuery(query) {
+export default async function checkQuery(query) {
   // break up query into correct parts (eg. city, state, country, zip code)
-  const newQuery = splitQuery(query);
-  /*
-     * check by postal code
-     * if postal code fulfills, return city and city data
-     * if postal code fails, check by city name
-     * if city name fulfills, return city and city data
-     * if city name fails, return error
-     */
+  const searchQuery = joinQuery(query);
+  const postalCodeResult = await checkByPostalCode(searchQuery);
+  const cityResult = await checkByCity(searchQuery);
+
+  if (!(postalCodeResult instanceof Error) && postalCodeResult.length !== 0) {
+    // display a clickable result containing city weather info
+    console.log('we found a zip code that matches! result: ', postalCodeResult);
+  } else if (!(cityResult instanceof Error) && cityResult.length !== 0) {
+    // display a clickable result containing city weather info
+    console.log('we found a city that matches! result: ', cityResult);
+  } else {
+    // display an error that the search query was not found along with search tips
+    console.log('no city found :(');
+  }
 }
