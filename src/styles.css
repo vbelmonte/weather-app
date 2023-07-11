@@ -211,7 +211,7 @@ p.bold {
 }
 
 input[type=text] {
-	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+	background: url('../src/assets/images/layout/magnifying-glass-solid-desktop.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	padding: 0.5rem;
 	padding-left: 2.5rem;
 	border: solid 1px;
@@ -260,9 +260,14 @@ nav.main-nav .additional-options {
 	gap: 1rem;
 }
 
+nav.main-nav .additional-options button {
+	padding: 0;
+	background-color: transparent;
+}
+
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
-		nav.main-nav .additional-options a {
+		nav.main-nav .additional-options button {
 			display: none;
 		}
 	}
@@ -280,7 +285,7 @@ nav.main-nav .desktop-search {
 
 
 nav.main-nav .desktop-search input {
-	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+	background: url('../src/assets/images/layout/magnifying-glass-solid-desktop.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	border: solid 1px var(--white);
 	width: 15rem;
 	background-color: transparent;
@@ -357,7 +362,7 @@ nav.side-nav-container hr {
 }
 
 .mobile-search-modal input {
-	background: url('../src/assets/images/layout/magnifying-glass-solid-mobile.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	border: solid 1px var(--gray);
 
 	width: 100%;
