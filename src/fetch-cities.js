@@ -46,11 +46,16 @@ export default async function checkQuery(query) {
   if (!(postalCodeResult instanceof Error) && postalCodeResult.length !== 0) {
     // display a clickable result containing city weather info
     console.log('we found a zip code that matches! result: ', postalCodeResult);
-  } else if (!(cityResult instanceof Error) && cityResult.length !== 0) {
+
+    return postalCodeResult;
+  } if (!(cityResult instanceof Error) && cityResult.length !== 0) {
     // display a clickable result containing city weather info
     console.log('we found a city that matches! result: ', cityResult);
-  } else {
-    // display an error that the search query was not found along with search tips
-    console.log('no city found :(');
+
+    return cityResult;
   }
+  // display an error that the search query was not found along with search tips
+  console.log('no city found :(');
+
+  return 'No city found';
 }

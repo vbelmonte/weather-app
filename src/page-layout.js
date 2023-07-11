@@ -3,6 +3,68 @@ import createMoreCurrentForecastDetails from './additional-current-forecast-layo
 import createAdditionalForecast from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
 
+function createCityResultText(result) {
+  if (result.zip === undefined) {
+    const cityName = result.name;
+    const { state } = result;
+    const { country } = result;
+
+    return `${cityName}, ${state}, ${country}`;
+  }
+  const { zip } = result;
+  const cityName = result.name;
+  const { country } = result;
+
+  return `${zip}, ${cityName}, ${country}`;
+}
+
+function createQueryResult(searchResult) {
+  const locationIcon = document.createElement('div');
+  const icon = document.createElement('img');
+  icon.src = '../src/assets/images/layout/location-marker.svg';
+  locationIcon.appendChild(icon);
+
+  const textResult = document.createElement('div');
+  textResult.textContent = createCityResultText(searchResult);
+
+  const result = document.createElement('div');
+  result.classList.add('search-result');
+
+  result.appendChild(locationIcon);
+  result.appendChild(textResult);
+
+  return result;
+}
+
+function displaySearchResults(results) {
+  const resultsContainer = document.getElementsByClassName('results-container')[0];
+
+  if (Array.isArray(results)) {
+    for (let i = 0; i < results.length; i += 1) {
+      const query = results[i];
+      const queryResult = createQueryResult(query);
+      queryResult.addEventListener('click', () => {
+        // call the fetch weather function
+        console.log('fetching weather!');
+      });
+
+      resultsContainer.appendChild(queryResult);
+    }
+  } else {
+    const queryResult = createQueryResult(results);
+    queryResult.addEventListener('click', () => {
+      console.log('fetching weather!');
+    });
+
+    resultsContainer.appendChild(queryResult);
+  }
+}
+
+function clearResults() {
+  const resultsContainer = document.getElementsByClassName('results-container')[0];
+  resultsContainer.innerHTML = '';
+}
+
 function createCityInputForm() {
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('desktop-search');
@@ -20,9 +82,10 @@ function createCityInputForm() {
   form.appendChild(label);
   inputContainer.appendChild(form);
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    checkQuery(input.value);
+    clearResults();
+    await checkQuery(input.value);
   });
 
   return inputContainer;
@@ -45,9 +108,11 @@ function createCityInputFormMobile() {
   form.appendChild(label);
   inputContainer.appendChild(form);
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    checkQuery(input.value);
+    clearResults();
+    const result = await checkQuery(input.value);
+    displaySearchResults(result);
   });
 
   return inputContainer;
@@ -214,24 +279,6 @@ function createSideNavigation() {
   return sideNavContainer;
 }
 
-function createQueryResultBar(searchResult) {
-  const locationIcon = document.createElement('div');
-  const icon = document.createElement('img');
-  icon.src = '../src/assets/images/layout/location-marker.svg';
-  locationIcon.appendChild(icon);
-
-  const textResult = document.createElement('div');
-  textResult.textContent = searchResult;
-
-  const result = document.createElement('div');
-  result.classList.add('search-result');
-
-  result.appendChild(locationIcon);
-  result.appendChild(textResult);
-
-  return result;
-}
-
 function createTip(text) {
   const tipImgDiv = document.createElement('div');
   tipImgDiv.classList.add('tip-img');
@@ -286,8 +333,8 @@ function createMobileSearchModal() {
 
   const resultsContainer = document.createElement('div');
   resultsContainer.classList.add('results-container');
-  const testResult = createQueryResultBar('Los Angeles, CA');
-  resultsContainer.appendChild(testResult);
+  /* const testResult = createQueryResult('Los Angeles, CA');
+  resultsContainer.appendChild(testResult); */
 
   const searchInstructions = createSearchInstructions();
 
