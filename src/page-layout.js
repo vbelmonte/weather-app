@@ -71,6 +71,15 @@ function createToggleSwitch(toggleName) {
   return label;
 }
 
+function toggleSearchModal() {
+  const mobileSearchModal = document.getElementsByClassName('mobile-search-modal')[0];
+  if (mobileSearchModal.classList.contains('hidden')) {
+    mobileSearchModal.classList.remove('hidden');
+  } else {
+    mobileSearchModal.classList.add('hidden');
+  }
+}
+
 function createNavigationMenu() {
   const nav = document.createElement('nav');
   nav.classList.add('main-nav');
@@ -98,14 +107,18 @@ function createNavigationMenu() {
   searchContainerDiv.appendChild(searchInput);
   searchDiv.appendChild(searchContainerDiv);
 
-  const hamburgerMenuLink = document.createElement('a');
+  const hamburgerMenuButton = document.createElement('button');
+  hamburgerMenuButton.classList.add('menu-button');
   const hamburgerMenuImg = document.createElement('img');
   hamburgerMenuImg.classList.add('menu');
   hamburgerMenuImg.src = '../src/assets/images/layout/hamburger-menu-svgrepo-com.svg';
-  hamburgerMenuLink.appendChild(hamburgerMenuImg);
+  hamburgerMenuButton.appendChild(hamburgerMenuImg);
 
-  const searchLink = document.createElement('a');
-  searchLink.appendChild(searchImg);
+  const searchButton = document.createElement('button');
+  searchButton.classList.add('search-button');
+  searchButton.appendChild(searchImg);
+
+  searchButton.addEventListener('click', toggleSearchModal);
 
   const darkLightModeSwitchDiv = document.createElement('div');
   darkLightModeSwitchDiv.classList.add('toggle-div');
@@ -134,8 +147,8 @@ function createNavigationMenu() {
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
 
   const additionalOptionsDiv = document.createElement('div');
-  additionalOptionsDiv.appendChild(searchLink);
-  additionalOptionsDiv.appendChild(hamburgerMenuLink);
+  additionalOptionsDiv.appendChild(searchButton);
+  additionalOptionsDiv.appendChild(hamburgerMenuButton);
   additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
   additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
   additionalOptionsDiv.classList.add('additional-options');
@@ -228,6 +241,7 @@ function createMobileSearchModal() {
   const cancelButton = document.createElement('button');
   cancelButton.classList.add('button', 'primary');
   cancelButton.textContent = 'Cancel';
+  cancelButton.addEventListener('click', toggleSearchModal);
 
   const searchContainer = document.createElement('div');
   searchContainer.classList.add('search-bar');
