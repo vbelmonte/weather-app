@@ -385,6 +385,27 @@ nav.side-nav-container hr {
 
 
 
+/** SEARCH TIP STYLES **/
+.tips-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.tip {
+	display: flex;
+	gap: 1rem;
+}
+
+.tip .tip-img {
+	padding-top: 0.3rem;
+}
+
+.tip .tip-img img {
+	filter: var(--gray-filter);
+}
+
+
 /** SLIDER SWITCH STYLES **/
 
 .switch {

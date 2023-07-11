@@ -232,6 +232,42 @@ function createQueryResultBar(searchResult) {
   return result;
 }
 
+function createTip(text) {
+  const tipImgDiv = document.createElement('div');
+  tipImgDiv.classList.add('tip-img');
+  const tipImg = document.createElement('img');
+  tipImg.src = '../src/assets/images/layout/tip.svg';
+  tipImgDiv.appendChild(tipImg);
+
+  const tipDiv = document.createElement('div');
+  const p = document.createElement('p');
+  p.textContent = `${text}`;
+  tipDiv.appendChild(p);
+
+  const tip = document.createElement('div');
+  tip.classList.add('tip');
+  tip.append(tipImgDiv, tipDiv);
+
+  return tip;
+}
+
+function createSearchInstructions() {
+  const textOne = 'To search for city in the US, enter city, state, and country code (eg. Phoenix, AZ, US)';
+  const tipOne = createTip(textOne);
+
+  const textTwo = 'To search for city outside US, enter city and country code (eg. London, UK)';
+  const tipTwo = createTip(textTwo);
+
+  const textThree = 'You can also search by postal/zip code followed by country code (eg. 33701, US)';
+  const tipThree = createTip(textThree);
+
+  const instructions = document.createElement('div');
+  instructions.classList.add('tips-container');
+  instructions.append(tipOne, tipTwo, tipThree);
+
+  return instructions;
+}
+
 function createMobileSearchModal() {
   const modal = document.createElement('div');
   modal.classList.add('mobile-search-modal', 'hidden');
@@ -247,16 +283,15 @@ function createMobileSearchModal() {
   searchContainer.classList.add('search-bar');
   searchContainer.appendChild(cityInputForm);
   searchContainer.appendChild(cancelButton);
-  modal.appendChild(searchContainer);
 
   const resultsContainer = document.createElement('div');
   resultsContainer.classList.add('results-container');
-
   const testResult = createQueryResultBar('Los Angeles, CA');
-
   resultsContainer.appendChild(testResult);
 
-  modal.appendChild(resultsContainer);
+  const searchInstructions = createSearchInstructions();
+
+  modal.append(searchContainer, resultsContainer, searchInstructions);
 
   return modal;
 }
