@@ -93,8 +93,11 @@ input:focus + .slider {
 
 /** MOBILE SEARCH MODAL STYLES **/
 .mobile-search-modal {
-	background-color: var(--white);
     color: var(--black);
+}
+
+.mobile-search-modal .container {
+    background-color: var(--white);
 }
 
 

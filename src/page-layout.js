@@ -65,32 +65,6 @@ function clearResults() {
   resultsContainer.innerHTML = '';
 }
 
-/* function createCityInputForm() {
-  const inputContainer = document.createElement('div');
-  inputContainer.classList.add('desktop-search');
-  const form = document.createElement('form');
-
-  const label = document.createElement('label');
-  label.for = 'city-desktop';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.id = 'city-desktop';
-  input.placeholder = 'Search city';
-  label.appendChild(input);
-
-  form.appendChild(label);
-  inputContainer.appendChild(form);
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    clearResults();
-    await checkQuery(input.value);
-  });
-
-  return inputContainer;
-} */
-
 function createCityInputFormMobile() {
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('mobile-search');
@@ -157,8 +131,6 @@ function createNavigationMenu() {
   logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
   logoDiv.appendChild(logoImg);
 
-  /* const desktopSearchCityForm = createCityInputForm(); */
-
   const searchDiv = document.createElement('div');
   const searchContainerDiv = document.createElement('div');
   searchContainerDiv.classList.add('search-container');
@@ -211,10 +183,6 @@ function createNavigationMenu() {
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitchP);
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
 
-  /* additionalOptionsDiv.appendChild(hamburgerMenuButton);
-  additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
-  additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
-  additionalOptionsDiv.appendChild(searchButton); */
   const switchesDiv = document.createElement('div');
   switchesDiv.classList.add('switches');
   switchesDiv.append(darkLightModeSwitchDiv, farenheitCelsiusSwitchDiv);
@@ -228,7 +196,6 @@ function createNavigationMenu() {
   optionsDiv.append(switchesDiv, additionalOptionsDiv);
 
   nav.appendChild(logoDiv);
-  /* nav.appendChild(desktopSearchCityForm); */
   nav.appendChild(optionsDiv);
 
   return nav;
@@ -328,6 +295,9 @@ function createMobileSearchModal() {
   const modal = document.createElement('div');
   modal.classList.add('mobile-search-modal', 'hidden');
 
+  const container = document.createElement('div');
+  container.classList.add('container');
+
   const cityInputForm = createCityInputFormMobile();
 
   const cancelButton = document.createElement('button');
@@ -347,7 +317,8 @@ function createMobileSearchModal() {
 
   const searchInstructions = createSearchInstructions();
 
-  modal.append(searchContainer, resultsContainer, searchInstructions);
+  container.append(searchContainer, resultsContainer, searchInstructions);
+  modal.append(container);
 
   return modal;
 }
