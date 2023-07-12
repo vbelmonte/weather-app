@@ -244,7 +244,14 @@ nav.main-nav {
 	gap: 1rem;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 5rem;
+	padding: 1rem;
+}
+
+/** DESKTOP BELOW **/
+@media only screen and (min-width: 1024px) {
+	nav.main-nav  {
+		padding: 1rem 5rem;
+	}
 }
 
 nav.main-nav img {
@@ -255,16 +262,26 @@ nav.main-nav .logo, nav.side-nav .logo {
 	height: 1.5rem;
 }
 
-nav.main-nav .additional-options {
+nav.main-nav .options {
+	display: flex;
+	gap: 3rem;
+}
+
+nav.main-nav .options .switches {
 	display: flex;
 	gap: 1rem;
 }
 
-nav.main-nav .additional-options button {
+nav.main-nav .options .additional-options {
+	display: flex;
+	gap: 1rem;
+}
+
+
+nav.main-nav .options .additional-options button {
 	padding: 0;
 	background-color: transparent;
 }
-
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		nav.main-nav .additional-options .menu-button {

@@ -211,18 +211,25 @@ function createNavigationMenu() {
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitchP);
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
 
-  const additionalOptionsDiv = document.createElement('div');
   /* additionalOptionsDiv.appendChild(hamburgerMenuButton);
   additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
   additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
   additionalOptionsDiv.appendChild(searchButton); */
-  additionalOptionsDiv.append(darkLightModeSwitchDiv, farenheitCelsiusSwitchDiv);
-  additionalOptionsDiv.append(hamburgerMenuButton, searchButton);
+  const switchesDiv = document.createElement('div');
+  switchesDiv.classList.add('switches');
+  switchesDiv.append(darkLightModeSwitchDiv, farenheitCelsiusSwitchDiv);
+
+  const additionalOptionsDiv = document.createElement('div');
   additionalOptionsDiv.classList.add('additional-options');
+  additionalOptionsDiv.append(searchButton, hamburgerMenuButton);
+
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+  optionsDiv.append(switchesDiv, additionalOptionsDiv);
 
   nav.appendChild(logoDiv);
   /* nav.appendChild(desktopSearchCityForm); */
-  nav.appendChild(additionalOptionsDiv);
+  nav.appendChild(optionsDiv);
 
   return nav;
 }
