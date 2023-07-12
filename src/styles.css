@@ -244,7 +244,7 @@ nav.main-nav {
 	gap: 1rem;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem 5rem;
 }
 
 nav.main-nav img {
@@ -267,7 +267,7 @@ nav.main-nav .additional-options button {
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
-		nav.main-nav .additional-options button {
+		nav.main-nav .additional-options .menu-button {
 			display: none;
 		}
 	}

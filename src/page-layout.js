@@ -65,7 +65,7 @@ function clearResults() {
   resultsContainer.innerHTML = '';
 }
 
-function createCityInputForm() {
+/* function createCityInputForm() {
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('desktop-search');
   const form = document.createElement('form');
@@ -89,7 +89,7 @@ function createCityInputForm() {
   });
 
   return inputContainer;
-}
+} */
 
 function createCityInputFormMobile() {
   const inputContainer = document.createElement('div');
@@ -157,7 +157,7 @@ function createNavigationMenu() {
   logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
   logoDiv.appendChild(logoImg);
 
-  const desktopSearchCityForm = createCityInputForm();
+  /* const desktopSearchCityForm = createCityInputForm(); */
 
   const searchDiv = document.createElement('div');
   const searchContainerDiv = document.createElement('div');
@@ -212,14 +212,16 @@ function createNavigationMenu() {
   farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
 
   const additionalOptionsDiv = document.createElement('div');
-  additionalOptionsDiv.appendChild(searchButton);
-  additionalOptionsDiv.appendChild(hamburgerMenuButton);
+  /* additionalOptionsDiv.appendChild(hamburgerMenuButton);
   additionalOptionsDiv.appendChild(darkLightModeSwitchDiv);
   additionalOptionsDiv.appendChild(farenheitCelsiusSwitchDiv);
+  additionalOptionsDiv.appendChild(searchButton); */
+  additionalOptionsDiv.append(darkLightModeSwitchDiv, farenheitCelsiusSwitchDiv);
+  additionalOptionsDiv.append(hamburgerMenuButton, searchButton);
   additionalOptionsDiv.classList.add('additional-options');
 
   nav.appendChild(logoDiv);
-  nav.appendChild(desktopSearchCityForm);
+  /* nav.appendChild(desktopSearchCityForm); */
   nav.appendChild(additionalOptionsDiv);
 
   return nav;
