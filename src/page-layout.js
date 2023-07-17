@@ -2,6 +2,7 @@ import createCurrentForecast from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
 import createAdditionalForecast from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
+import fetchWeather from './fetch-weather';
 
 function createCityResultText(result) {
   if (result.zip === undefined) {
@@ -43,17 +44,21 @@ function displaySearchResults(results) {
     for (let i = 0; i < results.length; i += 1) {
       const query = results[i];
       const queryResult = createQueryResult(query);
-      queryResult.addEventListener('click', () => {
+      queryResult.addEventListener('click', async () => {
         // call the fetch weather function
         console.log('fetching weather!');
+        const result = await fetchWeather(query);
+        console.log(result);
       });
 
       resultsContainer.appendChild(queryResult);
     }
   } else {
     const queryResult = createQueryResult(results);
-    queryResult.addEventListener('click', () => {
+    queryResult.addEventListener('click', async () => {
       console.log('fetching weather!');
+      const result = await fetchWeather(results);
+      console.log(result);
     });
 
     resultsContainer.appendChild(queryResult);
