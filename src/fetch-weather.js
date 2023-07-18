@@ -114,7 +114,12 @@ async function getThreeDayForecast(query) {
 export default async function fetchWeather(query) {
   const currentWeatherData = await fetchCurrentWeather(query);
   const additionalCurrentWeatherData = await getAdditionalWeatherDetails(query);
-  const data = { ...currentWeatherData, ...additionalCurrentWeatherData };
+  const hourlyForecast = await getHourlyForecast(query);
+  const threeDayForecast = await getThreeDayForecast(query);
+
+  const data = {
+    ...currentWeatherData, ...additionalCurrentWeatherData, hourlyForecast, threeDayForecast,
+  };
 
   return data;
 }
