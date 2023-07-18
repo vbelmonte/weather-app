@@ -1,3 +1,63 @@
+function printOutHigh(query) {
+  const high = Math.floor(query.main.temp_max);
+  return `${high}°`;
+}
+
+function printOutLow(query) {
+  const low = Math.floor(query.main.temp_min);
+  return `${low}°`;
+}
+
+function printOutCurrentTemp(query) {
+  const temp = Math.floor(query.main.temp);
+  return `${temp}°`;
+}
+
+function printOutCity(query) {
+  return query.name;
+}
+
+function printOutDescription(query) {
+  return query.weather[0].description;
+}
+
+function printOutHumidity(query) {
+  return `${query.main.humidity}%`;
+}
+
+function printOutWindSpeed(query) {
+  const result = Math.floor(query.wind.speed);
+  return `${result}mph`;
+}
+
+function printOutUVIndex(query) {
+  const uv = query.daily.uv_index_max[0];
+  const result = Math.floor(uv);
+
+  return result;
+}
+
+function printOutChanceOfRain(query) {
+  return `${query.daily.precipitation_probability_max[0]}%`;
+}
+
+export function updateCurrentForecastLayout(query) {
+  const currentCity = document.getElementById('current-city');
+  currentCity.textContent = printOutCity(query);
+
+  const currentTemp = document.getElementById('current-temp');
+  currentTemp.textContent = printOutCurrentTemp(query);
+
+  const dailyHigh = document.getElementById('current-high');
+  dailyHigh.textContent = printOutHigh(query);
+
+  const dailyLow = document.getElementById('current-low');
+  dailyLow.textContent = printOutLow(query);
+
+  const forecastDescription = document.getElementById('forecast-description');
+  forecastDescription.textContent = printOutDescription(query);
+}
+
 export default function createCurrentForecast() {
   const section = document.createElement('section');
   section.id = 'current-forecast';

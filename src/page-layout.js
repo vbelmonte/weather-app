@@ -1,4 +1,4 @@
-import createCurrentForecast from './current-forecast-layout';
+import createCurrentForecast, { updateCurrentForecastLayout } from './current-forecast-layout';
 import createMoreCurrentForecastDetails from './additional-current-forecast-layout';
 import createAdditionalForecast from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
@@ -48,6 +48,7 @@ function displaySearchResults(results) {
         // call the fetch weather function
         console.log('fetching weather!');
         const result = await fetchWeather(query);
+        updateCurrentForecastLayout(result);
         console.log(result);
       });
 
@@ -58,6 +59,7 @@ function displaySearchResults(results) {
     queryResult.addEventListener('click', async () => {
       console.log('fetching weather!');
       const result = await fetchWeather(results);
+      updateCurrentForecastLayout(result);
       console.log(result);
     });
 
