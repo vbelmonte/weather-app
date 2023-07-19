@@ -1,44 +1,24 @@
 function printOutHigh(query) {
-  const high = Math.floor(query.main.temp_max);
+  const high = Math.floor(query.currentWeather.dailyHigh);
   return `${high}°`;
 }
 
 function printOutLow(query) {
-  const low = Math.floor(query.main.temp_min);
+  const low = Math.floor(query.currentWeather.dailyLow);
   return `${low}°`;
 }
 
 function printOutCurrentTemp(query) {
-  const temp = Math.floor(query.main.temp);
+  const temp = Math.floor(query.currentWeather.currentTemp);
   return `${temp}°`;
 }
 
 function printOutCity(query) {
-  return query.name;
+  return query.cityName;
 }
 
 function printOutDescription(query) {
-  return query.weather[0].description;
-}
-
-function printOutHumidity(query) {
-  return `${query.main.humidity}%`;
-}
-
-function printOutWindSpeed(query) {
-  const result = Math.floor(query.wind.speed);
-  return `${result}mph`;
-}
-
-function printOutUVIndex(query) {
-  const uv = query.daily.uv_index_max[0];
-  const result = Math.floor(uv);
-
-  return result;
-}
-
-function printOutChanceOfRain(query) {
-  return `${query.daily.precipitation_probability_max[0]}%`;
+  return query.currentWeather.weatherDescription;
 }
 
 export function updateCurrentForecastLayout(query) {
