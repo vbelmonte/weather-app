@@ -91,15 +91,15 @@ export function updateHourlyForecastLayout(query) {
   carousel.appendChild(container);
 }
 
-function createDailyForecastBar() {
+function createDailyForecastBar(high, low, day) {
   const forecastBar = document.createElement('div');
   forecastBar.classList.add('daily-bar');
 
   const dayDiv = document.createElement('div');
-  const day = document.createElement('h4');
-  day.classList.add('day');
-  day.textContent = 'Wed';
-  dayDiv.appendChild(day);
+  const dayOfTheWeek = document.createElement('h4');
+  dayOfTheWeek.classList.add('day');
+  dayOfTheWeek.textContent = day.substring(0, 3);
+  dayDiv.appendChild(dayOfTheWeek);
   forecastBar.appendChild(dayDiv);
 
   const detailsDiv = document.createElement('div');
@@ -130,10 +130,10 @@ function createDailyForecastBar() {
   const highP = document.createElement('p');
   highP.classList.add('high');
   highP.classList.add('bold');
-  highP.textContent = '80°';
+  highP.textContent = `${high}°`;
   const lowP = document.createElement('p');
   lowP.classList.add('low');
-  lowP.textContent = '62°';
+  lowP.textContent = `${low}°`;
   temperaturesDiv.appendChild(highP);
   temperaturesDiv.appendChild(lowP);
   detailsDiv.appendChild(temperaturesDiv);
@@ -173,18 +173,38 @@ function create3DayForecast() {
 
   const threeDayForecastList = document.createElement('div');
   threeDayForecastList.classList.add('three-day-forecast-list');
+  const container = document.createElement('div');
+  threeDayForecastList.appendChild(container);
 
-  const dayOne = createDailyForecastBar();
+  /*const dayOne = createDailyForecastBar();
   const dayTwo = createDailyForecastBar();
   const dayThree = createDailyForecastBar();
 
   threeDayForecastList.appendChild(dayOne);
   threeDayForecastList.appendChild(dayTwo);
-  threeDayForecastList.appendChild(dayThree);
+  threeDayForecastList.appendChild(dayThree);*/
 
   threeDayForecast.appendChild(threeDayForecastList);
 
   return threeDayForecast;
+}
+
+export function update3DayForecastLayout(query) {
+  const container = document.createElement('div');
+  container.classList.add('three-day-forecast-list');
+  for (let i = 0; i < 3; i += 1) {
+    const high = query.threeDayForecast.high[i];
+    const low = query.threeDayForecast.low[i];
+    const day = query.threeDayForecast.days[i];
+    console.log(`${high}, ${low}, ${day}`);
+    const bar = createDailyForecastBar(high, low, day);
+
+    container.appendChild(bar);
+  }
+
+  const threeDayForeCastContainer = document.getElementsByClassName('three-day-forecast-list')[0];
+  threeDayForeCastContainer.innerHTML = '';
+  threeDayForeCastContainer.appendChild(container);
 }
 
 export default function createAdditionalForecast() {

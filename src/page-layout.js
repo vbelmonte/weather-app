@@ -1,6 +1,6 @@
 import createCurrentForecast, { updateCurrentForecastLayout } from './current-forecast-layout';
 import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout } from './additional-current-forecast-layout';
-import createAdditionalForecast, { updateHourlyForecastLayout } from './additional-forecast-layout';
+import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
 import fetchWeather from './fetch-weather';
 
@@ -48,10 +48,11 @@ function displaySearchResults(results) {
         // call the fetch weather function
         console.log('fetching weather!');
         const result = await fetchWeather(query);
+        console.log(result);
         updateCurrentForecastLayout(result);
         updateAdditionalCurrentForecastLayout(result);
         updateHourlyForecastLayout(result);
-        console.log(result);
+        update3DayForecastLayout(result);
       });
 
       resultsContainer.appendChild(queryResult);
@@ -61,10 +62,11 @@ function displaySearchResults(results) {
     queryResult.addEventListener('click', async () => {
       console.log('fetching weather!');
       const result = await fetchWeather(results);
+      console.log(result);
       updateCurrentForecastLayout(result);
       updateAdditionalCurrentForecastLayout(result);
       updateHourlyForecastLayout(result);
-      console.log(result);
+      update3DayForecastLayout(result);
     });
 
     resultsContainer.appendChild(queryResult);
