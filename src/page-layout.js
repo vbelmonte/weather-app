@@ -1,6 +1,6 @@
 import createCurrentForecast, { updateCurrentForecastLayout } from './current-forecast-layout';
 import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout } from './additional-current-forecast-layout';
-import createAdditionalForecast from './additional-forecast-layout';
+import createAdditionalForecast, { updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
 import fetchWeather from './fetch-weather';
 
@@ -50,6 +50,7 @@ function displaySearchResults(results) {
         const result = await fetchWeather(query);
         updateCurrentForecastLayout(result);
         updateAdditionalCurrentForecastLayout(result);
+        updateHourlyForecastLayout(result);
         console.log(result);
       });
 
@@ -62,6 +63,7 @@ function displaySearchResults(results) {
       const result = await fetchWeather(results);
       updateCurrentForecastLayout(result);
       updateAdditionalCurrentForecastLayout(result);
+      updateHourlyForecastLayout(result);
       console.log(result);
     });
 

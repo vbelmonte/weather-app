@@ -48,55 +48,6 @@ function createCurrentWeather(query) {
   };
 }
 
-async function getUVIndex(query) {
-  const latitude = query.lat;
-  const longitude = query.lon;
-  try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=uv_index_max&timezone=auto`);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
-    const result = await response.json();
-    const UVIndex = Math.floor(result.daily.uv_index_max[0]);
-
-    return UVIndex;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
-
-async function getChanceOfRain(query) {
-  const latitude = query.lat;
-  const longitude = query.lon;
-  try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_probability_max&timezone=auto`);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
-    const result = await response.json();
-    const chanceOfRain = result.daily.precipitation_probability_max[0];
-
-    return chanceOfRain;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
-
-async function getAdditionalWeatherDetails(query) {
-  const UVIndex = await getUVIndex(query);
-  const chanceOfRain = await getChanceOfRain(query);
-
-  const additionalForecastDetails = {
-    chance_of_rain: chanceOfRain, uv_index: UVIndex,
-  };
-
-  return additionalForecastDetails;
-}
-
 async function fetchCurrentWeather(query) {
   const latitude = query.lat;
   const longitude = query.lon;
@@ -160,14 +111,6 @@ async function getThreeDayForecast(query) {
 
 export default async function fetchWeather(query) {
   const currentWeatherData = await fetchCurrentWeather(query);
-  /*const additionalCurrentWeatherData = await getAdditionalWeatherDetails(query);*/
-  const hourlyForecast = await getHourlyForecast(query);
-  const threeDayForecast = await getThreeDayForecast(query);
 
-  const data = {
-    ...currentWeatherData, hourlyForecast, threeDayForecast,
-  };
-
-  console.log(data);
-  return data;
+  return currentWeatherData;
 }

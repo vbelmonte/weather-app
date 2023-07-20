@@ -1,22 +1,55 @@
-function createHourlyCard() {
+function createHourlyCard(hour, temp) {
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('hourly-card');
 
   const time = document.createElement('h4');
-  time.textContent = '2pm';
+  time.textContent = hour;
 
   const forecastIcon = document.createElement('img');
   forecastIcon.classList.add('tertiary');
   forecastIcon.src = '../src/assets/images/forecast-details/weather-partly-cloudy-day-svgrepo-com.svg';
 
   const hourlyTemp = document.createElement('p');
-  hourlyTemp.textContent = '78°';
+  hourlyTemp.textContent = `${Math.floor(temp)}°`;
 
   cardDiv.appendChild(time);
   cardDiv.appendChild(forecastIcon);
   cardDiv.appendChild(hourlyTemp);
 
   return cardDiv;
+}
+
+function convertTimeTo12Hr(hour) {
+  let t;
+  if (hour === 12 || hour === 36) {
+    t = '12pm';
+  } else if (hour === 0 || hour === 24) {
+    t = '12am';
+  } else if ((hour > 0 && hour < 12) || (hour > 24 && hour < 36)) {
+    const h = hour % 12;
+    t = `${h}am`;
+  } else {
+    const h = hour % 12;
+    t = `${h}pm`;
+  }
+
+  return t;
+}
+
+function create24HourForecast(data) {
+  const container = document.createElement('div');
+
+  const currentHour = new Date().getHours();
+  const hourlyRange = currentHour + 24;
+
+  for (let i = currentHour; i <= hourlyRange; i += 1) {
+    const temp = data.hourly.temperature_2m[i];
+    const hour = convertTimeTo12Hr(i);
+    const card = createHourlyCard(hour, temp);
+    container.appendChild(card);
+  }
+
+  return container;
 }
 
 function createHourlyForecast() {
@@ -47,6 +80,15 @@ function createHourlyForecast() {
   hourlyForecast.appendChild(hourlyForecastCarousel);
 
   return hourlyForecast;
+}
+
+export function updateHourlyForecastLayout(query) {
+  const container = create24HourForecast(query);
+  container.classList.add('container');
+
+  const carousel = document.getElementsByClassName('hourly-forecast-carousel')[0];
+  carousel.innerHTML = '';
+  carousel.appendChild(container);
 }
 
 function createDailyForecastBar() {
