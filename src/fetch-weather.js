@@ -33,6 +33,20 @@ function getWeatherDescription(code) {
   return weatherCodes[code];
 }
 
+function getDay(code) {
+  const days = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+  };
+
+  return days[code];
+}
+
 function createCurrentWeather(query) {
   const date = new Date();
   const currentHour = date.getHours();
@@ -54,7 +68,7 @@ async function fetchCurrentWeather(query) {
   const cityName = query.name;
 
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=3`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);
@@ -92,25 +106,27 @@ async function getHourlyForecast(query) {
 }
 
 async function getThreeDayForecast(query) {
-  const latitude = query.lat;
-  const longitude = query.lon;
-  try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=auto&forecast_days=3`);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.log(error);
-    return error;
+  const date = new Date();
+  const day = date.getDay();
+  const high = [];
+  const low = [];
+  const days = [];
+  // get temps
+  for (let i = 1; i < 4; i += 1) {
+    high.push(query.daily.temperature_2m_max[i]);
+    low.push(query.daily.temperature_2m_min[i]);
   }
+  // assign days
+  for (let i = day + 1; i < (day + 4); i += 1) {
+    days.push(getDay(i % 7));
+  }
+
+  return { high, low, days };
 }
 
 export default async function fetchWeather(query) {
   const currentWeatherData = await fetchCurrentWeather(query);
+  const threeDayForecast = await getThreeDayForecast(currentWeatherData);
 
-  return currentWeatherData;
+  return { ...currentWeatherData, threeDayForecast };
 }
