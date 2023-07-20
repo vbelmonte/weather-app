@@ -1,21 +1,3 @@
-async function getWeatherData(lat, lon, cityName) {
-  try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=8dd447f0efae8324f15c24f2efdd7e9f`, { mode: 'cors' });
-
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    result.name = cityName;
-
-    return result;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
-
 function getWeatherDescription(code) {
   const weatherCodes = {
     0: 'Clear Sky',
@@ -121,7 +103,7 @@ async function fetchCurrentWeather(query) {
   const cityName = query.name;
 
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=auto`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=3`);
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);
@@ -178,12 +160,12 @@ async function getThreeDayForecast(query) {
 
 export default async function fetchWeather(query) {
   const currentWeatherData = await fetchCurrentWeather(query);
-  const additionalCurrentWeatherData = await getAdditionalWeatherDetails(query);
+  /*const additionalCurrentWeatherData = await getAdditionalWeatherDetails(query);*/
   const hourlyForecast = await getHourlyForecast(query);
   const threeDayForecast = await getThreeDayForecast(query);
 
   const data = {
-    ...currentWeatherData, ...additionalCurrentWeatherData, hourlyForecast, threeDayForecast,
+    ...currentWeatherData, hourlyForecast, threeDayForecast,
   };
 
   console.log(data);

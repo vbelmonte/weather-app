@@ -1,3 +1,41 @@
+function printOutHumidity(query) {
+  const date = new Date();
+  const hour = date.getHours();
+  return `${query.hourly.relativehumidity_2m[hour]}%`;
+}
+
+function printOutWindSpeed(query) {
+  const date = new Date();
+  const hour = date.getHours();
+  const result = Math.floor(query.hourly.windspeed_10m[hour]);
+  return `${result}mph`;
+}
+
+function printOutUVIndex(query) {
+  const uv = query.daily.uv_index_max[0];
+  const result = Math.floor(uv);
+
+  return `${result} of 10`;
+}
+
+function printOutChanceOfRain(query) {
+  return `${query.daily.precipitation_probability_max[0]}%`;
+}
+
+export function updateAdditionalCurrentForecastLayout(query) {
+  const cor = document.getElementById('chance-of-rain');
+  cor.textContent = printOutChanceOfRain(query);
+
+  const humidity = document.getElementById('humidity');
+  humidity.textContent = printOutHumidity(query);
+
+  const windSpeed = document.getElementById('wind');
+  windSpeed.textContent = printOutWindSpeed(query);
+
+  const uv = document.getElementById('uv-index');
+  uv.textContent = printOutUVIndex(query);
+}
+
 function createChanceOfRain() {
   const corDiv = document.createElement('div');
   corDiv.classList.add('cor');
