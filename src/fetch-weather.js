@@ -82,27 +82,6 @@ async function fetchCurrentWeather(query) {
     console.log(error);
     return error;
   }
-  /* const weatherData = await getWeatherData(latitude, longitude, cityName);
-
-  return weatherData; */
-}
-
-async function getHourlyForecast(query) {
-  const latitude = query.lat;
-  const longitude = query.lon;
-  try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&temperature_unit=fahrenheit&timezone=auto`);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}, ${response.statusText}`);
-    }
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
 }
 
 async function getThreeDayForecast(query) {

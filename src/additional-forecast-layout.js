@@ -95,10 +95,16 @@ function createDailyForecastBar(high, low, day, cor, desc) {
   const forecastBar = document.createElement('div');
   forecastBar.classList.add('daily-bar');
 
+  const container = document.createElement('div');
+  container.classList.add('container');
+
   const dayDiv = document.createElement('div');
+  dayDiv.classList.add('day-container');
+
   const dayOfTheWeek = document.createElement('h4');
   dayOfTheWeek.classList.add('day');
   dayOfTheWeek.textContent = day.substring(0, 3);
+
   dayDiv.appendChild(dayOfTheWeek);
   forecastBar.appendChild(dayDiv);
 
@@ -109,34 +115,43 @@ function createDailyForecastBar(high, low, day, cor, desc) {
   forecastDiv.classList.add('forecast');
 
   const weatherIconDiv = document.createElement('div');
+  weatherIconDiv.classList.add('weather-icon');
   const iconImg = document.createElement('img');
-  iconImg.classList.add('icon');
-  iconImg.classList.add('tertiary');
+  iconImg.classList.add('icon', 'tertiary');
   iconImg.src = '../src/assets/images/forecast-details/sun-outline-svgrepo-com.svg';
+
   weatherIconDiv.appendChild(iconImg);
   forecastDiv.appendChild(weatherIconDiv);
 
   const descriptionDiv = document.createElement('div');
+  descriptionDiv.classList.add('description');
+
   const description = document.createElement('p');
-  description.classList.add('description');
   description.textContent = desc;
+
   descriptionDiv.appendChild(description);
   forecastDiv.appendChild(descriptionDiv);
-
   detailsDiv.appendChild(forecastDiv);
 
   const temperaturesDiv = document.createElement('div');
   temperaturesDiv.classList.add('temperatures');
+
+  const highDiv = document.createElement('div');
+  highDiv.classList.add('high');
+
   const highP = document.createElement('p');
-  highP.classList.add('high');
   highP.classList.add('bold');
   highP.textContent = `${high}°`;
+  highDiv.appendChild(highP);
+
+  const lowDiv = document.createElement('div');
+  lowDiv.classList.add('low');
+  
   const lowP = document.createElement('p');
-  lowP.classList.add('low');
   lowP.textContent = `${low}°`;
-  temperaturesDiv.appendChild(highP);
-  temperaturesDiv.appendChild(lowP);
-  detailsDiv.appendChild(temperaturesDiv);
+  lowDiv.appendChild(lowP);
+
+  temperaturesDiv.append(highDiv, lowDiv);
 
   const corDiv = document.createElement('div');
   corDiv.classList.add('chance-of-rain');
@@ -153,7 +168,11 @@ function createDailyForecastBar(high, low, day, cor, desc) {
   percentage.textContent = `${cor}%`;
   percentageDiv.appendChild(percentage);
   corDiv.appendChild(percentageDiv);
-  detailsDiv.appendChild(corDiv);
+
+  const numbersDiv = document.createElement('div');
+  numbersDiv.classList.add('numbers');
+  numbersDiv.append(temperaturesDiv, corDiv);
+  detailsDiv.appendChild(numbersDiv);
 
   forecastBar.appendChild(detailsDiv);
 
@@ -176,14 +195,6 @@ function create3DayForecast() {
   const container = document.createElement('div');
   threeDayForecastList.appendChild(container);
 
-  /*const dayOne = createDailyForecastBar();
-  const dayTwo = createDailyForecastBar();
-  const dayThree = createDailyForecastBar();
-
-  threeDayForecastList.appendChild(dayOne);
-  threeDayForecastList.appendChild(dayTwo);
-  threeDayForecastList.appendChild(dayThree);*/
-
   threeDayForecast.appendChild(threeDayForecastList);
 
   return threeDayForecast;
@@ -193,8 +204,8 @@ export function update3DayForecastLayout(query) {
   const container = document.createElement('div');
   container.classList.add('three-day-forecast-list');
   for (let i = 0; i < 3; i += 1) {
-    const high = query.threeDayForecast.high[i];
-    const low = query.threeDayForecast.low[i];
+    const high = Math.floor(query.threeDayForecast.high[i]);
+    const low = Math.floor(query.threeDayForecast.low[i]);
     const day = query.threeDayForecast.days[i];
     const cor = query.threeDayForecast.cor[i];
     const desc = query.threeDayForecast.weatherDescription[i];

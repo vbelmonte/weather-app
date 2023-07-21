@@ -756,15 +756,19 @@ input:checked + .slider:before {
 .daily-bar {
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 	
 	padding: 0.5rem 0rem;
+}
+
+.daily-bar .day-container {
+	flex: 1;
 }
 
 .daily-bar .details {
 	display: flex;
 	align-items: center;
-	flex: 1;
+	flex: 10;
 	gap: 1rem; /** MOBILE **/
 }
 
@@ -790,4 +794,19 @@ input:checked + .slider:before {
 
 .daily-bar h4 {
 	font-size: 1rem;
+}
+
+.daily-bar .chance-of-rain {
+	display: none;
+}
+
+.daily-bar .temperatures {
+	width: 5rem;
+}
+
+.daily-bar .high,
+.daily-bar .low {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
 }
