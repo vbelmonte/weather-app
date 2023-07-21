@@ -91,7 +91,7 @@ export function updateHourlyForecastLayout(query) {
   carousel.appendChild(container);
 }
 
-function createDailyForecastBar(high, low, day) {
+function createDailyForecastBar(high, low, day, cor, desc) {
   const forecastBar = document.createElement('div');
   forecastBar.classList.add('daily-bar');
 
@@ -119,7 +119,7 @@ function createDailyForecastBar(high, low, day) {
   const descriptionDiv = document.createElement('div');
   const description = document.createElement('p');
   description.classList.add('description');
-  description.textContent = 'Sunny and clear';
+  description.textContent = desc;
   descriptionDiv.appendChild(description);
   forecastDiv.appendChild(descriptionDiv);
 
@@ -150,7 +150,7 @@ function createDailyForecastBar(high, low, day) {
   const percentageDiv = document.createElement('div');
   const percentage = document.createElement('p');
   percentage.classList.add('percentage');
-  percentage.textContent = '0%';
+  percentage.textContent = `${cor}%`;
   percentageDiv.appendChild(percentage);
   corDiv.appendChild(percentageDiv);
   detailsDiv.appendChild(corDiv);
@@ -196,8 +196,10 @@ export function update3DayForecastLayout(query) {
     const high = query.threeDayForecast.high[i];
     const low = query.threeDayForecast.low[i];
     const day = query.threeDayForecast.days[i];
+    const cor = query.threeDayForecast.cor[i];
+    const desc = query.threeDayForecast.weatherDescription[i];
     console.log(`${high}, ${low}, ${day}`);
-    const bar = createDailyForecastBar(high, low, day);
+    const bar = createDailyForecastBar(high, low, day, cor, desc);
 
     container.appendChild(bar);
   }

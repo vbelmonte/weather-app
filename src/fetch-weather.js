@@ -68,7 +68,7 @@ async function fetchCurrentWeather(query) {
   const cityName = query.name;
 
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);
@@ -110,18 +110,24 @@ async function getThreeDayForecast(query) {
   const day = date.getDay();
   const high = [];
   const low = [];
+  const cor = [];
+  const weatherDescription = [];
   const days = [];
   // get temps
   for (let i = 1; i < 4; i += 1) {
     high.push(query.daily.temperature_2m_max[i]);
     low.push(query.daily.temperature_2m_min[i]);
+    cor.push(query.daily.precipitation_probability_max[i]);
+    weatherDescription.push(getWeatherDescription(query.daily.weathercode[i]));
   }
   // assign days
   for (let i = day + 1; i < (day + 4); i += 1) {
     days.push(getDay(i % 7));
   }
 
-  return { high, low, days };
+  return {
+    high, low, cor, days, weatherDescription,
+  };
 }
 
 export default async function fetchWeather(query) {
