@@ -1,3 +1,7 @@
+function convertTZ(date, tzString) {
+  return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
+}
+
 function createHourlyCard(hour, temp) {
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('hourly-card');
@@ -39,7 +43,7 @@ function convertTimeTo12Hr(hour) {
 function create24HourForecast(data) {
   const container = document.createElement('div');
 
-  const currentHour = new Date().getHours();
+  const currentHour = convertTZ(new Date(), data.timezone).getHours();
   const hourlyRange = currentHour + 24;
 
   for (let i = currentHour; i <= hourlyRange; i += 1) {
@@ -146,7 +150,7 @@ function createDailyForecastBar(high, low, day, cor, desc) {
 
   const lowDiv = document.createElement('div');
   lowDiv.classList.add('low');
-  
+
   const lowP = document.createElement('p');
   lowP.textContent = `${low}°`;
   lowDiv.appendChild(lowP);
