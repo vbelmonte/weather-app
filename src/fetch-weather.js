@@ -122,7 +122,7 @@ function getDay(code) {
 
 function createCurrentWeather(query) {
   const date = new Date();
-  const currentHour = date.getHours();
+  const currentHour = convertTZ(new Date(), query.timezone).getHours();
 
   const currentTemp = query.hourly.temperature_2m[currentHour];
   const dailyHigh = query.daily.temperature_2m_max[0];
@@ -164,6 +164,7 @@ async function getThreeDayForecast(query) {
   const low = [];
   const cor = [];
   const weatherDescription = [];
+  const weatherCode = [];
   const days = [];
   // get temps
   for (let i = 1; i < 4; i += 1) {
@@ -171,6 +172,7 @@ async function getThreeDayForecast(query) {
     low.push(query.daily.temperature_2m_min[i]);
     cor.push(query.daily.precipitation_probability_max[i]);
     weatherDescription.push(getWeatherDescription(query.daily.weathercode[i]));
+    weatherCode.push(query.daily.weathercode[i]);
   }
   // assign days
   for (let i = day + 1; i < (day + 4); i += 1) {
@@ -178,7 +180,7 @@ async function getThreeDayForecast(query) {
   }
 
   return {
-    high, low, cor, days, weatherDescription,
+    high, low, cor, days, weatherDescription, weatherCode,
   };
 }
 
