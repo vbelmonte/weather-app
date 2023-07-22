@@ -95,7 +95,7 @@ export function updateHourlyForecastLayout(query) {
   carousel.appendChild(container);
 }
 
-function createDailyForecastBar(high, low, day, cor, desc) {
+function createDailyForecastBar(high, low, day, cor, desc, icon) {
   const forecastBar = document.createElement('div');
   forecastBar.classList.add('daily-bar');
 
@@ -121,8 +121,8 @@ function createDailyForecastBar(high, low, day, cor, desc) {
   const weatherIconDiv = document.createElement('div');
   weatherIconDiv.classList.add('weather-icon');
   const iconImg = document.createElement('img');
-  iconImg.classList.add('icon', 'tertiary');
-  iconImg.src = '../src/assets/images/forecast-details/sun-outline-svgrepo-com.svg';
+  iconImg.classList.add('icon');
+  iconImg.src = icon;
 
   weatherIconDiv.appendChild(iconImg);
   forecastDiv.appendChild(weatherIconDiv);
@@ -213,8 +213,8 @@ export function update3DayForecastLayout(query) {
     const day = query.threeDayForecast.days[i];
     const cor = query.threeDayForecast.cor[i];
     const desc = query.threeDayForecast.weatherDescription[i];
-    console.log(`${high}, ${low}, ${day}`);
-    const bar = createDailyForecastBar(high, low, day, cor, desc);
+    const icon = fetchWeatherIcon(query.threeDayForecast.weatherCode[i], 1);
+    const bar = createDailyForecastBar(high, low, day, cor, desc, icon);
 
     container.appendChild(bar);
   }

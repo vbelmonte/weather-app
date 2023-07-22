@@ -785,7 +785,7 @@ input:checked + .slider:before {
 }
 
 .daily-bar .forecast .icon {
-	height: 1.5rem;
+	width: 1.5rem;
 }
 
 .daily-bar .chance-of-rain .icon {
