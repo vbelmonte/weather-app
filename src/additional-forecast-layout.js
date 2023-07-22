@@ -1,6 +1,6 @@
-import { convertTZ } from './fetch-weather';
+import { convertTZ, fetchWeatherIcon } from './fetch-weather';
 
-function createHourlyCard(hour, temp) {
+function createHourlyCard(hour, temp, icon) {
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('hourly-card');
 
@@ -8,8 +8,7 @@ function createHourlyCard(hour, temp) {
   time.textContent = hour;
 
   const forecastIcon = document.createElement('img');
-  forecastIcon.classList.add('tertiary');
-  forecastIcon.src = '../src/assets/images/forecast-details/weather-partly-cloudy-day-svgrepo-com.svg';
+  forecastIcon.src = icon;
 
   const hourlyTemp = document.createElement('p');
   hourlyTemp.textContent = `${Math.floor(temp)}°`;
@@ -47,7 +46,10 @@ function create24HourForecast(data) {
   for (let i = currentHour; i <= hourlyRange; i += 1) {
     const temp = data.hourly.temperature_2m[i];
     const hour = convertTimeTo12Hr(i);
-    const card = createHourlyCard(hour, temp);
+    const code = data.hourly.weathercode[i];
+    const isDay = data.hourly.is_day[i];
+    const icon = fetchWeatherIcon(code, isDay);
+    const card = createHourlyCard(hour, temp, icon);
     container.appendChild(card);
   }
 

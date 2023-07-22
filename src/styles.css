@@ -703,7 +703,7 @@ input:checked + .slider:before {
 }
 
 .hourly-card img {
-	width: 2rem;
+	height: 1.5rem;
 }
 
 .hourly-card h4 {
