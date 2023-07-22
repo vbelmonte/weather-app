@@ -2,6 +2,75 @@ export function convertTZ(date, tzString) {
   return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
 }
 
+export function fetchWeatherIcon(code, isDay) {
+  let src;
+  const string = '../src/assets/images/weather-icons/';
+  switch (code) {
+    case 0:
+      if (isDay === 1) {
+        src = `${string}clear-sky-sunny.svg`;
+      } else {
+        src = `${string}clear-sky-moon.svg`;
+      }
+      break;
+    case 1:
+      if (isDay === 1) {
+        src = `${string}mostly-clear-sunny.svg`;
+      } else {
+        src = `${string}mostly-clear-moon.svg`;
+      }
+      break;
+    case 2:
+      if (isDay === 1) {
+        src = `${string}partly-cloudy-sunny.svg`;
+      } else {
+        src = `${string}partly-cloudy-moon.svg`;
+      }
+      break;
+    case 3:
+      src = `${string}overcast.svg`;
+      break;
+    case 45:
+    case 48:
+      src = `${string}fog.svg`;
+      break;
+    case 51:
+    case 53:
+    case 55:
+    case 56:
+    case 57:
+    case 80:
+    case 81:
+    case 82:
+      src = `${string}drizzle.svg`;
+      break;
+    case 61:
+    case 63:
+    case 65:
+    case 66:
+    case 67:
+      src = `${string}rain.svg`;
+      break;
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 85:
+    case 86:
+      src = `${string}snow.svg`;
+      break;
+    case 95:
+    case 96:
+    case 99:
+      src = `${string}thunderstorm.svg`;
+      break;
+    default:
+      break;
+  }
+
+  return src;
+}
+
 function getWeatherDescription(code) {
   const weatherCodes = {
     0: 'Clear Sky',
