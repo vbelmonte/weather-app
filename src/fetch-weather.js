@@ -1,3 +1,7 @@
+export function convertTZ(date, tzString) {
+  return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
+}
+
 function getWeatherDescription(code) {
   const weatherCodes = {
     0: 'Clear Sky',
@@ -68,7 +72,7 @@ async function fetchCurrentWeather(query) {
   const cityName = query.name;
 
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);
