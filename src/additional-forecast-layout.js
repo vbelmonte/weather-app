@@ -1,6 +1,4 @@
-function convertTZ(date, tzString) {
-  return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
-}
+import { convertTZ } from './fetch-weather';
 
 function createHourlyCard(hour, temp) {
   const cardDiv = document.createElement('div');
