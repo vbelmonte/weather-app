@@ -157,6 +157,26 @@ async function fetchCurrentWeather(query) {
   }
 }
 
+async function fetchWeatherDefaultLocation() {
+  try {
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
+
+    if (!response.ok) {
+      throw new Error(`${response.status}, ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    const currentWeather = createCurrentWeather(result);
+    const cityName = 'London';
+    const weatherData = { cityName, ...result, currentWeather };
+
+    return weatherData;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 async function getThreeDayForecast(query) {
   const date = new Date();
   const day = date.getDay();
@@ -182,6 +202,13 @@ async function getThreeDayForecast(query) {
   return {
     high, low, cor, days, weatherDescription, weatherCode,
   };
+}
+
+export async function fetchDefaultWeather() {
+  const currentWeatherData = await fetchWeatherDefaultLocation();
+  const threeDayForecast = await getThreeDayForecast(currentWeatherData);
+
+  return { ...currentWeatherData, threeDayForecast };
 }
 
 export default async function fetchWeather(query) {

@@ -2,7 +2,7 @@ import createCurrentForecast, { updateCurrentForecastLayout } from './current-fo
 import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout } from './additional-current-forecast-layout';
 import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
-import fetchWeather from './fetch-weather';
+import fetchWeather, { fetchDefaultWeather } from './fetch-weather';
 
 function createCityResultText(result) {
   if (result.zip === undefined) {
@@ -337,7 +337,14 @@ function createMobileSearchModal() {
   return modal;
 }
 
-export default function createPage() {
+async function loadDefaultWeather() {
+  const result = await fetchDefaultWeather();
+  updateCurrentForecastLayout(result);
+  updateHourlyForecastLayout(result);
+  update3DayForecastLayout(result);
+}
+
+export default async function createPage() {
   const body = document.getElementsByTagName('body')[0];
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('main-container');
@@ -360,4 +367,5 @@ export default function createPage() {
   mainContainer.appendChild(gridContainer);
 
   body.appendChild(mainContainer);
+  await loadDefaultWeather();
 }
