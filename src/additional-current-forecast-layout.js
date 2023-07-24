@@ -49,14 +49,13 @@ function createChanceOfRain() {
 
   const corPercentDiv = document.createElement('div');
   const corPercent = document.createElement('p');
-  corPercent.classList.add('bold');
   corPercent.id = 'chance-of-rain';
   corPercent.textContent = '0%';
   corPercentDiv.appendChild(corPercent);
 
   const corTitleDiv = document.createElement('div');
   const corTitle = document.createElement('h5');
-  corTitle.classList.add('bold', 'secondary', 'small');
+  corTitle.classList.add('secondary', 'small');
   corTitle.textContent = 'Rain';
   corTitleDiv.appendChild(corTitle);
 
@@ -78,14 +77,13 @@ function createHumidity() {
 
   const humidityPercentDiv = document.createElement('div');
   const humidityPercent = document.createElement('p');
-  humidityPercent.classList.add('bold');
   humidityPercent.id = 'humidity';
   humidityPercent.textContent = '20%';
   humidityPercentDiv.appendChild(humidityPercent);
 
   const humidityTitleDiv = document.createElement('div');
   const humidityTitle = document.createElement('h5');
-  humidityTitle.classList.add('bold', 'secondary', 'small');
+  humidityTitle.classList.add('secondary', 'small');
   humidityTitle.textContent = 'Humidity';
   humidityTitleDiv.appendChild(humidityTitle);
 
@@ -107,14 +105,13 @@ function createWind() {
 
   const windSpeedDiv = document.createElement('div');
   const windSpeed = document.createElement('p');
-  windSpeed.classList.add('bold');
   windSpeed.id = 'wind';
   windSpeed.textContent = '5mph';
   windSpeedDiv.appendChild(windSpeed);
 
   const windTitleDiv = document.createElement('div');
   const windTitle = document.createElement('h5');
-  windTitle.classList.add('bold', 'secondary', 'small');
+  windTitle.classList.add('secondary', 'small');
   windTitle.textContent = 'Wind';
   windTitleDiv.appendChild(windTitle);
 
@@ -136,14 +133,13 @@ function createUV() {
 
   const uvIndexDiv = document.createElement('div');
   const uvIndex = document.createElement('p');
-  uvIndex.classList.add('bold');
   uvIndex.id = 'uv-index';
   uvIndex.textContent = '5 of 10';
   uvIndexDiv.appendChild(uvIndex);
 
   const uvTitleDiv = document.createElement('div');
   const uvTitle = document.createElement('h5');
-  uvTitle.classList.add('bold', 'secondary', 'small');
+  uvTitle.classList.add('secondary', 'small');
   uvTitle.textContent = 'UV Index';
   uvTitleDiv.appendChild(uvTitle);
 
