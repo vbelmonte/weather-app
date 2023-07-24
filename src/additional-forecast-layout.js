@@ -13,9 +13,14 @@ function createHourlyCard(hour, temp, icon) {
   const hourlyTemp = document.createElement('p');
   hourlyTemp.textContent = `${Math.floor(temp)}°`;
 
-  cardDiv.appendChild(time);
+  /*(cardDiv.appendChild(time);
   cardDiv.appendChild(forecastIcon);
-  cardDiv.appendChild(hourlyTemp);
+  cardDiv.appendChild(hourlyTemp);*/
+
+  const container = document.createElement('div');
+  container.classList.add('container');
+  container.append(time, forecastIcon, hourlyTemp);
+  cardDiv.appendChild(container);
 
   return cardDiv;
 }
@@ -61,8 +66,7 @@ function createHourlyForecast() {
   hourlyForecast.classList.add('hourly-forecast');
 
   const hourlyForecastTitleDiv = document.createElement('div');
-  const hourlyForecastTitle = document.createElement('h3');
-  hourlyForecastTitle.classList.add('bold');
+  const hourlyForecastTitle = document.createElement('h2');
   hourlyForecastTitle.textContent = 'Hourly Forecast';
   hourlyForecastTitleDiv.appendChild(hourlyForecastTitle);
 
@@ -188,8 +192,7 @@ function create3DayForecast() {
   threeDayForecast.classList.add('three-day-forecast');
 
   const threeDayForecastTitleDiv = document.createElement('div');
-  const threeDayForecastTitle = document.createElement('h3');
-  threeDayForecastTitle.classList.add('bold');
+  const threeDayForecastTitle = document.createElement('h2');
   threeDayForecastTitle.textContent = '3-Day Forecast';
   threeDayForecastTitleDiv.appendChild(threeDayForecastTitle);
   threeDayForecast.appendChild(threeDayForecastTitleDiv);

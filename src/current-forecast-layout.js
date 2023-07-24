@@ -74,16 +74,16 @@ export default function createCurrentForecast() {
   bottomDiv.classList.add('bottom');
 
   const currentTempDiv = document.createElement('div');
-  const currentTemp = document.createElement('h1');
-  currentTemp.classList.add('bold');
+  const currentTemp = document.createElement('p');
+  currentTemp.classList.add('large');
   currentTemp.id = 'current-temp';
   currentTemp.textContent = '74°F';
   currentTempDiv.appendChild(currentTemp);
   bottomDiv.appendChild(currentTempDiv);
 
   const forecastDescriptionDiv = document.createElement('div');
-  const forecastDescription = document.createElement('h4');
-  forecastDescription.classList.add('bold');
+  const forecastDescription = document.createElement('p');
+  forecastDescription.classList.add('medium');
   forecastDescription.id = 'forecast-description';
   forecastDescription.textContent = 'Partly cloudy';
   forecastDescriptionDiv.appendChild(forecastDescription);
