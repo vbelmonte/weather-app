@@ -239,6 +239,10 @@ p.bold {
 	display: none;
 }
 
+#hidden {
+	display: none;
+}
+
 input[type=text] {
 	background: url('../src/assets/images/layout/magnifying-glass-solid-desktop.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	padding: 0.5rem;
@@ -520,10 +524,6 @@ input:checked + .slider:before {
   
 .slider.round:before {
 	border-radius: 50%;
-}
-
-.toggle-div {
-	display: none;
 }
 
 	/** DESKTOP BELOW **/

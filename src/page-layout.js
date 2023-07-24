@@ -171,7 +171,8 @@ function createNavigationMenu() {
   searchButton.addEventListener('click', toggleSearchModal);
 
   const darkLightModeSwitchDiv = document.createElement('div');
-  darkLightModeSwitchDiv.classList.add('toggle-div');
+  darkLightModeSwitchDiv.classList.add('toggle-div', 'hidden');
+  darkLightModeSwitchDiv.id = 'hidden';
 
   const darkLightModeSwitchP = document.createElement('p');
   darkLightModeSwitchP.classList.add('dark-light-switch', 'small');

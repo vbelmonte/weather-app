@@ -45,7 +45,6 @@ button {
 /** NAVIGATION STYLES **/
 
 nav {
-    background-color: var(--navigation);
     color: var(--white);
 }
 
@@ -105,7 +104,7 @@ input:focus + .slider {
 /** CURRENT FORECAST STYLES **/
 
 section#current-forecast {
-    background-color: lightskyblue;
+    background-color: var(--additional-forecast);
     color: var(--white);
     box-shadow: var(--dropshadow);
 }
