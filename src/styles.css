@@ -131,14 +131,20 @@ body {
 
 h1 {
 	font-family: 'Barlow Semi-Condensed';
-	font-size: 1.5rem;
-	line-height: 1.5rem;
+	font-size: 2rem;
+	line-height: 2rem;
 }
 
 h2 {
 	font-family: 'Barlow Regular';
 	font-size: 1.5rem;
 	line-height: 1.5rem;
+}
+
+h2.bold.small {
+	font-family: 'Barlow Bold';
+	font-size: 1rem;
+	line-height: 1rem;
 }
 
 h2.bold {
@@ -153,10 +159,20 @@ h3 {
 	line-height: 2rem;
 }
 
+h3.small {
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
 h3.bold {
 	font-family: 'Barlow Bold';
 	font-size: 2rem;
 	line-height: 2rem;
+}
+
+h3.bold.small {
+	font-size: 1rem;
+	line-height: 1rem;
 }
 
 h4 {
@@ -689,7 +705,6 @@ input:checked + .slider:before {
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		#additional-forecast {
-			justify-content: space-between;
 			border-radius: 1.75rem;
 			padding: 3rem;
 			padding-bottom: 4rem;
@@ -702,9 +717,7 @@ input:checked + .slider:before {
 		}
 	}
 
-#additional-forecast h3 {
-	font-size: 1.5rem;
-}
+
 
 /** HOURLY FORECAST STYLES **/
 .hourly-forecast {
@@ -713,8 +726,9 @@ input:checked + .slider:before {
 	gap: 2rem;
 }
 
-/** HOURLY FORECAST CARD STYLES **/
 
+
+/** HOURLY FORECAST CARD STYLES **/
 .hourly-card {
 	padding: 1.5rem;
     padding-top: 1rem;
@@ -733,14 +747,7 @@ input:checked + .slider:before {
 	height: 1.5rem;
 }
 
-.hourly-card h4 {
-	font-size: 1rem;
-	line-height: 1.5rem;
-}
 
-.hourly-card p {
-	font-size: 1.5rem;
-}
 
 /** HOURLY FORECAST CAROUSEL STYLES **/
 

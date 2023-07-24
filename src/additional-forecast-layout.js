@@ -4,7 +4,8 @@ function createHourlyCard(hour, temp, icon) {
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('hourly-card');
 
-  const time = document.createElement('h4');
+  const time = document.createElement('h3');
+  time.classList.add('small');
   time.textContent = hour;
 
   const forecastIcon = document.createElement('img');
@@ -67,6 +68,7 @@ function createHourlyForecast() {
 
   const hourlyForecastTitleDiv = document.createElement('div');
   const hourlyForecastTitle = document.createElement('h2');
+  hourlyForecastTitle.classList.add('bold', 'small');
   hourlyForecastTitle.textContent = 'Hourly Forecast';
   hourlyForecastTitleDiv.appendChild(hourlyForecastTitle);
 
@@ -193,6 +195,7 @@ function create3DayForecast() {
 
   const threeDayForecastTitleDiv = document.createElement('div');
   const threeDayForecastTitle = document.createElement('h2');
+  threeDayForecastTitle.classList.add('bold', 'small');
   threeDayForecastTitle.textContent = '3-Day Forecast';
   threeDayForecastTitleDiv.appendChild(threeDayForecastTitle);
   threeDayForecast.appendChild(threeDayForecastTitleDiv);
