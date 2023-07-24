@@ -621,7 +621,7 @@ input:checked + .slider:before {
 }
 
 #current-forecast img#current-weather {
-	width: 10rem;
+	width: 8rem;
 }
 
 
