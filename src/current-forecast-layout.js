@@ -24,8 +24,8 @@ function printOutDescription(query) {
 }
 
 function printOutWeatherIcon(query) {
-  const code = query.hourly.weathercode[0];
   const localHour = convertTZ(new Date(), query.timezone).getHours();
+  const code = query.hourly.weathercode[localHour];
   const value = query.hourly.is_day[localHour];
 
   return fetchWeatherIcon(code, value);
