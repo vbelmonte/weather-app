@@ -69,7 +69,7 @@ function createHourlyForecast() {
   hourlyForecastTitleDiv.appendChild(hourlyForecastTitle);
 
   const hourlyForecastCarousel = document.createElement('div');
-  hourlyForecastCarousel.classList.add('hourly-forecast-carousel', 'no-scrollbar');
+  hourlyForecastCarousel.classList.add('hourly-forecast-carousel', 'custom-scrollbar');
 
   const hourlyForecastContainer = document.createElement('div');
   hourlyForecastContainer.classList.add('container');

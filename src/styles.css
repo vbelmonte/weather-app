@@ -759,20 +759,31 @@ input:checked + .slider:before {
 /** HOURLY FORECAST CAROUSEL STYLES **/
 
 .hourly-forecast-carousel {
-	overflow-x: auto;
+	overflow-x: hidden;
 }
 
-.no-scrollbar {
-	scrollbar-color: transparent transparent;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-	height: 0px;
-}
+	@media only screen and (min-width: 1024px) {
+		.custom-scrollbar {
+			overflow-x: auto;
+		}
+		
+		.custom-scrollbar::-webkit-scrollbar {
+			height: 0.5rem;
+		}
+		
+		.custom-scrollbar::-webkit-scrollbar-track {
+			border-radius: 1rem;
+		}
+		
+		.custom-scrollbar::-webkit-scrollbar-thumb {
+			border-radius: 1rem;
+		}
+	}
 
 .hourly-forecast-carousel > .container {
 	display: flex;
 	gap: 0.5rem;
+	padding-bottom: 1rem;
 }
 
 
