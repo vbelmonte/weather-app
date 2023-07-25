@@ -301,9 +301,16 @@ nav.main-nav .options {
 }
 
 nav.main-nav .options .switches {
-	display: flex;
-	gap: 1rem;
+	display: none;
 }
+
+	/** DESKTOP BELOW **/
+	@media only screen and (min-width: 1024px) {
+		nav.main-nav .options .switches {
+			display: flex;
+			gap: 1rem;
+		}
+	}
 
 nav.main-nav .options .additional-options {
 	display: flex;
