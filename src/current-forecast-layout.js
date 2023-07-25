@@ -58,7 +58,6 @@ export default function createCurrentForecast() {
   const currentCityDiv = document.createElement('div');
   const currentCity = document.createElement('h1');
   currentCity.id = 'current-city';
-  currentCity.textContent = 'Ventura';
   currentCityDiv.appendChild(currentCity);
 
   const currentDetailsDiv = document.createElement('div');
@@ -67,7 +66,6 @@ export default function createCurrentForecast() {
   const currentWeatherDiv = document.createElement('div');
   const currentWeatherImg = document.createElement('img');
   currentWeatherImg.id = 'current-weather';
-  currentWeatherImg.src = '../src/assets/images/forecast-current/partly-cloudy.svg';
   currentWeatherDiv.appendChild(currentWeatherImg);
 
   const bottomDiv = document.createElement('div');
@@ -77,7 +75,6 @@ export default function createCurrentForecast() {
   const currentTemp = document.createElement('p');
   currentTemp.classList.add('large');
   currentTemp.id = 'current-temp';
-  currentTemp.textContent = '74°F';
   currentTempDiv.appendChild(currentTemp);
   bottomDiv.appendChild(currentTempDiv);
 
@@ -85,7 +82,6 @@ export default function createCurrentForecast() {
   const forecastDescription = document.createElement('p');
   forecastDescription.classList.add('medium');
   forecastDescription.id = 'forecast-description';
-  forecastDescription.textContent = 'Partly cloudy';
   forecastDescriptionDiv.appendChild(forecastDescription);
   bottomDiv.appendChild(forecastDescriptionDiv);
 
@@ -98,7 +94,6 @@ export default function createCurrentForecast() {
 
   const high = document.createElement('span');
   high.id = 'current-high';
-  high.textContent = '74°';
   highP.appendChild(high);
   highDiv.appendChild(highP);
 
@@ -108,7 +103,6 @@ export default function createCurrentForecast() {
 
   const low = document.createElement('span');
   low.id = 'current-low';
-  low.textContent = '54°';
   lowP.appendChild(low);
   lowDiv.appendChild(lowP);
 

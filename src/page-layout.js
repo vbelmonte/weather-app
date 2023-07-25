@@ -340,6 +340,7 @@ function createMobileSearchModal() {
 async function loadDefaultWeather() {
   const result = await fetchDefaultWeather();
   updateCurrentForecastLayout(result);
+  updateAdditionalCurrentForecastLayout(result);
   updateHourlyForecastLayout(result);
   update3DayForecastLayout(result);
 }

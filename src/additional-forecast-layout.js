@@ -79,11 +79,6 @@ function createHourlyForecast() {
   const hourlyForecastContainer = document.createElement('div');
   hourlyForecastContainer.classList.add('container');
 
-  for (let i = 0; i < 7; i += 1) {
-    const hourlyCard = createHourlyCard();
-    hourlyForecastContainer.appendChild(hourlyCard);
-  }
-
   hourlyForecastCarousel.appendChild(hourlyForecastContainer);
 
   hourlyForecast.appendChild(hourlyForecastTitleDiv);

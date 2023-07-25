@@ -50,7 +50,6 @@ function createChanceOfRain() {
   const corPercentDiv = document.createElement('div');
   const corPercent = document.createElement('p');
   corPercent.id = 'chance-of-rain';
-  corPercent.textContent = '0%';
   corPercentDiv.appendChild(corPercent);
 
   const corTitleDiv = document.createElement('div');
@@ -78,7 +77,6 @@ function createHumidity() {
   const humidityPercentDiv = document.createElement('div');
   const humidityPercent = document.createElement('p');
   humidityPercent.id = 'humidity';
-  humidityPercent.textContent = '20%';
   humidityPercentDiv.appendChild(humidityPercent);
 
   const humidityTitleDiv = document.createElement('div');
@@ -106,7 +104,6 @@ function createWind() {
   const windSpeedDiv = document.createElement('div');
   const windSpeed = document.createElement('p');
   windSpeed.id = 'wind';
-  windSpeed.textContent = '5mph';
   windSpeedDiv.appendChild(windSpeed);
 
   const windTitleDiv = document.createElement('div');
@@ -134,7 +131,6 @@ function createUV() {
   const uvIndexDiv = document.createElement('div');
   const uvIndex = document.createElement('p');
   uvIndex.id = 'uv-index';
-  uvIndex.textContent = '5 of 10';
   uvIndexDiv.appendChild(uvIndex);
 
   const uvTitleDiv = document.createElement('div');
