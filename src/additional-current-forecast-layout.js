@@ -38,8 +38,7 @@ export function updateAdditionalCurrentForecastLayout(query) {
 
 function createChanceOfRain() {
   const corDiv = document.createElement('div');
-  corDiv.classList.add('cor');
-  corDiv.classList.add('module');
+  corDiv.classList.add('cor', 'module');
 
   const corIconDiv = document.createElement('div');
   const corImg = document.createElement('img');
@@ -65,8 +64,7 @@ function createChanceOfRain() {
 
 function createHumidity() {
   const humidityDiv = document.createElement('div');
-  humidityDiv.classList.add('humidity');
-  humidityDiv.classList.add('module');
+  humidityDiv.classList.add('humidity', 'module');
 
   const humidityIconDiv = document.createElement('div');
   const humidityImg = document.createElement('img');
@@ -92,8 +90,7 @@ function createHumidity() {
 
 function createWind() {
   const windDiv = document.createElement('div');
-  windDiv.classList.add('wind');
-  windDiv.classList.add('module');
+  windDiv.classList.add('wind', 'module');
 
   const windIconDiv = document.createElement('div');
   const windImg = document.createElement('img');
@@ -119,8 +116,7 @@ function createWind() {
 
 function createUV() {
   const uvDiv = document.createElement('div');
-  uvDiv.classList.add('uv');
-  uvDiv.classList.add('module');
+  uvDiv.classList.add('uv', 'module');
 
   const uvIconDiv = document.createElement('div');
   const uvImg = document.createElement('img');
@@ -152,16 +148,11 @@ export default function createMoreCurrentForecastDetails() {
   moreForecastDetailsDiv.id = 'more-current-forecast-details-container';
 
   const chanceOfRain = createChanceOfRain();
-  moreForecastDetailsDiv.appendChild(chanceOfRain);
-
   const humidity = createHumidity();
-  moreForecastDetailsDiv.appendChild(humidity);
-
   const wind = createWind();
-  moreForecastDetailsDiv.appendChild(wind);
-
   const uv = createUV();
-  moreForecastDetailsDiv.appendChild(uv);
+
+  moreForecastDetailsDiv.append(chanceOfRain, humidity, wind, uv);
 
   section.appendChild(moreForecastDetailsDiv);
 

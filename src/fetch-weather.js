@@ -121,9 +121,7 @@ function getDay(code) {
 }
 
 function createCurrentWeather(query) {
-  const date = new Date();
   const currentHour = convertTZ(new Date(), query.timezone).getHours();
-
   const currentTemp = query.hourly.temperature_2m[currentHour];
   const dailyHigh = query.daily.temperature_2m_max[0];
   const dailyLow = query.daily.temperature_2m_min[0];
@@ -159,7 +157,7 @@ async function fetchCurrentWeather(query) {
 
 async function fetchWeatherDefaultLocation() {
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
+    const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto');
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);

@@ -31,8 +31,7 @@ function createQueryResult(searchResult) {
   const result = document.createElement('div');
   result.classList.add('search-result');
 
-  result.appendChild(locationIcon);
-  result.appendChild(textResult);
+  result.append(locationIcon, textResult);
 
   return result;
 }
@@ -117,8 +116,7 @@ function createToggleSwitch(toggleName) {
   const span = document.createElement('span');
   span.classList.add('slider', 'round');
 
-  label.appendChild(input);
-  label.appendChild(span);
+  label.append(input, span);
 
   return label;
 }
@@ -153,8 +151,7 @@ function createNavigationMenu() {
   searchInput.id = 'search-city';
   searchInput.placeholder = 'Enter city (eg. Los Angeles)';
 
-  searchContainerDiv.appendChild(searchImg);
-  searchContainerDiv.appendChild(searchInput);
+  searchContainerDiv.append(searchImg, searchInput);
   searchDiv.appendChild(searchContainerDiv);
 
   const hamburgerMenuButton = document.createElement('button');
@@ -181,8 +178,7 @@ function createNavigationMenu() {
   const darkLightModeSwitch = createToggleSwitch();
   darkLightModeSwitch.id = 'dark-light-switch';
 
-  darkLightModeSwitchDiv.appendChild(darkLightModeSwitchP);
-  darkLightModeSwitchDiv.appendChild(darkLightModeSwitch);
+  darkLightModeSwitchDiv.append(darkLightModeSwitchP, darkLightModeSwitch);
 
   const farenheitCelsiusSwitchDiv = document.createElement('div');
   farenheitCelsiusSwitchDiv.classList.add('toggle-div');
@@ -194,8 +190,7 @@ function createNavigationMenu() {
   const farenheitCelsiusSwitch = createToggleSwitch();
   farenheitCelsiusSwitch.id = 'farenheit-celsius-switch';
 
-  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitchP);
-  farenheitCelsiusSwitchDiv.appendChild(farenheitCelsiusSwitch);
+  farenheitCelsiusSwitchDiv.append(farenheitCelsiusSwitchP, farenheitCelsiusSwitch);
 
   const switchesDiv = document.createElement('div');
   switchesDiv.classList.add('switches');
@@ -209,16 +204,14 @@ function createNavigationMenu() {
   optionsDiv.classList.add('options');
   optionsDiv.append(switchesDiv, additionalOptionsDiv);
 
-  nav.appendChild(logoDiv);
-  nav.appendChild(optionsDiv);
+  nav.append(logoDiv, optionsDiv);
 
   return nav;
 }
 
 function createSideNavigation() {
   const sideNavContainer = document.createElement('nav');
-  sideNavContainer.classList.add('side-nav-container');
-  sideNavContainer.classList.add('hidden');
+  sideNavContainer.classList.add('side-nav-container', 'hidden');
 
   const sideNav = document.createElement('div');
   sideNav.classList.add('side-nav');
@@ -235,15 +228,14 @@ function createSideNavigation() {
 
   const darkMode = document.createElement('li');
   darkMode.textContent = 'Dark Mode';
-  topList.appendChild(darkMode);
 
   const setToCelsius = document.createElement('li');
   setToCelsius.textContent = 'Set to Celsius';
-  topList.appendChild(setToCelsius);
-  navItems.appendChild(topList);
+
+  topList.append(darkMode, setToCelsius);
 
   const divider = document.createElement('hr');
-  navItems.appendChild(divider);
+  navItems.append(topList, divider);
 
   const bottomList = document.createElement('ul');
 
@@ -321,13 +313,10 @@ function createMobileSearchModal() {
 
   const searchContainer = document.createElement('div');
   searchContainer.classList.add('search-bar');
-  searchContainer.appendChild(cityInputForm);
-  searchContainer.appendChild(cancelButton);
+  searchContainer.append(cityInputForm, cancelButton);
 
   const resultsContainer = document.createElement('div');
   resultsContainer.classList.add('results-container');
-  /* const testResult = createQueryResult('Los Angeles, CA');
-  resultsContainer.appendChild(testResult); */
 
   const searchInstructions = createSearchInstructions();
 
@@ -359,12 +348,8 @@ export default async function createPage() {
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
   const additionalForecastDetails = createAdditionalForecast();
 
-  body.appendChild(navigationMenu);
-  body.appendChild(sideNavigation);
-  body.appendChild(searchMobile);
-  gridContainer.appendChild(currentForecast);
-  gridContainer.appendChild(moreCurrentForecastDetails);
-  gridContainer.appendChild(additionalForecastDetails);
+  body.append(navigationMenu, sideNavigation, searchMobile);
+  gridContainer.append(currentForecast, moreCurrentForecastDetails, additionalForecastDetails);
   mainContainer.appendChild(gridContainer);
 
   body.appendChild(mainContainer);

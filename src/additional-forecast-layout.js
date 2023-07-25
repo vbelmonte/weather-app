@@ -14,10 +14,6 @@ function createHourlyCard(hour, temp, icon) {
   const hourlyTemp = document.createElement('p');
   hourlyTemp.textContent = `${Math.floor(temp)}°`;
 
-  /*(cardDiv.appendChild(time);
-  cardDiv.appendChild(forecastIcon);
-  cardDiv.appendChild(hourlyTemp);*/
-
   const container = document.createElement('div');
   container.classList.add('container');
   container.append(time, forecastIcon, hourlyTemp);
@@ -73,16 +69,14 @@ function createHourlyForecast() {
   hourlyForecastTitleDiv.appendChild(hourlyForecastTitle);
 
   const hourlyForecastCarousel = document.createElement('div');
-  hourlyForecastCarousel.classList.add('hourly-forecast-carousel');
-  hourlyForecastCarousel.classList.add('no-scrollbar');
+  hourlyForecastCarousel.classList.add('hourly-forecast-carousel', 'no-scrollbar');
 
   const hourlyForecastContainer = document.createElement('div');
   hourlyForecastContainer.classList.add('container');
 
   hourlyForecastCarousel.appendChild(hourlyForecastContainer);
 
-  hourlyForecast.appendChild(hourlyForecastTitleDiv);
-  hourlyForecast.appendChild(hourlyForecastCarousel);
+  hourlyForecast.append(hourlyForecastTitleDiv, hourlyForecastCarousel);
 
   return hourlyForecast;
 }
@@ -162,11 +156,11 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   corDiv.classList.add('chance-of-rain');
   const corIconDiv = document.createElement('div');
   const corIconImg = document.createElement('img');
-  corIconImg.classList.add('icon');
-  corIconImg.classList.add('white-filter');
+  corIconImg.classList.add('icon', 'white-filter');
   corIconImg.src = '../src/assets/images/forecast-details/droplet-svgrepo-com.svg';
   corIconDiv.appendChild(corIconImg);
   corDiv.appendChild(corIconDiv);
+
   const percentageDiv = document.createElement('div');
   const percentage = document.createElement('p');
   percentage.classList.add('percentage');
@@ -193,14 +187,13 @@ function create3DayForecast() {
   threeDayForecastTitle.classList.add('bold', 'small');
   threeDayForecastTitle.textContent = '3-Day Forecast';
   threeDayForecastTitleDiv.appendChild(threeDayForecastTitle);
-  threeDayForecast.appendChild(threeDayForecastTitleDiv);
 
   const threeDayForecastList = document.createElement('div');
   threeDayForecastList.classList.add('three-day-forecast-list');
   const container = document.createElement('div');
   threeDayForecastList.appendChild(container);
 
-  threeDayForecast.appendChild(threeDayForecastList);
+  threeDayForecast.append(threeDayForecastTitleDiv, threeDayForecastList);
 
   return threeDayForecast;
 }
@@ -230,10 +223,9 @@ export default function createAdditionalForecast() {
   section.id = 'additional-forecast';
 
   const hourlyForecast = createHourlyForecast();
-  section.appendChild(hourlyForecast);
-
   const threeDayForecast = create3DayForecast();
-  section.appendChild(threeDayForecast);
+
+  section.append(hourlyForecast, threeDayForecast);
 
   return section;
 }

@@ -106,15 +106,12 @@ export default function createCurrentForecast() {
   lowP.appendChild(low);
   lowDiv.appendChild(lowP);
 
-  highLowDiv.appendChild(highDiv);
-  highLowDiv.appendChild(lowDiv);
+  highLowDiv.append(highDiv, lowDiv);
   bottomDiv.appendChild(highLowDiv);
 
-  currentDetailsDiv.appendChild(currentWeatherDiv);
-  currentDetailsDiv.appendChild(bottomDiv);
+  currentDetailsDiv.append(currentWeatherDiv, bottomDiv);
 
-  section.appendChild(currentCityDiv);
-  section.appendChild(currentDetailsDiv);
+  section.append(currentCityDiv, currentDetailsDiv);
 
   return section;
 }
