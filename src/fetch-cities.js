@@ -57,5 +57,5 @@ export default async function checkQuery(query) {
   // display an error that the search query was not found along with search tips
   console.log('no city found :(');
 
-  return 'No city found';
+  return `No results found for '${query}'`;
 }

@@ -4,6 +4,11 @@ import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecas
 import checkQuery from './fetch-cities';
 import fetchWeather, { fetchDefaultWeather } from './fetch-weather';
 
+function clearTips() {
+  const tipsContainer = document.getElementsByClassName('tips-container')[0];
+  tipsContainer.innerHTML = '';
+}
+
 function createCityResultText(result) {
   if (result.zip === undefined) {
     const cityName = result.name;
@@ -36,6 +41,115 @@ function createQueryResult(searchResult) {
   return result;
 }
 
+function createTip(text) {
+  const tipImgDiv = document.createElement('div');
+  tipImgDiv.classList.add('tip-img');
+  const tipImg = document.createElement('img');
+  tipImg.src = '../src/assets/images/layout/tip.svg';
+  tipImgDiv.appendChild(tipImg);
+
+  const tipDiv = document.createElement('div');
+  const p = document.createElement('p');
+  p.innerHTML = `${text}`;
+  tipDiv.appendChild(p);
+
+  const tip = document.createElement('div');
+  tip.classList.add('tip');
+  tip.append(tipImgDiv, tipDiv);
+
+  return tip;
+}
+
+function displaySearchError(input) {
+  console.log(`${input}`);
+
+  const resultsContainer = document.getElementsByClassName('results-container')[0];
+  const messageDiv = document.createElement('div');
+  const message = document.createElement('h2');
+  message.classList.add('bold', 'medium');
+  message.textContent = `${input}`;
+  messageDiv.appendChild(message);
+
+  resultsContainer.appendChild(messageDiv);
+}
+
+function createRefineSuggestions() {
+  const headline = document.createElement('h3');
+  headline.classList.add('bold', 'small');
+  headline.textContent = 'Try the following tips for more accurate results:';
+
+  const textOne = 'Enter city and country code (eg. Essex, GB)';
+  const tipOne = createTip(textOne);
+
+  const textTwo = 'For US cities, enter city name, state, and country code (eg. Essex, MA, US)';
+  const tipTwo = createTip(textTwo);
+
+  const tipsContainer = document.getElementsByClassName('tips-container')[0];
+  tipsContainer.append(headline, tipOne, tipTwo);
+}
+
+function createSearchSuggestions() {
+  const headline = document.createElement('h3');
+  headline.classList.add('bold', 'small');
+  headline.textContent = 'Try the following tips to refine your search:';
+
+  const textOne = 'Ensure the spelling of your search query is correct';
+  const tipOne = createTip(textOne);
+
+  const textTwo = 'For cities in the US, enter city followed by state and country code (eg. Los Angeles, CA, US)';
+  const tipTwo = createTip(textTwo);
+
+  const textThree = 'For cities outside the US, enter city followed by country code (eg. London, GB)';
+  const tipThree = createTip(textThree);
+
+  const textFour = 'To search by postal/zip code, enter postal/zip code followed by country code (eg. 33701, US)';
+  const tipFour = createTip(textFour);
+
+  const tipsContainer = document.getElementsByClassName('tips-container')[0];
+  tipsContainer.append(headline, tipOne, tipTwo, tipThree, tipFour);
+}
+
+function createSearchInstructions() {
+  const textOne = 'To search for city in the US, enter city, state, and country code (eg. Phoenix, AZ, US)';
+  const tipOne = createTip(textOne);
+
+  const textTwo = 'To search for city outside US, enter city and country code (eg. London, GB)';
+  const tipTwo = createTip(textTwo);
+
+  const textThree = 'You can also search by postal/zip code followed by country code (eg. 33701, US)';
+  const tipThree = createTip(textThree);
+
+  const textFour = 'Use <a href=\'https://www.iso.org/obp/ui/#search\' target=\'_blank\'>ISO 3166 country codes</a> when searching by country';
+  const tipFour = createTip(textFour);
+
+  const instructions = document.createElement('div');
+  instructions.classList.add('tips-container');
+  instructions.append(tipOne, tipTwo, tipThree, tipFour);
+
+  return instructions;
+}
+
+function toggleSearchModal() {
+  const mobileSearchModal = document.getElementsByClassName('mobile-search-modal')[0];
+  if (mobileSearchModal.classList.contains('hidden')) {
+    mobileSearchModal.classList.remove('hidden');
+    const outputContainer = document.getElementsByClassName('tips-container')[0];
+    outputContainer.appendChild(createSearchInstructions());
+  } else {
+    const searchInput = document.getElementById('city-mobile');
+    searchInput.value = '';
+    const resultsContainer = document.getElementsByClassName('results-container')[0];
+    resultsContainer.innerHTML = '';
+    clearTips();
+    mobileSearchModal.classList.add('hidden');
+  }
+}
+
+function clearResults() {
+  const resultsContainer = document.getElementsByClassName('results-container')[0];
+  resultsContainer.innerHTML = '';
+}
+
 function displaySearchResults(results) {
   const resultsContainer = document.getElementsByClassName('results-container')[0];
 
@@ -44,6 +158,7 @@ function displaySearchResults(results) {
       const query = results[i];
       const queryResult = createQueryResult(query);
       queryResult.addEventListener('click', async () => {
+        toggleSearchModal();
         // call the fetch weather function
         console.log('fetching weather!');
         const result = await fetchWeather(query);
@@ -59,6 +174,7 @@ function displaySearchResults(results) {
   } else {
     const queryResult = createQueryResult(results);
     queryResult.addEventListener('click', async () => {
+      toggleSearchModal();
       console.log('fetching weather!');
       const result = await fetchWeather(results);
       console.log(result);
@@ -70,11 +186,6 @@ function displaySearchResults(results) {
 
     resultsContainer.appendChild(queryResult);
   }
-}
-
-function clearResults() {
-  const resultsContainer = document.getElementsByClassName('results-container')[0];
-  resultsContainer.innerHTML = '';
 }
 
 function createCityInputFormMobile() {
@@ -98,7 +209,15 @@ function createCityInputFormMobile() {
     event.preventDefault();
     clearResults();
     const result = await checkQuery(input.value);
-    displaySearchResults(result);
+    if (result instanceof Object) {
+      clearTips();
+      displaySearchResults(result);
+      createRefineSuggestions();
+    } else {
+      clearTips();
+      displaySearchError(result);
+      createSearchSuggestions();
+    }
   });
 
   return inputContainer;
@@ -119,15 +238,6 @@ function createToggleSwitch(toggleName) {
   label.append(input, span);
 
   return label;
-}
-
-function toggleSearchModal() {
-  const mobileSearchModal = document.getElementsByClassName('mobile-search-modal')[0];
-  if (mobileSearchModal.classList.contains('hidden')) {
-    mobileSearchModal.classList.remove('hidden');
-  } else {
-    mobileSearchModal.classList.add('hidden');
-  }
 }
 
 function createNavigationMenu() {
@@ -261,42 +371,6 @@ function createSideNavigation() {
   return sideNavContainer;
 }
 
-function createTip(text) {
-  const tipImgDiv = document.createElement('div');
-  tipImgDiv.classList.add('tip-img');
-  const tipImg = document.createElement('img');
-  tipImg.src = '../src/assets/images/layout/tip.svg';
-  tipImgDiv.appendChild(tipImg);
-
-  const tipDiv = document.createElement('div');
-  const p = document.createElement('p');
-  p.textContent = `${text}`;
-  tipDiv.appendChild(p);
-
-  const tip = document.createElement('div');
-  tip.classList.add('tip');
-  tip.append(tipImgDiv, tipDiv);
-
-  return tip;
-}
-
-function createSearchInstructions() {
-  const textOne = 'To search for city in the US, enter city, state, and country code (eg. Phoenix, AZ, US)';
-  const tipOne = createTip(textOne);
-
-  const textTwo = 'To search for city outside US, enter city and country code (eg. London, UK)';
-  const tipTwo = createTip(textTwo);
-
-  const textThree = 'You can also search by postal/zip code followed by country code (eg. 33701, US)';
-  const tipThree = createTip(textThree);
-
-  const instructions = document.createElement('div');
-  instructions.classList.add('tips-container');
-  instructions.append(tipOne, tipTwo, tipThree);
-
-  return instructions;
-}
-
 function createMobileSearchModal() {
   const modal = document.createElement('div');
   modal.classList.add('mobile-search-modal', 'hidden');
@@ -318,9 +392,14 @@ function createMobileSearchModal() {
   const resultsContainer = document.createElement('div');
   resultsContainer.classList.add('results-container');
 
-  const searchInstructions = createSearchInstructions();
+  const tipsContainer = document.createElement('div');
+  tipsContainer.classList.add('tips-container');
 
-  container.append(searchContainer, resultsContainer, searchInstructions);
+  const outputContainer = document.createElement('div');
+  outputContainer.classList.add('output-container');
+  outputContainer.append(resultsContainer, tipsContainer);
+
+  container.append(searchContainer, outputContainer);
   modal.append(container);
 
   return modal;
