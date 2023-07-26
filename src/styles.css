@@ -775,14 +775,10 @@ input:checked + .slider:before {
 /** HOURLY FORECAST CAROUSEL STYLES **/
 
 .hourly-forecast-carousel {
-	overflow-x: hidden;
+	overflow-x: auto;
 }
 
 	@media only screen and (min-width: 1024px) {
-		.custom-scrollbar {
-			overflow-x: auto;
-		}
-
 		.custom-scrollbar::-webkit-scrollbar {
 			height: 0.5rem;
 		}

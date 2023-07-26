@@ -150,6 +150,15 @@ section#current-forecast {
 
 /** HOURLY FORECAST STYLES **/
 
+.custom-scrollbar {
+    scrollbar-color: var(--additional-forecast-2) var(--additional-forecast) !important;
+    scrollbar-width: thin;
+}
+
+.custom-scrollbar:hover {
+    scrollbar-color: var(--white) var(--additional-forecast);
+}
+
 .custom-scrollbar::-webkit-scrollbar-track {
 	background-color: var(--additional-forecast);
 }
