@@ -56,7 +56,8 @@ table {
 	--white-filter: invert(99%) sepia(90%) saturate(106%) hue-rotate(51deg) brightness(112%) contrast(90%);
 	--gray-filter: invert(83%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(78%) contrast(86%);
 	--transparent: rgb(242, 242, 242, 0.8);
-	--transparent-dark: rgba(34, 34, 34, 0.2);
+	--transparent-dark-30: rgba(40, 40, 40, 0.5);
+	--transparent-dark-70: rgba(40, 40, 40, 0.7);
 	--input-placeholder: rgb(242, 242, 242, 0.7);
 }
 
@@ -73,6 +74,13 @@ table {
 	font-family: 'Barlow Bold';
 	src: url('../src/assets/fonts/Barlow-Bold.ttf') format('truetype');
 	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Barlow Medium';
+	src: url('../src/assets/fonts/Barlow-Medium.ttf') format('truetype');
+	font-weight: 500;
 	font-style: normal;
 }
 
@@ -235,6 +243,12 @@ p.small {
 
 p.bold {
 	font-family: 'Barlow Bold';
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
+a {
+	font-family: 'Barlow Medium';
 	font-size: 1rem;
 	line-height: 1rem;
 }
@@ -413,7 +427,7 @@ nav.side-nav-container hr {
 	right: 0;
 	height: 100vh;
 	z-index: 2;
-	background-color: var(--transparent-dark);
+	background-color: var(--transparent-dark-30);
 }
 
 .mobile-search-modal .container {
@@ -584,6 +598,56 @@ input:checked + .slider:before {
 		}
 	}
 
+
+
+/** SETTINGS MODAL **/
+.mobile-settings-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	z-index: 3;
+
+	display: flex;
+	background-color: var(--transparent-dark-70);
+}
+
+	@media only screen and (min-width: 1024px) {
+		.mobile-settings-modal {
+			display: none;
+		}
+	}
+
+.mobile-settings-modal .container {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	width: 70vw;
+	padding: 1rem;
+}
+
+	@media only screen and (min-width: 425px) {
+		.mobile-settings-modal .container {
+			width: 20rem;
+		}
+	}
+
+.mobile-settings-modal button {
+	background-color: transparent;
+	height: fit-content;
+}
+
+.mobile-settings-modal button img {
+	filter: var(--white-filter);
+	height: 1.5rem;
+}
+
+.mobile-settings-modal li {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
 
 
 /** CURRENT FORECAST STYLES - MOBILE **/

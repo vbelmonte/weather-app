@@ -145,6 +145,15 @@ function toggleSearchModal() {
   }
 }
 
+function toggleSettingsModal() {
+  const settingsModal = document.getElementsByClassName('mobile-settings-modal')[0];
+  if (settingsModal.id === 'hidden') {
+    settingsModal.id = '';
+  } else {
+    settingsModal.id = 'hidden';
+  }
+}
+
 function clearResults() {
   const resultsContainer = document.getElementsByClassName('results-container')[0];
   resultsContainer.innerHTML = '';
@@ -268,8 +277,9 @@ function createNavigationMenu() {
   hamburgerMenuButton.classList.add('menu-button');
   const hamburgerMenuImg = document.createElement('img');
   hamburgerMenuImg.classList.add('menu');
-  hamburgerMenuImg.src = '../src/assets/images/layout/hamburger-menu-svgrepo-com.svg';
+  hamburgerMenuImg.src = '../src/assets/images/layout/hamburger-svgrepo-com.svg';
   hamburgerMenuButton.appendChild(hamburgerMenuImg);
+  hamburgerMenuButton.addEventListener('click', toggleSettingsModal);
 
   const searchButton = document.createElement('button');
   searchButton.classList.add('search-button');
@@ -405,6 +415,46 @@ function createMobileSearchModal() {
   return modal;
 }
 
+function createSettingsModal() {
+  const modal = document.createElement('div');
+  modal.classList.add('mobile-settings-modal');
+  modal.id = 'hidden';
+
+  const container = document.createElement('div');
+  container.classList.add('container');
+
+  const logoDiv = document.createElement('div');
+  const logo = document.createElement('img');
+  logo.classList.add('black-filter');
+  logo.src = '../src/assets/images/layout/weather-app-logo.svg';
+  logoDiv.appendChild(logo);
+
+  const linksDiv = document.createElement('div');
+  const ul = document.createElement('ul');
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  const tempImg = document.createElement('img');
+
+  tempImg.classList.add('black-filter');
+  tempImg.src = '../src/assets/images/layout/temperature.svg';
+  a.innerHTML = 'Set to <span id=\'temp-mode\'>Celsius</span>';
+  li.append(tempImg, a);
+  ul.appendChild(li);
+  linksDiv.appendChild(ul);
+
+  container.append(logoDiv, linksDiv);
+
+  const closeButton = document.createElement('button');
+  const xImg = document.createElement('img');
+  xImg.src = '../src/assets/images/layout/close-md-svgrepo-com.svg';
+  closeButton.appendChild(xImg);
+  closeButton.addEventListener('click', toggleSettingsModal);
+
+  modal.append(container, closeButton);
+
+  return modal;
+}
+
 async function loadDefaultWeather() {
   const result = await fetchDefaultWeather();
   updateCurrentForecastLayout(result);
@@ -423,11 +473,12 @@ export default async function createPage() {
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
   const searchMobile = createMobileSearchModal();
+  const settingsModal = createSettingsModal();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
   const additionalForecastDetails = createAdditionalForecast();
 
-  body.append(navigationMenu, sideNavigation, searchMobile);
+  body.append(navigationMenu, sideNavigation, searchMobile, settingsModal);
   gridContainer.append(currentForecast, moreCurrentForecastDetails, additionalForecastDetails);
   mainContainer.appendChild(gridContainer);
 

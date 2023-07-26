@@ -35,6 +35,10 @@ body {
     filter: var(--power-tertiary);
 }
 
+.black-filter {
+    filter: var(--black-filter);
+}
+
 
 
 /** OTHER GENERAL STYLES **/
@@ -107,6 +111,14 @@ input:focus + .slider {
 
 .mobile-search-modal .search-result:hover {
 	background-color: var(--modal-result);
+}
+
+
+
+/** SETTINGS MODAL **/
+.mobile-settings-modal .container {
+    background-color: var(--white);
+    color: var(--black);
 }
 
 
