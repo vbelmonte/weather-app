@@ -15,7 +15,8 @@
     --additional-forecast-2: rgba(242, 242, 242, 0.7);
     --card: rgb(250, 250, 250, 0.1);
     --navigation: rgb(242, 242, 242, 0.2);
-    --dropshadow: 0rem 0.5rem 1rem rgb(0, 0, 0, 0.1);  
+    --dropshadow: 0rem 0.5rem 1rem rgb(0, 0, 0, 0.1);
+    --modal-result: #EAEEEF;  
 }
 
 body {
@@ -98,6 +99,10 @@ input:focus + .slider {
 
 .mobile-search-modal .container {
     background-color: var(--white);
+}
+
+.mobile-search-modal .search-result:hover {
+	background-color: var(--modal-result);
 }
 
 
