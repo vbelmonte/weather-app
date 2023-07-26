@@ -42,6 +42,10 @@ button {
     background-color: var(--power-primary);
 }
 
+.button:hover {
+    background-color: var(--black);
+}
+
 
 
 /** NAVIGATION STYLES **/
@@ -112,7 +116,6 @@ input:focus + .slider {
 section#current-forecast {
     background-color: var(--additional-forecast);
     color: var(--white);
-    box-shadow: var(--dropshadow);
 }
 
     /* DESKTOP STYLE */
