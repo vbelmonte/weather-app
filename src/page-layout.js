@@ -2,7 +2,9 @@ import createCurrentForecast, { updateCurrentForecastLayout } from './current-fo
 import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout } from './additional-current-forecast-layout';
 import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
-import fetchWeather, { fetchDefaultWeather } from './fetch-weather';
+import fetchWeather, { convertCtoF, convertFToC, fetchDefaultWeather } from './fetch-weather';
+
+let tempData = [];
 
 function clearTips() {
   const tipsContainer = document.getElementsByClassName('tips-container')[0];
@@ -235,7 +237,7 @@ function createCityInputFormMobile() {
 function createToggleSwitch(toggleName) {
   const label = document.createElement('label');
   label.classList.add('switch');
-  label.for = toggleName;
+  label.setAttribute('for', toggleName);
 
   const input = document.createElement('input');
   input.type = 'checkbox';
@@ -247,6 +249,37 @@ function createToggleSwitch(toggleName) {
   label.append(input, span);
 
   return label;
+}
+
+function checkTempConversion() {
+  const fcSwitch = document.getElementById('farenheit-celsius-switch');
+  const body = document.getElementsByTagName('body')[0];
+  const tempMode = document.getElementById('temp-mode');
+
+  if (!(body.classList.contains('celsius'))) {
+    const temps = document.getElementsByClassName('temp');
+    body.classList.add('celsius');
+    tempMode.textContent = 'Fahrenheit';
+    fcSwitch.checked = true;
+
+    for (let i = 0; i < temps.length; i += 1) {
+      const original = temps[i].textContent;
+      const substring = original.slice(0, original.length - 1);
+      const num = parseInt(substring, 10);
+      const converted = `${Math.floor(convertFToC(num))}°`;
+      tempData.push(temps[i].textContent);
+      temps[i].textContent = converted;
+    }
+  } else {
+    const temps = document.getElementsByClassName('temp');
+    body.classList.remove('celsius');
+    tempMode.textContent = 'Celsius';
+    fcSwitch.checked = false;
+
+    for (let i = 0; i < temps.length; i += 1) {
+      temps[i].textContent = tempData[i];
+    }
+  }
 }
 
 function createNavigationMenu() {
@@ -307,8 +340,7 @@ function createNavigationMenu() {
   farenheitCelsiusSwitchP.classList.add('farenheit-celsius-switch', 'small');
   farenheitCelsiusSwitchP.textContent = 'Enable Celsius';
 
-  const farenheitCelsiusSwitch = createToggleSwitch();
-  farenheitCelsiusSwitch.id = 'farenheit-celsius-switch';
+  const farenheitCelsiusSwitch = createToggleSwitch('farenheit-celsius-switch');
 
   farenheitCelsiusSwitchDiv.append(farenheitCelsiusSwitchP, farenheitCelsiusSwitch);
 
@@ -435,6 +467,8 @@ function createSettingsModal() {
   const a = document.createElement('a');
   const tempImg = document.createElement('img');
 
+  li.addEventListener('click', checkTempConversion);
+
   tempImg.classList.add('black-filter');
   tempImg.src = '../src/assets/images/layout/temperature.svg';
   a.innerHTML = 'Set to <span id=\'temp-mode\'>Celsius</span>';
@@ -483,5 +517,8 @@ export default async function createPage() {
   mainContainer.appendChild(gridContainer);
 
   body.appendChild(mainContainer);
+  const fcSwitch = document.getElementById('farenheit-celsius-switch');
+  fcSwitch.addEventListener('click', checkTempConversion);
+
   await loadDefaultWeather();
 }

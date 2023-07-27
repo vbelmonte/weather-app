@@ -2,6 +2,10 @@ export function convertTZ(date, tzString) {
   return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
 }
 
+export function convertFToC(temp) {
+  return (temp - 32) * (5 / 9);
+}
+
 export function fetchWeatherIcon(code, isDay) {
   let src;
   const string = '../src/assets/images/weather-icons/';

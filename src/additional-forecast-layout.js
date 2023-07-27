@@ -12,6 +12,7 @@ function createHourlyCard(hour, temp, icon) {
   forecastIcon.src = icon;
 
   const hourlyTemp = document.createElement('p');
+  hourlyTemp.classList.add('temp');
   hourlyTemp.textContent = `${Math.floor(temp)}°`;
 
   const container = document.createElement('div');
@@ -139,7 +140,7 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   highDiv.classList.add('high');
 
   const highP = document.createElement('p');
-  highP.classList.add('bold');
+  highP.classList.add('bold', 'temp');
   highP.textContent = `${high}°`;
   highDiv.appendChild(highP);
 
@@ -147,6 +148,7 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   lowDiv.classList.add('low');
 
   const lowP = document.createElement('p');
+  lowP.classList.add('temp');
   lowP.textContent = `${low}°`;
   lowDiv.appendChild(lowP);
 

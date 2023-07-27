@@ -73,7 +73,7 @@ export default function createCurrentForecast() {
 
   const currentTempDiv = document.createElement('div');
   const currentTemp = document.createElement('p');
-  currentTemp.classList.add('large');
+  currentTemp.classList.add('large', 'temp');
   currentTemp.id = 'current-temp';
   currentTempDiv.appendChild(currentTemp);
   bottomDiv.appendChild(currentTempDiv);
@@ -93,6 +93,7 @@ export default function createCurrentForecast() {
   highP.textContent = 'H: ';
 
   const high = document.createElement('span');
+  high.classList.add('temp');
   high.id = 'current-high';
   highP.appendChild(high);
   highDiv.appendChild(highP);
@@ -102,6 +103,7 @@ export default function createCurrentForecast() {
   lowP.textContent = 'L: ';
 
   const low = document.createElement('span');
+  low.classList.add('temp');
   low.id = 'current-low';
   lowP.appendChild(low);
   lowDiv.appendChild(lowP);
