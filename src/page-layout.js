@@ -2,7 +2,7 @@ import createCurrentForecast, { updateCurrentForecastLayout } from './current-fo
 import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout } from './additional-current-forecast-layout';
 import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
-import fetchWeather, { convertCtoF, convertFToC, fetchDefaultWeather } from './fetch-weather';
+import fetchWeather, { convertFToC, fetchDefaultWeather } from './fetch-weather';
 
 let tempData = [];
 

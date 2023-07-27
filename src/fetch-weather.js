@@ -131,9 +131,12 @@ function createCurrentWeather(query) {
   const dailyLow = query.daily.temperature_2m_min[0];
   const weatherCode = query.hourly.weathercode[currentHour];
   const weatherDescription = getWeatherDescription(weatherCode);
+  const precipitation = query.hourly.precipitation_probability[currentHour];
+  const humidity = query.hourly.relativehumidity_2m[currentHour];
+  const wind = query.hourly.windspeed_10m[currentHour];
 
   return {
-    currentTemp, dailyHigh, dailyLow, weatherDescription,
+    currentTemp, dailyHigh, dailyLow, weatherDescription, precipitation, humidity, wind,
   };
 }
 
@@ -143,7 +146,7 @@ async function fetchCurrentWeather(query) {
   const cityName = query.name;
 
   try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation_probability,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`);
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);
@@ -161,7 +164,7 @@ async function fetchCurrentWeather(query) {
 
 async function fetchWeatherDefaultLocation() {
   try {
-    const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto');
+    const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m,precipitation_probability,relativehumidity_2m,weathercode,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto');
 
     if (!response.ok) {
       throw new Error(`${response.status}, ${response.statusText}`);

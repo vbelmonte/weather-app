@@ -1,14 +1,9 @@
 function printOutHumidity(query) {
-  const date = new Date();
-  const hour = date.getHours();
-  return `${query.hourly.relativehumidity_2m[hour]}%`;
+  return `${query.currentWeather.humidity}%`;
 }
 
 function printOutWindSpeed(query) {
-  const date = new Date();
-  const hour = date.getHours();
-  const result = Math.floor(query.hourly.windspeed_10m[hour]);
-  return `${result}mph`;
+  return `${Math.floor(query.currentWeather.wind)}mph`;
 }
 
 function printOutUVIndex(query) {
@@ -19,7 +14,7 @@ function printOutUVIndex(query) {
 }
 
 function printOutChanceOfRain(query) {
-  return `${query.daily.precipitation_probability_max[0]}%`;
+  return `${query.currentWeather.precipitation}%`;
 }
 
 export function updateAdditionalCurrentForecastLayout(query) {
