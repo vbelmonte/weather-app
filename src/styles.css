@@ -53,6 +53,7 @@ table {
 	--black: #222222;
 	--white: #F2F2F2;
 	--gray: #A0A0A0;
+	--light-gray: #D1D1D1;
 	--white-filter: invert(99%) sepia(90%) saturate(106%) hue-rotate(51deg) brightness(112%) contrast(90%);
 	--gray-filter: invert(83%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(78%) contrast(86%);
 	--transparent: rgb(242, 242, 242, 0.8);
@@ -954,3 +955,20 @@ input:checked + .slider:before {
 	display: flex;
 	justify-content: flex-end;
 }
+
+
+
+/** LOADING ANIMATION STYLES **/
+.loader {
+	margin: auto;
+	border: 0.25rem solid var(--light-gray);
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	animation: spinner 1s linear infinite;
+  }
+  
+  @keyframes spinner {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }

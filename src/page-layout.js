@@ -156,6 +156,18 @@ function toggleSettingsModal() {
   }
 }
 
+function toggleLoadingAnimation(state) {
+  const resultsContainer = document.getElementsByClassName('results-container')[0];
+
+  if (state) {
+    const loadingAnimation = document.createElement('div');
+    loadingAnimation.classList.add('loader');
+    resultsContainer.appendChild(loadingAnimation);
+  } else {
+    resultsContainer.innerHTML = '';
+  }
+}
+
 function clearResults() {
   const resultsContainer = document.getElementsByClassName('results-container')[0];
   resultsContainer.innerHTML = '';
@@ -219,12 +231,15 @@ function createCityInputFormMobile() {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     clearResults();
+    toggleLoadingAnimation(true);
     const result = await checkQuery(input.value);
     if (result instanceof Object) {
+      toggleLoadingAnimation(false);
       clearTips();
       displaySearchResults(result);
       createRefineSuggestions();
     } else {
+      toggleLoadingAnimation(false);
       clearTips();
       displaySearchError(result);
       createSearchSuggestions();

@@ -197,4 +197,8 @@ section#current-forecast {
     background-color: var(--card);
 }
 
-/** 3-DAY FORECAST CARD STYLES **/
+
+/** LOADING ANIMATION STYLES **/
+.loader {
+    border-top: 0.25rem solid var(--power-primary);
+  }
