@@ -156,7 +156,30 @@ function toggleSettingsModal() {
   }
 }
 
-function toggleLoadingAnimation(state) {
+function toggleGridContainer(state) {
+  const gridContainer = document.getElementsByClassName('grid-container')[0];
+
+  if (state) {
+    gridContainer.id = 'hidden';
+  } else {
+    gridContainer.id = '';
+  }
+}
+
+function togglePageLoadingAnimation(state) {
+  const main = document.getElementsByTagName('main')[0];
+
+  if (state) {
+    const loadingAnimation = document.createElement('div');
+    loadingAnimation.classList.add('loader', 'absolute');
+    main.appendChild(loadingAnimation);
+  } else {
+    const loadingAnimation = document.getElementsByClassName('loader')[0];
+    loadingAnimation.remove();
+  }
+}
+
+function toggleSearchLoadingAnimation(state) {
   const resultsContainer = document.getElementsByClassName('results-container')[0];
 
   if (state) {
@@ -166,6 +189,15 @@ function toggleLoadingAnimation(state) {
   } else {
     resultsContainer.innerHTML = '';
   }
+}
+
+function delayDisplayingGrid(result) {
+  togglePageLoadingAnimation(false);
+  toggleGridContainer(false);
+  updateCurrentForecastLayout(result);
+  updateAdditionalCurrentForecastLayout(result);
+  updateHourlyForecastLayout(result);
+  update3DayForecastLayout(result);
 }
 
 function clearResults() {
@@ -184,12 +216,15 @@ function displaySearchResults(results) {
         toggleSearchModal();
         // call the fetch weather function
         console.log('fetching weather!');
+        toggleGridContainer(true);
+        togglePageLoadingAnimation(true);
         const result = await fetchWeather(query);
         console.log(result);
-        updateCurrentForecastLayout(result);
+        setTimeout(delayDisplayingGrid, 500, result);
+        /*updateCurrentForecastLayout(result);
         updateAdditionalCurrentForecastLayout(result);
         updateHourlyForecastLayout(result);
-        update3DayForecastLayout(result);
+        update3DayForecastLayout(result);*/
       });
 
       resultsContainer.appendChild(queryResult);
@@ -199,12 +234,15 @@ function displaySearchResults(results) {
     queryResult.addEventListener('click', async () => {
       toggleSearchModal();
       console.log('fetching weather!');
+      toggleGridContainer(true);
+      togglePageLoadingAnimation(true);
       const result = await fetchWeather(results);
       console.log(result);
-      updateCurrentForecastLayout(result);
+      setTimeout(delayDisplayingGrid, 500, result);
+      /*updateCurrentForecastLayout(result);
       updateAdditionalCurrentForecastLayout(result);
       updateHourlyForecastLayout(result);
-      update3DayForecastLayout(result);
+      update3DayForecastLayout(result);*/
     });
 
     resultsContainer.appendChild(queryResult);
@@ -231,15 +269,15 @@ function createCityInputFormMobile() {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     clearResults();
-    toggleLoadingAnimation(true);
+    toggleSearchLoadingAnimation(true);
     const result = await checkQuery(input.value);
     if (result instanceof Object) {
-      toggleLoadingAnimation(false);
+      toggleSearchLoadingAnimation(false);
       clearTips();
       displaySearchResults(result);
       createRefineSuggestions();
     } else {
-      toggleLoadingAnimation(false);
+      toggleSearchLoadingAnimation(false);
       clearTips();
       displaySearchError(result);
       createSearchSuggestions();

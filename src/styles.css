@@ -966,9 +966,17 @@ input:checked + .slider:before {
 	width: 3rem;
 	height: 3rem;
 	animation: spinner 1s linear infinite;
-  }
+}
   
   @keyframes spinner {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
-  }
+}
+
+.loader.absolute {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
