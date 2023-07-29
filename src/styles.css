@@ -270,6 +270,13 @@ nav.main-nav {
 	box-sizing: border-box;
 }
 
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		nav.main-nav {
+			padding: 0.5rem;
+		}
+	}
+
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		nav.main-nav  {
@@ -599,6 +606,13 @@ input:checked + .slider:before {
 	padding: 3rem 1rem;
 }
 
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#current-forecast {
+			padding: 3rem 0.5rem;
+		}
+	}
+
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		#current-forecast {
@@ -658,6 +672,13 @@ input:checked + .slider:before {
 #more-current-forecast-details {
 	margin: 0rem 1rem;
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#more-current-forecast-details {
+			margin: 0rem 0.5rem;
+		}
+	}
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
@@ -720,6 +741,13 @@ input:checked + .slider:before {
 	gap: 5rem;
 	padding: 3rem 1rem;
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#additional-forecast {
+			padding: 3rem 0.5rem;
+		}
+	}
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
