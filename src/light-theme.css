@@ -26,7 +26,6 @@ body {
 
 
 /** COLOR CLASS STYLES **/
-
 .secondary {
     color: var(--power-secondary);
 }
@@ -53,7 +52,6 @@ button {
 
 
 /** NAVIGATION STYLES **/
-
 nav {
     color: var(--white);
 }
@@ -80,6 +78,7 @@ nav.side-nav-container .exit img {
 }
 
 
+
 /** SLIDER SWITCH STYLES **/
 .slider {
     background-color: var(--transparent);
@@ -91,25 +90,25 @@ nav.side-nav-container .exit img {
 }
 
 input:checked + .slider {
-	background: var(--power-quaternary);
+	background: var(--power-primary);
 }
   
 input:focus + .slider {
-    box-shadow: 0 0 1px var(--power-quaternary);
+    box-shadow: 0 0 1px var(--power-primary);
 }
 
 
 
 /** MOBILE SEARCH MODAL STYLES **/
-.mobile-search-modal {
+.search-modal {
     color: var(--black);
 }
 
-.mobile-search-modal .container {
+.search-modal .container {
     background-color: var(--white);
 }
 
-.mobile-search-modal .search-result:hover {
+.search-modal .search-result:hover {
 	background-color: var(--modal-result);
 }
 
@@ -124,7 +123,6 @@ input:focus + .slider {
 
 
 /** CURRENT FORECAST STYLES **/
-
 section#current-forecast {
     color: var(--white);
 }   
@@ -138,8 +136,8 @@ section#current-forecast {
     }
 
 
-/** MORE CURRENT FORECAST DETAILS STYLES **/
 
+/** MORE CURRENT FORECAST DETAILS STYLES **/
 #more-current-forecast-details-container {
     background: var(--power-primary);
 
@@ -156,7 +154,6 @@ section#current-forecast {
 
 
 /** ADDITIONAL FORECAST DETAILS STYLES **/
-
     /* DESKTOP STYLE */
     @media only screen and (min-width: 1024px) {
         #additional-forecast {
@@ -166,8 +163,8 @@ section#current-forecast {
     }
 
 
-/** HOURLY FORECAST STYLES **/
 
+/** HOURLY FORECAST STYLES **/
 .custom-scrollbar {
     scrollbar-color: var(--additional-forecast-2) var(--additional-forecast) !important;
     scrollbar-width: thin;
@@ -189,6 +186,7 @@ section#current-forecast {
     background-color: var(--white);
 }
 
+
     
 /** HOURLY CARD STYLES **/
 .hourly-card {
@@ -196,7 +194,8 @@ section#current-forecast {
 }
 
 
+
 /** LOADING ANIMATION STYLES **/
 .loader {
     border-top: 0.25rem solid var(--power-primary);
-  }
+}

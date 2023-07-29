@@ -101,8 +101,8 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   const dayDiv = document.createElement('div');
   dayDiv.classList.add('day-container');
 
-  const dayOfTheWeek = document.createElement('h4');
-  dayOfTheWeek.classList.add('day');
+  const dayOfTheWeek = document.createElement('h3');
+  dayOfTheWeek.classList.add('small');
   dayOfTheWeek.textContent = day.substring(0, 3);
 
   dayDiv.appendChild(dayOfTheWeek);

@@ -132,7 +132,7 @@ function createSearchInstructions() {
 }
 
 function toggleSearchModal() {
-  const mobileSearchModal = document.getElementsByClassName('mobile-search-modal')[0];
+  const mobileSearchModal = document.getElementsByClassName('search-modal')[0];
   if (mobileSearchModal.classList.contains('hidden')) {
     mobileSearchModal.classList.remove('hidden');
     const outputContainer = document.getElementsByClassName('tips-container')[0];
@@ -221,10 +221,6 @@ function displaySearchResults(results) {
         const result = await fetchWeather(query);
         console.log(result);
         setTimeout(delayDisplayingGrid, 500, result);
-        /*updateCurrentForecastLayout(result);
-        updateAdditionalCurrentForecastLayout(result);
-        updateHourlyForecastLayout(result);
-        update3DayForecastLayout(result);*/
       });
 
       resultsContainer.appendChild(queryResult);
@@ -239,10 +235,6 @@ function displaySearchResults(results) {
       const result = await fetchWeather(results);
       console.log(result);
       setTimeout(delayDisplayingGrid, 500, result);
-      /*updateCurrentForecastLayout(result);
-      updateAdditionalCurrentForecastLayout(result);
-      updateHourlyForecastLayout(result);
-      update3DayForecastLayout(result);*/
     });
 
     resultsContainer.appendChild(queryResult);
@@ -466,9 +458,9 @@ function createSideNavigation() {
   return sideNavContainer;
 }
 
-function createMobileSearchModal() {
+function createSearchModal() {
   const modal = document.createElement('div');
-  modal.classList.add('mobile-search-modal', 'hidden');
+  modal.classList.add('search-modal', 'hidden');
 
   const container = document.createElement('div');
   container.classList.add('container');
@@ -559,7 +551,7 @@ export default async function createPage() {
 
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
-  const searchMobile = createMobileSearchModal();
+  const searchMobile = createSearchModal();
   const settingsModal = createSettingsModal();
   const currentForecast = createCurrentForecast();
   const moreCurrentForecastDetails = createMoreCurrentForecastDetails();
