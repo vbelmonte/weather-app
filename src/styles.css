@@ -103,6 +103,14 @@ body {
 	flex-direction: column;
 }
 
+/** DESKTOP BELOW **/
+@media only screen and (min-width: 1024px) {
+	body {
+		padding: 0rem 5rem;
+		gap: 4rem;
+	}
+}
+
 
 
 /** COLOR CLASS STYLES **/
@@ -520,14 +528,10 @@ input:checked + .slider:before {
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
-		.main-container {
-			margin: 5rem;
-		}
-
 		.grid-container {
 			display: grid;
 			gap: 1rem;
-			grid-template: 4fr 1fr / 50% 50%;
+			grid-template: 4fr 1fr / 1fr 1fr;
 			max-width: 80rem;
 			margin: auto;
 		}
@@ -720,6 +724,7 @@ input:checked + .slider:before {
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		#additional-forecast {
+			overflow: hidden;
 			border-radius: 1.75rem;
 			padding: 3rem;
 			padding-bottom: 4rem;
