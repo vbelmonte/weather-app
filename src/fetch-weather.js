@@ -157,7 +157,6 @@ async function fetchCurrentWeather(query) {
 
     return weatherData;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
@@ -177,7 +176,6 @@ async function fetchWeatherDefaultLocation() {
 
     return weatherData;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }

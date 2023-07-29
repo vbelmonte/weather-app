@@ -15,7 +15,6 @@ async function checkByPostalCode(query) {
     return result;
   } catch (error) {
     // return error
-    console.log(error);
     return error;
   }
 }
@@ -32,7 +31,6 @@ async function checkByCity(query) {
     return result;
   } catch (error) {
     // return error
-    console.log(error);
     return error;
   }
 }
@@ -45,17 +43,14 @@ export default async function checkQuery(query) {
 
   if (!(postalCodeResult instanceof Error) && postalCodeResult.length !== 0) {
     // display a clickable result containing city weather info
-    console.log('we found a zip code that matches! result: ', postalCodeResult);
 
     return postalCodeResult;
   } if (!(cityResult instanceof Error) && cityResult.length !== 0) {
     // display a clickable result containing city weather info
-    console.log('we found a city that matches! result: ', cityResult);
 
     return cityResult;
   }
   // display an error that the search query was not found along with search tips
-  console.log('no city found :(');
 
   return `No results found for '${query}'`;
 }

@@ -63,8 +63,6 @@ function createTip(text) {
 }
 
 function displaySearchError(input) {
-  console.log(`${input}`);
-
   const resultsContainer = document.getElementsByClassName('results-container')[0];
   const messageDiv = document.createElement('div');
   const message = document.createElement('h2');
@@ -215,11 +213,9 @@ function displaySearchResults(results) {
       queryResult.addEventListener('click', async () => {
         toggleSearchModal();
         // call the fetch weather function
-        console.log('fetching weather!');
         toggleGridContainer(true);
         togglePageLoadingAnimation(true);
         const result = await fetchWeather(query);
-        console.log(result);
         setTimeout(delayDisplayingGrid, 500, result);
       });
 
@@ -229,11 +225,9 @@ function displaySearchResults(results) {
     const queryResult = createQueryResult(results);
     queryResult.addEventListener('click', async () => {
       toggleSearchModal();
-      console.log('fetching weather!');
       toggleGridContainer(true);
       togglePageLoadingAnimation(true);
       const result = await fetchWeather(results);
-      console.log(result);
       setTimeout(delayDisplayingGrid, 500, result);
     });
 
