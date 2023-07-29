@@ -43,6 +43,7 @@ body {
 /** OTHER GENERAL STYLES **/
 button {
     background-color: var(--power-primary);
+    transition: background-color 0.1s linear;
 }
 
 .button:hover {
