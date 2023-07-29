@@ -319,6 +319,10 @@ nav.main-nav .options .additional-options button {
 	padding: 0;
 	background-color: transparent;
 }
+
+nav.main-nav .options .additional-options button:hover {
+	cursor: pointer;
+}
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		nav.main-nav .additional-options .menu-button {
