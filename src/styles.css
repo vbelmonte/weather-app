@@ -121,6 +121,9 @@ body {
 	background-attachment: scroll;
     min-height: 100vh;
 	font-size: 16px;
+
+	display: flex;
+	flex-direction: column;
 }
 
 
@@ -300,12 +303,17 @@ nav.main-nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem;
+
+	align-self: center;
+	width: 100%;
+	max-width: 80rem;
+	box-sizing: border-box;
 }
 
 /** DESKTOP BELOW **/
 @media only screen and (min-width: 1024px) {
 	nav.main-nav  {
-		padding: 1rem 5rem;
+		padding: 1rem 0rem;
 	}
 }
 
@@ -592,8 +600,6 @@ input:checked + .slider:before {
 			display: grid;
 			gap: 1rem;
 			grid-template: 4fr 1fr / 50% 50%;
-
-			min-width: 50rem;
 			max-width: 80rem;
 			margin: auto;
 		}
@@ -659,9 +665,6 @@ input:checked + .slider:before {
     align-items: center;
     gap: 5rem;
 	padding: 3rem 1rem;
-	padding-bottom: 10rem;
-	height: 83vh;
-	box-sizing: border-box;
 }
 
 	/** DESKTOP BELOW **/
@@ -723,10 +726,6 @@ input:checked + .slider:before {
 
 #more-current-forecast-details {
 	margin: 0rem 1rem;
-	/** MOBILE BELOW **/
-	position: absolute;
-    top: 43rem;
-    width: calc(100% - 2rem);
 }
 
 	/** DESKTOP BELOW **/
@@ -790,9 +789,6 @@ input:checked + .slider:before {
 	flex-direction: column;
 	gap: 5rem;
 	padding: 3rem 1rem;
-	padding-top: 7rem;
-
-	height: 70vh;
 }
 
 	/** DESKTOP BELOW **/
