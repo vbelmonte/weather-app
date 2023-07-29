@@ -307,6 +307,8 @@ function checkTempConversion() {
     tempMode.textContent = 'Fahrenheit';
     fcSwitch.checked = true;
 
+    tempData = [];
+
     for (let i = 0; i < temps.length; i += 1) {
       const original = temps[i].textContent;
       const substring = original.slice(0, original.length - 1);
