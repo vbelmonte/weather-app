@@ -101,6 +101,9 @@ body {
 
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+
+	position: relative;
 }
 
 /** DESKTOP BELOW **/
@@ -897,6 +900,19 @@ input:checked + .slider:before {
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
+}
+
+
+
+/*** FOOTER STYLES **/
+footer {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+footer div {
+	padding: 2rem 0.5rem;
 }
 
 

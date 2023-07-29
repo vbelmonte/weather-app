@@ -530,6 +530,19 @@ function createSettingsModal() {
   return modal;
 }
 
+function createFooter() {
+  const footer = document.createElement('footer');
+  const div = document.createElement('div');
+
+  const p = document.createElement('p');
+  p.innerHTML = 'Designed and developed by <a href=\'https://www.github.com/vbelmonte\' target=\'_blank\'>Villy Belmonte</a href>';
+
+  div.appendChild(p);
+  footer.appendChild(div);
+
+  return footer;
+}
+
 async function loadDefaultWeather() {
   const result = await fetchDefaultWeather();
   updateCurrentForecastLayout(result);
@@ -544,6 +557,7 @@ export default async function createPage() {
   mainContainer.classList.add('main-container');
   const gridContainer = document.createElement('div');
   gridContainer.classList.add('grid-container');
+  const footer = createFooter();
 
   const navigationMenu = createNavigationMenu();
   const sideNavigation = createSideNavigation();
@@ -557,7 +571,7 @@ export default async function createPage() {
   gridContainer.append(currentForecast, moreCurrentForecastDetails, additionalForecastDetails);
   mainContainer.appendChild(gridContainer);
 
-  body.appendChild(mainContainer);
+  body.append(mainContainer, footer);
   const fcSwitch = document.getElementById('farenheit-celsius-switch');
   fcSwitch.addEventListener('click', checkTempConversion);
 
