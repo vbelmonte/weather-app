@@ -1,3 +1,56 @@
+import { convertTZ, fetchWeatherIcon } from './fetch-weather';
+
+function printOutHigh(query) {
+  const high = Math.floor(query.currentWeather.dailyHigh);
+  return `${high}°`;
+}
+
+function printOutLow(query) {
+  const low = Math.floor(query.currentWeather.dailyLow);
+  return `${low}°`;
+}
+
+function printOutCurrentTemp(query) {
+  const temp = Math.floor(query.currentWeather.currentTemp);
+  return `${temp}°`;
+}
+
+function printOutCity(query) {
+  return query.cityName;
+}
+
+function printOutDescription(query) {
+  return query.currentWeather.weatherDescription;
+}
+
+function printOutWeatherIcon(query) {
+  const localHour = convertTZ(new Date(), query.timezone).getHours();
+  const code = query.hourly.weathercode[localHour];
+  const value = query.hourly.is_day[localHour];
+
+  return fetchWeatherIcon(code, value);
+}
+
+export function updateCurrentForecastLayout(query) {
+  const currentCity = document.getElementById('current-city');
+  currentCity.textContent = printOutCity(query);
+
+  const currentTemp = document.getElementById('current-temp');
+  currentTemp.textContent = printOutCurrentTemp(query);
+
+  const dailyHigh = document.getElementById('current-high');
+  dailyHigh.textContent = printOutHigh(query);
+
+  const dailyLow = document.getElementById('current-low');
+  dailyLow.textContent = printOutLow(query);
+
+  const forecastDescription = document.getElementById('forecast-description');
+  forecastDescription.textContent = printOutDescription(query);
+
+  const currentWeatherIcon = document.getElementById('current-weather');
+  currentWeatherIcon.src = printOutWeatherIcon(query);
+}
+
 export default function createCurrentForecast() {
   const section = document.createElement('section');
   section.id = 'current-forecast';
@@ -5,7 +58,6 @@ export default function createCurrentForecast() {
   const currentCityDiv = document.createElement('div');
   const currentCity = document.createElement('h1');
   currentCity.id = 'current-city';
-  currentCity.textContent = 'Ventura';
   currentCityDiv.appendChild(currentCity);
 
   const currentDetailsDiv = document.createElement('div');
@@ -14,25 +66,22 @@ export default function createCurrentForecast() {
   const currentWeatherDiv = document.createElement('div');
   const currentWeatherImg = document.createElement('img');
   currentWeatherImg.id = 'current-weather';
-  currentWeatherImg.src = '../src/assets/images/forecast-current/partly-cloudy.svg';
   currentWeatherDiv.appendChild(currentWeatherImg);
 
   const bottomDiv = document.createElement('div');
   bottomDiv.classList.add('bottom');
 
   const currentTempDiv = document.createElement('div');
-  const currentTemp = document.createElement('h1');
-  currentTemp.classList.add('bold');
+  const currentTemp = document.createElement('p');
+  currentTemp.classList.add('large', 'temp');
   currentTemp.id = 'current-temp';
-  currentTemp.textContent = '74°F';
   currentTempDiv.appendChild(currentTemp);
   bottomDiv.appendChild(currentTempDiv);
 
   const forecastDescriptionDiv = document.createElement('div');
-  const forecastDescription = document.createElement('h4');
-  forecastDescription.classList.add('bold');
+  const forecastDescription = document.createElement('p');
+  forecastDescription.classList.add('medium');
   forecastDescription.id = 'forecast-description';
-  forecastDescription.textContent = 'Partly cloudy';
   forecastDescriptionDiv.appendChild(forecastDescription);
   bottomDiv.appendChild(forecastDescriptionDiv);
 
@@ -44,8 +93,8 @@ export default function createCurrentForecast() {
   highP.textContent = 'H: ';
 
   const high = document.createElement('span');
+  high.classList.add('temp');
   high.id = 'current-high';
-  high.textContent = '74°';
   highP.appendChild(high);
   highDiv.appendChild(highP);
 
@@ -54,23 +103,17 @@ export default function createCurrentForecast() {
   lowP.textContent = 'L: ';
 
   const low = document.createElement('span');
+  low.classList.add('temp');
   low.id = 'current-low';
-  low.textContent = '54°';
   lowP.appendChild(low);
   lowDiv.appendChild(lowP);
 
-  highLowDiv.appendChild(highDiv);
-  highLowDiv.appendChild(lowDiv);
+  highLowDiv.append(highDiv, lowDiv);
   bottomDiv.appendChild(highLowDiv);
 
-  currentDetailsDiv.appendChild(currentWeatherDiv);
-  currentDetailsDiv.appendChild(bottomDiv);
-  /*currentDetailsDiv.appendChild(currentTempDiv);
-  currentDetailsDiv.appendChild(forecastDescriptionDiv);
-  currentDetailsDiv.appendChild(highLowDiv);*/
+  currentDetailsDiv.append(currentWeatherDiv, bottomDiv);
 
-  section.appendChild(currentCityDiv);
-  section.appendChild(currentDetailsDiv);
+  section.append(currentCityDiv, currentDetailsDiv);
 
   return section;
 }

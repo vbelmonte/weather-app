@@ -53,14 +53,14 @@ table {
 	--black: #222222;
 	--white: #F2F2F2;
 	--gray: #A0A0A0;
+	--light-gray: #D1D1D1;
 	--white-filter: invert(99%) sepia(90%) saturate(106%) hue-rotate(51deg) brightness(112%) contrast(90%);
 	--gray-filter: invert(83%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(78%) contrast(86%);
 	--transparent: rgb(242, 242, 242, 0.8);
-	--transparent-dark: rgba(34, 34, 34, 0.2);
+	--transparent-dark-30: rgba(40, 40, 40, 0.5);
+	--transparent-dark-70: rgba(40, 40, 40, 0.7);
 	--input-placeholder: rgb(242, 242, 242, 0.7);
 }
-
-
 
 @font-face {
 	font-family: 'Barlow Regular';
@@ -77,22 +77,15 @@ table {
 }
 
 @font-face {
-	font-family: 'Barlow Thin';
-	src: url('../src/assets/fonts/Barlow-Thin.ttf') format('truetype');
-	font-weight: 400;
+	font-family: 'Barlow Medium';
+	src: url('../src/assets/fonts/Barlow-Medium.ttf') format('truetype');
+	font-weight: 500;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Barlow Semi-Condensed Bold';
-	src: url('../src/assets/fonts/BarlowSemiCondensed-Bold.ttf') format('truetype');
-	font-weight: 400;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Barlow Semi-Condensed Thin';
-	src: url('../src/assets/fonts/BarlowSemiCondensed-Thin.ttf') format('truetype');
+	font-family: 'Barlow Semi-Condensed';
+	src: url('../src/assets/fonts/BarlowSemiCondensed-Regular.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
 }
@@ -105,6 +98,20 @@ body {
 	background-attachment: scroll;
     min-height: 100vh;
 	font-size: 16px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	position: relative;
+}
+
+/** DESKTOP BELOW **/
+@media only screen and (min-width: 1024px) {
+	body {
+		padding: 0rem 5rem;
+		gap: 4rem;
+	}
 }
 
 
@@ -121,27 +128,33 @@ body {
 
 
 /** GENERAL FONT STYLES **/
-
 h1 {
-	font-family: 'Barlow Semi-Condensed Thin';
-	font-size: 4rem;
-	line-height: 5rem;
-}
-
-h1.bold {
-	font-family: 'Barlow Semi-Condensed Bold';
-	font-size: 5rem;
-	line-height: 5rem;
+	font-family: 'Barlow Semi-Condensed';
+	font-size: 2rem;
+	line-height: 2rem;
 }
 
 h2 {
 	font-family: 'Barlow Regular';
-	font-size: 3rem;
-	line-height: 4rem;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
 }
 
 h2.bold {
 	font-family: 'Barlow Bold';
+}
+
+h2.small {
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
+h2.medium {
+	font-size: 2rem;
+	line-height: 2rem;
+}
+
+h2.large {
 	font-size: 3rem;
 	line-height: 4rem;
 }
@@ -149,58 +162,64 @@ h2.bold {
 h3 {
 	font-family: 'Barlow Regular';
 	font-size: 2rem;
-	line-height: 3rem;
+	line-height: 2rem;
+}
+
+h3.small {
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
+h3.extra-small {
+	font-size: 0.75rem;
+	line-height: 0.75rem;
 }
 
 h3.bold {
 	font-family: 'Barlow Bold';
 	font-size: 2rem;
-	line-height: 3rem;
-}
-
-h4 {
-	font-family: 'Barlow Regular';
-	font-size: 1.5rem;
 	line-height: 2rem;
 }
 
-h4.bold {
-	font-family: 'Barlow Bold';
-	font-size: 1.5rem;
-	line-height: 2rem;
-}
-
-h5 {
-	font-family: 'Barlow Regular';
+h3.bold.small {
 	font-size: 1rem;
-	line-height: 1.5rem;
-}
-
-h5.small {
-	font-size: 0.75rem;
 	line-height: 1rem;
-}
-
-h5.small.bold {
-	font-family: 'Barlow Bold';
 }
 
 p {
 	font-family: 'Barlow Regular';
 	font-size: 1rem;
-	line-height: 1.5rem;
+	line-height: 1rem;
+}
+
+p.large {
+	font-family: 'Barlow Regular';
+	font-size: 4rem;
+	line-height: 4rem;
+}
+
+p.medium {
+	font-family: 'Barlow Regular';
+	font-size: 2rem;
+	line-height: 2rem;
 }
 
 p.small {
 	font-family: 'Barlow Regular';
 	font-size: 0.75rem;
-	line-height: 0;
+	line-height: 0.75rem;
 }
 
 p.bold {
 	font-family: 'Barlow Bold';
 	font-size: 1rem;
-	line-height: 1.5rem;
+	line-height: 1rem;
+}
+
+a {
+	font-family: 'Barlow Medium';
+	font-size: 1rem;
+	line-height: 1rem;
 }
 
 
@@ -210,8 +229,12 @@ p.bold {
 	display: none;
 }
 
+#hidden {
+	display: none;
+}
+
 input[type=text] {
-	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+	background: url('../src/assets/images/layout/magnifying-glass-solid-desktop.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	padding: 0.5rem;
 	padding-left: 2.5rem;
 	border: solid 1px;
@@ -233,9 +256,7 @@ button {
 
 
 
-
 /** NAVIGATION STYLES **/
-
 nav {
 	display: flex;
 }
@@ -245,7 +266,26 @@ nav.main-nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem;
+
+	align-self: center;
+	width: 100%;
+	max-width: 80rem;
+	box-sizing: border-box;
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		nav.main-nav {
+			padding: 0.5rem;
+		}
+	}
+
+	/** DESKTOP BELOW **/
+	@media only screen and (min-width: 1024px) {
+		nav.main-nav  {
+			padding: 1rem 0rem;
+		}
+	}
 
 nav.main-nav img {
 	height: 1rem;
@@ -255,41 +295,43 @@ nav.main-nav .logo, nav.side-nav .logo {
 	height: 1.5rem;
 }
 
-nav.main-nav .additional-options {
+nav.main-nav .options {
 	display: flex;
-	gap: 1rem;
+	gap: 3rem;
 }
 
-	/** DESKTOP BELOW **/
-	@media only screen and (min-width: 1024px) {
-		nav.main-nav .additional-options a {
-			display: none;
-		}
-	}
-
-nav.main-nav .desktop-search {
+nav.main-nav .options .switches {
 	display: none;
 }
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
-		nav.main-nav .desktop-search {
-			display: block;
+		nav.main-nav .options .switches {
+			display: flex;
+			gap: 1rem;
 		}
 	}
 
+nav.main-nav .options .additional-options {
+	display: flex;
+	gap: 1rem;
+}
 
-nav.main-nav .desktop-search input {
-	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
-	border: solid 1px var(--white);
-	width: 15rem;
+
+nav.main-nav .options .additional-options button {
+	padding: 0;
 	background-color: transparent;
-	color: var(--white);
 }
 
-nav.main-nav .desktop-search input::placeholder {
-	color: var(--input-placeholder);
+nav.main-nav .options .additional-options button:hover {
+	cursor: pointer;
 }
+	/** DESKTOP BELOW **/
+	@media only screen and (min-width: 1024px) {
+		nav.main-nav .additional-options .menu-button {
+			display: none;
+		}
+	}
 
 nav.side-nav-container {
     position: fixed;
@@ -337,47 +379,100 @@ nav.side-nav-container hr {
 
 
 /** MOBILE SEARCH MODAL STYLES **/
-.mobile-search-modal {
+.search-modal {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: 100vh;
 	z-index: 2;
-	padding: 0.5rem;
+	background-color: var(--transparent-dark-30);
 }
 
-.mobile-search-modal .search-bar {
+.search-modal .container {
+	padding: 1rem;
+	height: 100%;
+}
+
+	/** DESKTOP BELOW **/
+	@media only screen and (min-width: 1024px) {
+		.search-modal .container {
+			padding: 1.5rem;
+			max-width: 50rem;
+			margin: 5rem auto;
+			height: auto;
+			border-radius: 0.5rem;
+		}
+	}
+
+.search-modal .search-bar {
 	display: flex;
 	gap: 0.5rem;
 }
 
-.mobile-search-modal .mobile-search {
+.search-modal .mobile-search {
 	width: 100%;
 }
 
-.mobile-search-modal input {
-	background: url('../src/assets/images/layout/magnifying-glass-solid-mobile.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
+.search-modal input {
+	background: url('../src/assets/images/layout/magnifying-glass-solid.svg') no-repeat scroll 0.75rem 50%/1rem 1rem;
 	border: solid 1px var(--gray);
 
 	width: 100%;
 	box-sizing: border-box;
 }
 
-.mobile-search-modal .results-container {
-	padding: 2rem 0.5rem;
+.search-modal .output-container {
+	padding-left: 1rem;
 }
 
-.mobile-search-modal .search-result {
+.search-modal .results-container {
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 0rem;
+}
+
+.search-modal .search-result {
 	display: flex;
 	gap: 0.75rem;
 	align-items: center;
+	padding: 0.5rem 0;
 }
 
-.mobile-search-modal .search-result img {
+.search-modal .search-result:hover {
+	cursor:	default;
+}
+
+.search-modal .search-result img {
 	filter: var(--gray-filter);
 }
 
+
+
+/** SEARCH TIP STYLES **/
+.tips-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.tip {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.tip p {
+	line-height: 1.5rem;
+}
+
+.tip .tip-img {
+	padding-top: 0.3rem;
+}
+
+.tip .tip-img img {
+	filter: var(--gray-filter);
+}
 
 
 /** SLIDER SWITCH STYLES **/
@@ -432,10 +527,6 @@ input:checked + .slider:before {
 	border-radius: 50%;
 }
 
-.toggle-div {
-	display: none;
-}
-
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		.toggle-div {
@@ -451,16 +542,10 @@ input:checked + .slider:before {
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
-		.main-container {
-			margin: 5rem;
-		}
-
 		.grid-container {
 			display: grid;
 			gap: 1rem;
-			grid-template: 4fr 1fr / 50% 50%;
-
-			min-width: 50rem;
+			grid-template: 4fr 1fr / 1fr 1fr;
 			max-width: 80rem;
 			margin: auto;
 		}
@@ -468,16 +553,72 @@ input:checked + .slider:before {
 
 
 
-/** CURRENT FORECAST STYLES - MOBILE **/
+/** SETTINGS MODAL **/
+.mobile-settings-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	z-index: 3;
 
+	display: flex;
+	background-color: var(--transparent-dark-70);
+}
+
+	@media only screen and (min-width: 1024px) {
+		.mobile-settings-modal {
+			display: none;
+		}
+	}
+
+.mobile-settings-modal .container {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	width: 70vw;
+	padding: 1rem;
+}
+
+	@media only screen and (min-width: 425px) {
+		.mobile-settings-modal .container {
+			width: 20rem;
+		}
+	}
+
+.mobile-settings-modal button {
+	background-color: transparent;
+	height: fit-content;
+}
+
+.mobile-settings-modal button img {
+	filter: var(--white-filter);
+	height: 1.5rem;
+}
+
+.mobile-settings-modal li {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+
+
+/** CURRENT FORECAST STYLES **/
 #current-forecast {
 	display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5rem;
 	padding: 3rem 1rem;
-	padding-bottom: 10rem;
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#current-forecast {
+			padding: 3rem 0.5rem;
+		}
+	}
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
@@ -486,6 +627,7 @@ input:checked + .slider:before {
 			justify-content: space-between;
 			padding: 3rem;
 			border-radius: 1.75rem;
+			height: auto;
 
 			grid-column-start: 1;
 			grid-column-end: 2;
@@ -517,6 +659,10 @@ input:checked + .slider:before {
 		}
 	}
 
+#current-forecast .forecast-details {
+	gap: 5rem;	
+}
+
 #current-forecast .high-low {
 	display: flex;
     justify-content: center;
@@ -524,20 +670,22 @@ input:checked + .slider:before {
 }
 
 #current-forecast img#current-weather {
-	height: 9rem;
+	width: 8rem;
 }
 
 
 
 /** MORE CURRENT FORECAST DETAILS STYLES **/
-
 #more-current-forecast-details {
 	margin: 0rem 1rem;
-	/** MOBILE BELOW **/
-	position: absolute;
-    top: 43rem;
-    width: calc(100% - 2rem);
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#more-current-forecast-details {
+			margin: 0rem 0.5rem;
+		}
+	}
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
@@ -581,7 +729,7 @@ input:checked + .slider:before {
 
 #more-current-forecast-details img {
 	filter: var(--white-filter) opacity(80%);
-	height: 2rem;
+	height: 1.5rem;
 }
 
 #more-current-forecast-details .module {
@@ -594,21 +742,28 @@ input:checked + .slider:before {
 
 
 /** ADDITIONAL FORECAST STYLES - MOBILE **/
-
 #additional-forecast {
 	display: flex;
 	flex-direction: column;
-	gap: 3rem;
+	gap: 5rem;
 	padding: 3rem 1rem;
-	padding-top: 8rem;
 }
+
+	/** SCREENS < 320PX BELOW**/ 
+	@media only screen and (max-width: 320px) {
+		#additional-forecast {
+			padding: 3rem 0.5rem;
+		}
+	}
 
 	/** DESKTOP BELOW **/
 	@media only screen and (min-width: 1024px) {
 		#additional-forecast {
+			overflow: hidden;
 			border-radius: 1.75rem;
 			padding: 3rem;
 			padding-bottom: 4rem;
+			height: auto;
 
 			grid-column-start: 2;
 			grid-column-end: 3;
@@ -617,9 +772,7 @@ input:checked + .slider:before {
 		}
 	}
 
-#additional-forecast h3 {
-	font-size: 1.5rem;
-}
+
 
 /** HOURLY FORECAST STYLES **/
 .hourly-forecast {
@@ -628,49 +781,49 @@ input:checked + .slider:before {
 	gap: 2rem;
 }
 
-/** HOURLY FORECAST CARD STYLES **/
 
+
+/** HOURLY FORECAST CARD STYLES **/
 .hourly-card {
 	padding: 1.5rem;
-	padding-top: 1rem;
-	border-radius: 0.75rem;
+    padding-top: 1rem;
+    border-radius: 0.75rem;
+}
 
+.hourly-card .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 1.5rem;
+	width: 2.5rem;
 }
 
 .hourly-card img {
-	width: 2rem;
+	height: 1.5rem;
 }
 
-.hourly-card h4 {
-	font-size: 1rem;
-	line-height: 1.5rem;
-}
 
-.hourly-card p {
-	font-size: 1.5rem;
-}
 
 /** HOURLY FORECAST CAROUSEL STYLES **/
-
 .hourly-forecast-carousel {
 	overflow-x: auto;
 }
-
-.no-scrollbar {
-	scrollbar-color: transparent transparent;
+.custom-scrollbar::-webkit-scrollbar {
+	height: 0.5rem;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-	height: 0px;
+.custom-scrollbar::-webkit-scrollbar-track {
+	border-radius: 1rem;
 }
 
-.hourly-forecast-carousel .container {
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	border-radius: 1rem;
+}
+
+.hourly-forecast-carousel > .container {
 	display: flex;
 	gap: 0.5rem;
+	padding-bottom: 1rem;
 }
 
 
@@ -679,7 +832,7 @@ input:checked + .slider:before {
 .three-day-forecast {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 2rem;
 }
 
 .three-day-forecast-list {
@@ -690,20 +843,23 @@ input:checked + .slider:before {
 
 
 
-
 /** 3-DAY FORECAST CARD STYLES **/
 .daily-bar {
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 	
 	padding: 0.5rem 0rem;
+}
+
+.daily-bar .day-container {
+	flex: 1;
 }
 
 .daily-bar .details {
 	display: flex;
 	align-items: center;
-	flex: 1;
+	flex: 10;
 	gap: 1rem; /** MOBILE **/
 }
 
@@ -720,7 +876,7 @@ input:checked + .slider:before {
 }
 
 .daily-bar .forecast .icon {
-	height: 1.5rem;
+	width: 1.5rem;
 }
 
 .daily-bar .chance-of-rain .icon {
@@ -729,4 +885,57 @@ input:checked + .slider:before {
 
 .daily-bar h4 {
 	font-size: 1rem;
+}
+
+.daily-bar .chance-of-rain {
+	display: none;
+}
+
+.daily-bar .temperatures {
+	width: 5rem;
+}
+
+.daily-bar .high,
+.daily-bar .low {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+
+
+/*** FOOTER STYLES **/
+footer {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+footer div {
+	padding: 2rem 0.5rem;
+}
+
+
+
+/** LOADING ANIMATION STYLES **/
+.loader {
+	margin: auto;
+	border: 0.25rem solid var(--light-gray);
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	animation: spinner 1s linear infinite;
+}
+  
+  @keyframes spinner {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.loader.absolute {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }

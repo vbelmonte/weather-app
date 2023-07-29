@@ -1,7 +1,39 @@
+function printOutHumidity(query) {
+  return `${query.currentWeather.humidity}%`;
+}
+
+function printOutWindSpeed(query) {
+  return `${Math.floor(query.currentWeather.wind)}mph`;
+}
+
+function printOutUVIndex(query) {
+  const uv = query.daily.uv_index_max[0];
+  const result = Math.floor(uv);
+
+  return `${result} of 10`;
+}
+
+function printOutChanceOfRain(query) {
+  return `${query.currentWeather.precipitation}%`;
+}
+
+export function updateAdditionalCurrentForecastLayout(query) {
+  const cor = document.getElementById('chance-of-rain');
+  cor.textContent = printOutChanceOfRain(query);
+
+  const humidity = document.getElementById('humidity');
+  humidity.textContent = printOutHumidity(query);
+
+  const windSpeed = document.getElementById('wind');
+  windSpeed.textContent = printOutWindSpeed(query);
+
+  const uv = document.getElementById('uv-index');
+  uv.textContent = printOutUVIndex(query);
+}
+
 function createChanceOfRain() {
   const corDiv = document.createElement('div');
-  corDiv.classList.add('cor');
-  corDiv.classList.add('module');
+  corDiv.classList.add('cor', 'module');
 
   const corIconDiv = document.createElement('div');
   const corImg = document.createElement('img');
@@ -9,32 +41,25 @@ function createChanceOfRain() {
   corIconDiv.appendChild(corImg);
   corDiv.appendChild(corIconDiv);
 
-  const containerDiv = document.createElement('div');
-
   const corPercentDiv = document.createElement('div');
   const corPercent = document.createElement('p');
-  corPercent.classList.add('bold');
   corPercent.id = 'chance-of-rain';
-  corPercent.textContent = '0%';
   corPercentDiv.appendChild(corPercent);
-  containerDiv.appendChild(corPercentDiv);
 
   const corTitleDiv = document.createElement('div');
-  const corTitle = document.createElement('h5');
-  corTitle.classList.add('bold', 'secondary', 'small');
+  const corTitle = document.createElement('h3');
+  corTitle.classList.add('secondary', 'extra-small');
   corTitle.textContent = 'Rain';
   corTitleDiv.appendChild(corTitle);
-  containerDiv.appendChild(corTitleDiv);
 
-  corDiv.appendChild(containerDiv);
+  corDiv.append(corPercentDiv, corTitleDiv);
 
   return corDiv;
 }
 
 function createHumidity() {
   const humidityDiv = document.createElement('div');
-  humidityDiv.classList.add('humidity');
-  humidityDiv.classList.add('module');
+  humidityDiv.classList.add('humidity', 'module');
 
   const humidityIconDiv = document.createElement('div');
   const humidityImg = document.createElement('img');
@@ -42,32 +67,25 @@ function createHumidity() {
   humidityIconDiv.appendChild(humidityImg);
   humidityDiv.appendChild(humidityIconDiv);
 
-  const containerDiv = document.createElement('div');
-
   const humidityPercentDiv = document.createElement('div');
   const humidityPercent = document.createElement('p');
-  humidityPercent.classList.add('bold');
   humidityPercent.id = 'humidity';
-  humidityPercent.textContent = '20%';
   humidityPercentDiv.appendChild(humidityPercent);
-  containerDiv.appendChild(humidityPercentDiv);
 
   const humidityTitleDiv = document.createElement('div');
-  const humidityTitle = document.createElement('h5');
-  humidityTitle.classList.add('bold', 'secondary', 'small');
+  const humidityTitle = document.createElement('h3');
+  humidityTitle.classList.add('secondary', 'extra-small');
   humidityTitle.textContent = 'Humidity';
   humidityTitleDiv.appendChild(humidityTitle);
-  containerDiv.appendChild(humidityTitleDiv);
 
-  humidityDiv.appendChild(containerDiv);
+  humidityDiv.append(humidityPercentDiv, humidityTitleDiv);
 
   return humidityDiv;
 }
 
 function createWind() {
   const windDiv = document.createElement('div');
-  windDiv.classList.add('wind');
-  windDiv.classList.add('module');
+  windDiv.classList.add('wind', 'module');
 
   const windIconDiv = document.createElement('div');
   const windImg = document.createElement('img');
@@ -75,32 +93,25 @@ function createWind() {
   windIconDiv.appendChild(windImg);
   windDiv.appendChild(windIconDiv);
 
-  const containerDiv = document.createElement('div');
-
   const windSpeedDiv = document.createElement('div');
   const windSpeed = document.createElement('p');
-  windSpeed.classList.add('bold');
   windSpeed.id = 'wind';
-  windSpeed.textContent = '5mph';
   windSpeedDiv.appendChild(windSpeed);
-  containerDiv.appendChild(windSpeedDiv);
 
   const windTitleDiv = document.createElement('div');
-  const windTitle = document.createElement('h5');
-  windTitle.classList.add('bold', 'secondary', 'small');
+  const windTitle = document.createElement('h3');
+  windTitle.classList.add('secondary', 'extra-small');
   windTitle.textContent = 'Wind';
   windTitleDiv.appendChild(windTitle);
-  containerDiv.appendChild(windTitleDiv);
 
-  windDiv.appendChild(containerDiv);
+  windDiv.append(windSpeedDiv, windTitleDiv);
 
   return windDiv;
 }
 
 function createUV() {
   const uvDiv = document.createElement('div');
-  uvDiv.classList.add('uv');
-  uvDiv.classList.add('module');
+  uvDiv.classList.add('uv', 'module');
 
   const uvIconDiv = document.createElement('div');
   const uvImg = document.createElement('img');
@@ -108,24 +119,18 @@ function createUV() {
   uvIconDiv.appendChild(uvImg);
   uvDiv.appendChild(uvIconDiv);
 
-  const containerDiv = document.createElement('div');
-
   const uvIndexDiv = document.createElement('div');
   const uvIndex = document.createElement('p');
-  uvIndex.classList.add('bold');
   uvIndex.id = 'uv-index';
-  uvIndex.textContent = '5 of 10';
   uvIndexDiv.appendChild(uvIndex);
-  containerDiv.appendChild(uvIndexDiv);
 
   const uvTitleDiv = document.createElement('div');
-  const uvTitle = document.createElement('h5');
-  uvTitle.classList.add('bold', 'secondary', 'small');
+  const uvTitle = document.createElement('h3');
+  uvTitle.classList.add('secondary', 'extra-small');
   uvTitle.textContent = 'UV Index';
   uvTitleDiv.appendChild(uvTitle);
-  containerDiv.appendChild(uvTitleDiv);
 
-  uvDiv.appendChild(containerDiv);
+  uvDiv.append(uvIndexDiv, uvTitleDiv);
 
   return uvDiv;
 }
@@ -138,16 +143,11 @@ export default function createMoreCurrentForecastDetails() {
   moreForecastDetailsDiv.id = 'more-current-forecast-details-container';
 
   const chanceOfRain = createChanceOfRain();
-  moreForecastDetailsDiv.appendChild(chanceOfRain);
-
   const humidity = createHumidity();
-  moreForecastDetailsDiv.appendChild(humidity);
-
   const wind = createWind();
-  moreForecastDetailsDiv.appendChild(wind);
-
   const uv = createUV();
-  moreForecastDetailsDiv.appendChild(uv);
+
+  moreForecastDetailsDiv.append(chanceOfRain, humidity, wind, uv);
 
   section.appendChild(moreForecastDetailsDiv);
 
