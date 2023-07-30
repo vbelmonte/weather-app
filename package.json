@@ -26,6 +26,7 @@
     "webpack-cli": "^5.1.4"
   },
   "repository": {
-    "url": "git+https://github.com/vbelmonte/weather-app.git"
+    "url": "git+https://github.com/vbelmonte/weather-app.git",
+    "homepage": "http://vbelmonte.github.io/weather-app"
   }
 }
