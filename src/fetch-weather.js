@@ -8,7 +8,7 @@ export function convertFToC(temp) {
 
 export function fetchWeatherIcon(code, isDay) {
   let src;
-  const string = '../src/assets/images/weather-icons/';
+  const string = './src/assets/images/weather-icons/';
   switch (code) {
     case 0:
       if (isDay === 1) {
