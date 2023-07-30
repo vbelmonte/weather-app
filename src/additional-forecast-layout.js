@@ -159,7 +159,7 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   const corIconDiv = document.createElement('div');
   const corIconImg = document.createElement('img');
   corIconImg.classList.add('icon', 'white-filter');
-  corIconImg.src = '../src/assets/images/forecast-details/droplet-svgrepo-com.svg';
+  corIconImg.src = './src/assets/images/forecast-details/droplet-svgrepo-com.svg';
   corIconDiv.appendChild(corIconImg);
   corDiv.appendChild(corIconDiv);
 
