@@ -3248,7 +3248,7 @@ module.exports = __webpack_require__.p + "05cbb3ba9db7b5e1da6e.ttf";
   \*********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "96e722487c813158dacb.svg";
+module.exports = __webpack_require__.p + "9d17da2305589c6ab24d.svg";
 
 /***/ }),
 
@@ -3258,7 +3258,7 @@ module.exports = __webpack_require__.p + "96e722487c813158dacb.svg";
   \*************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "e69e2b89f37403d0c843.svg";
+module.exports = __webpack_require__.p + "9036027600a5e51e97cb.svg";
 
 /***/ })
 
