@@ -1,4 +1,5 @@
 import { convertTZ, fetchWeatherIcon } from './fetch-weather';
+import corIcon from './assets/images/forecast-details/droplet-svgrepo-com.svg';
 
 function createHourlyCard(hour, temp, icon) {
   const cardDiv = document.createElement('div');
@@ -159,7 +160,7 @@ function createDailyForecastBar(high, low, day, cor, desc, icon) {
   const corIconDiv = document.createElement('div');
   const corIconImg = document.createElement('img');
   corIconImg.classList.add('icon', 'white-filter');
-  corIconImg.src = './src/assets/images/forecast-details/droplet-svgrepo-com.svg';
+  corIconImg.src = corIcon;
   corIconDiv.appendChild(corIconImg);
   corDiv.appendChild(corIconDiv);
 

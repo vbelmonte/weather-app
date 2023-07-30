@@ -1,3 +1,8 @@
+import corIcon from './assets/images/forecast-details/droplet-svgrepo-com.svg';
+import humidityIcon from './assets/images/forecast-details/waves-fill-svgrepo-com.svg';
+import windIcon from './assets/images/forecast-details/wind-fill-svgrepo-com.svg';
+import uvIcon from './assets/images/forecast-details/sun-filled-svgrepo-com.svg';
+
 function printOutHumidity(query) {
   return `${query.currentWeather.humidity}%`;
 }
@@ -37,7 +42,7 @@ function createChanceOfRain() {
 
   const corIconDiv = document.createElement('div');
   const corImg = document.createElement('img');
-  corImg.src = './src/assets/images/forecast-details/droplet-svgrepo-com.svg';
+  corImg.src = corIcon;
   corIconDiv.appendChild(corImg);
   corDiv.appendChild(corIconDiv);
 
@@ -63,7 +68,7 @@ function createHumidity() {
 
   const humidityIconDiv = document.createElement('div');
   const humidityImg = document.createElement('img');
-  humidityImg.src = './src/assets/images/forecast-details/waves-fill-svgrepo-com.svg';
+  humidityImg.src = humidityIcon;
   humidityIconDiv.appendChild(humidityImg);
   humidityDiv.appendChild(humidityIconDiv);
 
@@ -89,7 +94,7 @@ function createWind() {
 
   const windIconDiv = document.createElement('div');
   const windImg = document.createElement('img');
-  windImg.src = './src/assets/images/forecast-details/wind-fill-svgrepo-com.svg';
+  windImg.src = windIcon;
   windIconDiv.appendChild(windImg);
   windDiv.appendChild(windIconDiv);
 
@@ -115,7 +120,7 @@ function createUV() {
 
   const uvIconDiv = document.createElement('div');
   const uvImg = document.createElement('img');
-  uvImg.src = './src/assets/images/forecast-details/sun-filled-svgrepo-com.svg';
+  uvImg.src = uvIcon;
   uvIconDiv.appendChild(uvImg);
   uvDiv.appendChild(uvIconDiv);
 
