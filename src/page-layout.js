@@ -3,6 +3,13 @@ import createMoreCurrentForecastDetails, { updateAdditionalCurrentForecastLayout
 import createAdditionalForecast, { update3DayForecastLayout, updateHourlyForecastLayout } from './additional-forecast-layout';
 import checkQuery from './fetch-cities';
 import fetchWeather, { convertFToC, fetchDefaultWeather } from './fetch-weather';
+import locationMarker from './assets/images/layout/location-marker.svg';
+import tipIcon from './assets/images/layout/tip.svg';
+import magnifyingGlass from './assets/images/layout/magnifying-glass-solid.svg';
+import logoIcon from './assets/images/layout/weather-app-logo.svg';
+import hamburgerIcon from './assets/images/layout/hamburger-svgrepo-com.svg';
+import exit from './assets/images/layout/exit.svg';
+import temperature from './assets/images/layout/temperature.svg';
 
 let tempData = [];
 
@@ -29,7 +36,7 @@ function createCityResultText(result) {
 function createQueryResult(searchResult) {
   const locationIcon = document.createElement('div');
   const icon = document.createElement('img');
-  icon.src = '../src/assets/images/layout/location-marker.svg';
+  icon.src = locationMarker;
   locationIcon.appendChild(icon);
 
   const textResult = document.createElement('div');
@@ -47,7 +54,7 @@ function createTip(text) {
   const tipImgDiv = document.createElement('div');
   tipImgDiv.classList.add('tip-img');
   const tipImg = document.createElement('img');
-  tipImg.src = '../src/assets/images/layout/tip.svg';
+  tipImg.src = tipIcon;
   tipImgDiv.appendChild(tipImg);
 
   const tipDiv = document.createElement('div');
@@ -327,12 +334,12 @@ function createNavigationMenu() {
   const nav = document.createElement('nav');
   nav.classList.add('main-nav');
   const searchImg = document.createElement('img');
-  searchImg.src = '../src/assets/images/layout/magnifying-glass-solid.svg';
+  searchImg.src = magnifyingGlass;
 
   const logoDiv = document.createElement('div');
   const logoImg = document.createElement('img');
   logoImg.classList.add('logo');
-  logoImg.src = '../src/assets/images/layout/weather-app-logo.svg';
+  logoImg.src = logoIcon;
   logoDiv.appendChild(logoImg);
 
   const searchDiv = document.createElement('div');
@@ -351,7 +358,7 @@ function createNavigationMenu() {
   hamburgerMenuButton.classList.add('menu-button');
   const hamburgerMenuImg = document.createElement('img');
   hamburgerMenuImg.classList.add('menu');
-  hamburgerMenuImg.src = '../src/assets/images/layout/hamburger-svgrepo-com.svg';
+  hamburgerMenuImg.src = hamburgerIcon;
   hamburgerMenuButton.appendChild(hamburgerMenuImg);
   hamburgerMenuButton.addEventListener('click', toggleSettingsModal);
 
@@ -412,7 +419,7 @@ function createSideNavigation() {
   const logoDiv = document.createElement('div');
   const logo = document.createElement('img');
   logo.classList.add('logo');
-  logo.src = '../src/assets/images/layout/weather-app-logo.svg';
+  logo.src = logoIcon;
   logoDiv.appendChild(logo);
   sideNav.appendChild(logoDiv);
 
@@ -445,7 +452,7 @@ function createSideNavigation() {
 
   const exitBtn = document.createElement('button');
   const exitImg = document.createElement('img');
-  exitImg.src = '../src/assets/images/layout/exit.svg';
+  exitImg.src = exit;
   exitBtn.appendChild(exitImg);
   exitDiv.appendChild(exitBtn);
 
@@ -499,7 +506,7 @@ function createSettingsModal() {
   const logoDiv = document.createElement('div');
   const logo = document.createElement('img');
   logo.classList.add('black-filter');
-  logo.src = '../src/assets/images/layout/weather-app-logo.svg';
+  logo.src = logoIcon;
   logoDiv.appendChild(logo);
 
   const linksDiv = document.createElement('div');
@@ -511,7 +518,7 @@ function createSettingsModal() {
   li.addEventListener('click', checkTempConversion);
 
   tempImg.classList.add('black-filter');
-  tempImg.src = '../src/assets/images/layout/temperature.svg';
+  tempImg.src = temperature;
   a.innerHTML = 'Set to <span id=\'temp-mode\'>Celsius</span>';
   li.append(tempImg, a);
   ul.appendChild(li);
@@ -521,7 +528,7 @@ function createSettingsModal() {
 
   const closeButton = document.createElement('button');
   const xImg = document.createElement('img');
-  xImg.src = '../src/assets/images/layout/close-md-svgrepo-com.svg';
+  xImg.src = exit;
   closeButton.appendChild(xImg);
   closeButton.addEventListener('click', toggleSettingsModal);
 
@@ -545,10 +552,7 @@ function createFooter() {
 
 async function loadDefaultWeather() {
   const result = await fetchDefaultWeather();
-  updateCurrentForecastLayout(result);
-  updateAdditionalCurrentForecastLayout(result);
-  updateHourlyForecastLayout(result);
-  update3DayForecastLayout(result);
+  setTimeout(delayDisplayingGrid, 500, result);
 }
 
 export default async function createPage() {
@@ -575,5 +579,7 @@ export default async function createPage() {
   const fcSwitch = document.getElementById('farenheit-celsius-switch');
   fcSwitch.addEventListener('click', checkTempConversion);
 
+  toggleGridContainer(true);
+  togglePageLoadingAnimation(true);
   await loadDefaultWeather();
 }

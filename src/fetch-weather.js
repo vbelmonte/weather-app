@@ -1,3 +1,16 @@
+import clearSkySun from './assets/images/weather-icons/clear-sky-sunny.svg';
+import clearSkyMoon from './assets/images/weather-icons/clear-sky-moon.svg';
+import mostlyClearSun from './assets/images/weather-icons/mostly-clear-sunny.svg';
+import mostlyClearMoon from './assets/images/weather-icons/mostly-clear-moon.svg';
+import partlyCloudySun from './assets/images/weather-icons/partly-cloudy-sunny.svg';
+import partlyCloudyMoon from './assets/images/weather-icons/partly-cloudy-moon.svg';
+import overcast from './assets/images/weather-icons/overcast.svg';
+import fog from './assets/images/weather-icons/fog.svg';
+import drizzle from './assets/images/weather-icons/drizzle.svg';
+import rain from './assets/images/weather-icons/rain.svg';
+import snow from './assets/images/weather-icons/snow.svg';
+import thunderstorm from './assets/images/weather-icons/thunderstorm.svg';
+
 export function convertTZ(date, tzString) {
   return new Date(date.toLocaleString('en-US', { timeZone: tzString }));
 }
@@ -8,35 +21,34 @@ export function convertFToC(temp) {
 
 export function fetchWeatherIcon(code, isDay) {
   let src;
-  const string = './src/assets/images/weather-icons/';
   switch (code) {
     case 0:
       if (isDay === 1) {
-        src = `${string}clear-sky-sunny.svg`;
+        src = clearSkySun;
       } else {
-        src = `${string}clear-sky-moon.svg`;
+        src = clearSkyMoon;
       }
       break;
     case 1:
       if (isDay === 1) {
-        src = `${string}mostly-clear-sunny.svg`;
+        src = mostlyClearSun;
       } else {
-        src = `${string}mostly-clear-moon.svg`;
+        src = mostlyClearMoon;
       }
       break;
     case 2:
       if (isDay === 1) {
-        src = `${string}partly-cloudy-sunny.svg`;
+        src = partlyCloudySun;
       } else {
-        src = `${string}partly-cloudy-moon.svg`;
+        src = partlyCloudyMoon;
       }
       break;
     case 3:
-      src = `${string}overcast.svg`;
+      src = overcast;
       break;
     case 45:
     case 48:
-      src = `${string}fog.svg`;
+      src = fog;
       break;
     case 51:
     case 53:
@@ -46,14 +58,14 @@ export function fetchWeatherIcon(code, isDay) {
     case 80:
     case 81:
     case 82:
-      src = `${string}drizzle.svg`;
+      src = drizzle;
       break;
     case 61:
     case 63:
     case 65:
     case 66:
     case 67:
-      src = `${string}rain.svg`;
+      src = rain;
       break;
     case 71:
     case 73:
@@ -61,12 +73,12 @@ export function fetchWeatherIcon(code, isDay) {
     case 77:
     case 85:
     case 86:
-      src = `${string}snow.svg`;
+      src = snow;
       break;
     case 95:
     case 96:
     case 99:
-      src = `${string}thunderstorm.svg`;
+      src = thunderstorm;
       break;
     default:
       break;
